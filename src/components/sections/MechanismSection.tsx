@@ -29,7 +29,7 @@ const MechanismSection = () => {
     <section className="py-16 md:py-24 bg-gradient-to-br from-[hsl(210_79%_95%)] to-[hsl(122_39%_94%)]" id="como-funciona">
       <div ref={ref} className={`container max-w-3xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-4">
-          O Protocolo de Esvaziamento de Glicogênio e Desinflamação Celular
+          O protocolo de esvaziamento de glicogênio e desinflamação celular
         </h2>
         <p className="text-center text-lg text-muted-foreground mb-6">Aqui está a verdade que ninguém te contou:</p>
 
@@ -41,7 +41,7 @@ const MechanismSection = () => {
         </p>
 
         <h3 className="font-display font-bold text-xl md:text-2xl text-center mb-10">
-          E é Exatamente Por Isso Que o Reset Funciona:
+          E é exatamente por isso que o reset funciona:
         </h3>
 
         {/* Timeline */}

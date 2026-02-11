@@ -15,7 +15,7 @@ const ErrorSection = () => {
     <section className="py-16 md:py-24 bg-background" id="erro">
       <div ref={ref} className={`container max-w-3xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-8">
-          Por Que Dietas Tradicionais Falham Nos Primeiros 10 Dias?
+          Por que dietas tradicionais falham nos primeiros 10 dias?
         </h2>
 
         <h3 className="font-display font-bold text-lg md:text-xl mb-6 text-foreground">Você já deve ter tentado:</h3>

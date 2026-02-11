@@ -10,7 +10,7 @@ const GuaranteeSection = () => {
         <Shield className="w-16 h-16 text-trust mx-auto mb-6" />
 
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-6">
-          🛡️ Garantia Blindada de 7 Dias
+          🛡️ Garantia blindada de 7 dias
         </h2>
 
         <p className="text-lg text-foreground mb-4">

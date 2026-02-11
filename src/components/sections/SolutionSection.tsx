@@ -10,7 +10,7 @@ const products = [
   {
     icon: ShoppingCart,
     title: "Lista de Compras Anti-Inflamatória",
-    desc: "Exatamente o que comprar no supermercado comum — nada de loja de produtos naturais ou importados — para os 10 dias.",
+    desc: "Exatamente o que comprar no supermercado comum, nada de loja de produtos naturais ou importados, para os 10 dias.",
   },
   {
     icon: Coffee,
@@ -39,13 +39,13 @@ const SolutionSection = () => {
     <section className="py-16 md:py-24 bg-background" id="solucao">
       <div ref={ref} className={`container max-w-4xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-4">
-          Apresentando: <span className="text-primary">Operação 3 em 10 — Menos 3kg em 10 Dias</span>
+          Apresentando: <span className="text-primary">Operação 3 em 10 | Menos 3kg em 10 dias</span>
         </h2>
         <p className="text-center text-muted-foreground text-lg mb-4 max-w-2xl mx-auto">
           Este não é apenas "mais um PDF de dieta". É um sistema completo de eliminação de inflamação e reset metabólico.
         </p>
         <p className="text-center font-display font-bold text-xl md:text-2xl mb-10">
-          Aqui Está TUDO o Que Você Recebe:
+          Aqui está TUDO o que você recebe:
         </p>
 
         {/* Products grid */}
@@ -65,7 +65,7 @@ const SolutionSection = () => {
         <div className="w-20 h-0.5 bg-accent mx-auto mb-10" />
 
         <h3 className="font-display font-bold text-xl md:text-2xl text-center mb-8">
-          E Como Bônus Exclusivo:
+          E como bônus exclusivo:
         </h3>
 
         <div className="grid sm:grid-cols-2 gap-5">

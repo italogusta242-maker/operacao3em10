@@ -12,7 +12,7 @@ const UrgencySection = () => {
           <AlertTriangle className="w-12 h-12 text-destructive mx-auto mb-4" />
 
           <h2 className="font-display font-bold text-xl md:text-2xl lg:text-3xl text-foreground mb-6">
-            ⚠️ Esta Oferta Pode Sair do Ar a Qualquer Momento
+            ⚠️ Esta oferta pode sair do ar a qualquer momento
           </h2>
 
           <p className="text-base md:text-lg text-foreground mb-4">

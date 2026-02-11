@@ -12,12 +12,12 @@ const HeroSection = () => (
     {/* Headline */}
     <div className="max-w-3xl text-center animate-fade-up">
       <h1 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] leading-tight tracking-tight text-foreground">
-        Você Não Engordou 3kg de Gordura em 4 Dias de Carnaval...{" "}
-        <span className="text-accent">Você Acumulou INFLAMAÇÃO.</span>
+        Você não engordou 3kg de gordura em 4 dias de carnaval...{" "}
+        <span className="text-accent">Você acumulou INFLAMAÇÃO.</span>
       </h1>
 
       <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-        E Pode Eliminar Isso em Apenas <strong className="text-foreground">10 Dias</strong> — Sem Passar Fome, Sem Academia Matadora, Sem Receitas Complicadas.
+        E pode eliminar isso em apenas <strong className="text-foreground">10 dias</strong>, sem passar fome, sem academia matadora, sem receitas complicadas.
       </p>
     </div>
 

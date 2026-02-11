@@ -9,7 +9,7 @@ const FinalCTASection = () => {
     <section className="py-16 md:py-24 bg-gradient-to-b from-[hsl(122_50%_30%)] to-primary text-white" id="cta-final">
       <div ref={ref} className={`container max-w-4xl text-center ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl mb-12">
-          Você Tem Duas Opções Agora:
+          Você tem duas opções agora:
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6 mb-12">

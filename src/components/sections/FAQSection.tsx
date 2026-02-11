@@ -31,7 +31,7 @@ const FAQSection = () => {
     <section className="py-16 md:py-24 bg-background" id="faq">
       <div ref={ref} className={`container max-w-3xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-10">
-          Perguntas Que Você Pode Estar Se Fazendo Agora:
+          Perguntas que você pode estar se fazendo agora:
         </h2>
 
         <Accordion type="single" collapsible className="space-y-3">
