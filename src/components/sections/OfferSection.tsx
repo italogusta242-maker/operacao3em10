@@ -38,7 +38,7 @@ const OfferSection = () => {
 
         <p className="text-lg font-semibold text-foreground mb-6">Mas você NÃO vai pagar isso hoje.</p>
 
-        <p className="text-xl line-through text-muted-foreground mb-2">R$ 97,00</p>
+        <p className="text-xl line-through text-muted-foreground mb-2">R$ 497,00</p>
 
         <p className="font-display font-bold text-lg md:text-xl text-foreground mb-6 uppercase tracking-wide">
           Hoje, Você Garante Tudo Por Apenas:
