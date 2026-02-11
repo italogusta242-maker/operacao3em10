@@ -10,7 +10,7 @@ const painPoints = [
 
 const cards = [
   { icon: Flame, title: "Inflamação Celular", desc: "Suas células retêm líquido e toxinas metabólicas" },
-  { icon: Droplets, title: "Retenção Líquida", desc: "Excesso de sódio e carboidratos seguram água no corpo" },
+  { icon: Droplets, title: "Retenção Líquida", desc: "Excesso de sódio e carboidratos seguram água no seu corpo" },
   { icon: Zap, title: "Glicogênio Estocado", desc: "Reservas de glicose lotadas travando seu metabolismo" },
 ];
 
@@ -34,8 +34,11 @@ const PainSection = () => {
         <p className="text-lg md:text-xl font-semibold text-foreground mb-2">
           Então preciso que você pare tudo e leia isso com <strong>MUITA atenção</strong>.
         </p>
-        <p className="text-lg md:text-xl text-foreground mb-10">
+        <p className="text-lg md:text-xl text-foreground mb-2">
           Porque o que você está sentindo agora <strong className="text-destructive">NÃO é gordura acumulada</strong>.
+        </p>
+        <p className="text-lg md:text-xl text-foreground mb-10">
+          São <strong>3 processos inflamatórios</strong> acontecendo no seu corpo agora mesmo:
         </p>
 
         <div className="grid sm:grid-cols-3 gap-4 mb-10">
