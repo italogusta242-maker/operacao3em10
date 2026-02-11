@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 interface CTAButtonProps {
   text: string;
@@ -18,9 +19,7 @@ const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse =
   };
 
   const handleClick = () => {
-    if (typeof window !== "undefined" && typeof (window as any).fbq === "function") {
-      (window as any).fbq("track", "InitiateCheckout");
-    }
+    trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
   };
 
   return (
