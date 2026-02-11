@@ -1,4 +1,4 @@
-import { Check, Flame, Droplets, Zap } from "lucide-react";
+import { Check, Flame, Droplets, Zap, AlertTriangle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const painPoints = [
@@ -40,10 +40,15 @@ const PainSection = () => {
 
         <div className="grid sm:grid-cols-3 gap-4 mb-10">
           {cards.map(({ icon: Icon, title, desc }, i) => (
-            <div key={i} className={`bg-card rounded-xl p-6 shadow-sm text-center ${isVisible ? `animate-fade-up animation-delay-${(i + 1) * 200}` : "opacity-0"}`}>
-              <Icon className="w-10 h-10 text-primary mx-auto mb-3" />
-              <h4 className="font-display font-bold text-base mb-1">{title}</h4>
-              <p className="text-sm text-muted-foreground">{desc}</p>
+            <div key={i} className={`bg-destructive/10 border-2 border-destructive/30 rounded-xl p-6 text-center ${isVisible ? `animate-fade-up animation-delay-${(i + 1) * 200}` : "opacity-0"}`}>
+              <div className="w-14 h-14 rounded-full bg-destructive/15 flex items-center justify-center mx-auto mb-3">
+                <Icon className="w-7 h-7 text-destructive" />
+              </div>
+              <div className="flex items-center justify-center gap-1.5 mb-1">
+                <AlertTriangle className="w-4 h-4 text-destructive" />
+                <h4 className="font-display font-bold text-base text-destructive">{title}</h4>
+              </div>
+              <p className="text-sm text-foreground/70">{desc}</p>
             </div>
           ))}
         </div>
