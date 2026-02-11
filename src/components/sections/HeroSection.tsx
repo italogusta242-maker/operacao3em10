@@ -6,7 +6,7 @@ const HeroSection = () => (
     {/* Logo */}
     <div className="flex items-center gap-2 mb-10 animate-fade-in">
       <Leaf className="w-8 h-8 text-primary" />
-      <span className="font-display font-bold text-xl text-primary">Protocolo Reset 10D</span>
+      <span className="font-display font-bold text-xl text-primary">Operação 3 em 10</span>
     </div>
 
     {/* Headline */}

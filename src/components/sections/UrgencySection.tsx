@@ -16,12 +16,12 @@ const UrgencySection = () => {
           </h2>
 
           <p className="text-base md:text-lg text-foreground mb-4">
-            Estou testando este preço promocional de <strong className="text-primary">R$ 27,00</strong> porque quero colocar o máximo de pessoas possível pra testar o protocolo.
+            Estou testando este preço promocional de <strong className="text-primary">R$ 47,00</strong> porque quero colocar o máximo de pessoas possível pra testar o protocolo.
           </p>
 
           <p className="text-base md:text-lg text-foreground mb-8">
             Mas assim que atingir a meta de <strong>500 novos membros</strong>, o preço volta para{" "}
-            <strong className="text-destructive">R$ 97,00</strong>.
+            <strong className="text-destructive">R$ 147,00</strong>.
           </p>
 
           <div className="mb-3">
