@@ -27,7 +27,7 @@ const FinalCTASection = () => {
             <Check className="w-8 h-8 text-primary-foreground mb-4" />
             <h3 className="font-display font-bold text-lg mb-3">Opção 2:</h3>
             <p className="text-white/90 text-sm md:text-base leading-relaxed">
-              Investir menos que um combo no McDonald's e ter acesso IMEDIATO a um protocolo que já ajudou centenas de pessoas a eliminarem até 3kg de inchaço em 10 dias.
+              Investir menos que um jantar fora e ter acesso IMEDIATO a um protocolo que já ajudou centenas de pessoas a eliminarem até 3kg de inchaço em 10 dias.
             </p>
           </div>
         </div>

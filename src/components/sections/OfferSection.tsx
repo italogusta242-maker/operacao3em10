@@ -12,7 +12,6 @@ const costs = [
 const comparisons = [
   "Um combo no McDonald's",
   "2 cafés no Starbucks",
-  "Um Uber de 15 minutos",
 ];
 
 const OfferSection = () => {
@@ -39,7 +38,7 @@ const OfferSection = () => {
 
         <p className="text-lg font-semibold text-foreground mb-6">Mas você NÃO vai pagar isso hoje.</p>
 
-        <p className="text-xl line-through text-muted-foreground mb-2">R$ 111,00</p>
+        <p className="text-xl line-through text-muted-foreground mb-2">R$ 97,00</p>
 
         <p className="font-display font-bold text-lg md:text-xl text-foreground mb-6 uppercase tracking-wide">
           Hoje, Você Garante Tudo Por Apenas:
@@ -48,9 +47,9 @@ const OfferSection = () => {
         {/* Price box */}
         <div className="bg-card border-4 border-primary rounded-2xl p-8 md:p-10 shadow-lg inline-block mb-8">
           <p className="text-muted-foreground text-base mb-1">12x de</p>
-          <p className="font-display font-extrabold text-4xl md:text-5xl text-primary">R$ 2,25</p>
+          <p className="font-display font-extrabold text-4xl md:text-5xl text-primary">R$ 3,92</p>
           <p className="text-muted-foreground text-base mt-2">
-            ou <strong className="text-foreground text-xl">R$ 27,00</strong> à vista
+            ou <strong className="text-foreground text-xl">R$ 47,00</strong> à vista
           </p>
         </div>
 

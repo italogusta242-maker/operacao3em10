@@ -11,13 +11,13 @@ const PostScriptSection = () => {
             <strong className="text-foreground not-italic">P.S.</strong> Lembra que eu falei sobre a diferença entre gordura e inflamação? Aqui está a verdade dura: se você não eliminar a inflamação acumulada AGORA, ela vai continuar travando seu metabolismo. E aí, mesmo que você comece uma dieta "normal" amanhã, seu corpo vai resistir. Você vai suar na academia, cortar carboidratos, passar fome... e o resultado vai ser LENTO e frustrante.
           </p>
           <p>
-            O Reset 10D é como "limpar a casa" antes de começar qualquer outra coisa. É o passo que 99% das pessoas pula — e por isso falham.
+            O programa Menos 3kg em 10 Dias é como "limpar a casa" antes de começar qualquer outra coisa. É o passo que 99% das pessoas pula — e por isso falham.
           </p>
           <p>
             Não seja essa pessoa. Faça o reset. E veja o que acontece quando seu corpo FINALMENTE coopera com você.
           </p>
           <p>
-            <strong className="text-foreground not-italic">P.P.S.</strong> Ainda em dúvida? Pensa assim: Se você investir R$ 27,00 e não funcionar, você pede reembolso em 7 dias e pronto. Você não perde NADA.
+            <strong className="text-foreground not-italic">P.P.S.</strong> Ainda em dúvida? Pensa assim: Se você investir R$ 47,00 e não funcionar, você pede reembolso em 7 dias e pronto. Você não perde NADA.
           </p>
           <p>
             Mas se você NÃO investir e continuar do jeito que está... quanto tempo mais você vai passar se sentindo pesado(a), inchado(a) e frustrado(a) com seu corpo?

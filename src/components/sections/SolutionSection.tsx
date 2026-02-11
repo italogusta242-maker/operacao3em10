@@ -39,7 +39,7 @@ const SolutionSection = () => {
     <section className="py-16 md:py-24 bg-background" id="solucao">
       <div ref={ref} className={`container max-w-4xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-4">
-          Apresentando: <span className="text-primary">O Protocolo Reset 10D</span>
+          Apresentando: <span className="text-primary">Operação 3 em 10 — Menos 3kg em 10 Dias</span>
         </h2>
         <p className="text-center text-muted-foreground text-lg mb-4 max-w-2xl mx-auto">
           Este não é apenas "mais um PDF de dieta". É um sistema completo de eliminação de inflamação e reset metabólico.
