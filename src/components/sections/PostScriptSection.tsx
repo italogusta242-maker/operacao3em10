@@ -11,7 +11,7 @@ const PostScriptSection = () => {
             <strong className="text-foreground not-italic">P.S.</strong> Lembra que eu falei sobre a diferença entre gordura e inflamação? Aqui está a verdade dura: se você não eliminar a inflamação acumulada AGORA, ela vai continuar travando seu metabolismo. E aí, mesmo que você comece uma dieta "normal" amanhã, seu corpo vai resistir. Você vai suar na academia, cortar carboidratos, passar fome... e o resultado vai ser LENTO e frustrante.
           </p>
           <p>
-            O programa Menos 3kg em 10 Dias é como "limpar a casa" antes de começar qualquer outra coisa. É o passo que 99% das pessoas pula — e por isso falham.
+            O programa Menos 3kg em 10 dias é como "limpar a casa" antes de começar qualquer outra coisa. É o passo que 99% das pessoas pula, e por isso falham.
           </p>
           <p>
             Não seja essa pessoa. Faça o reset. E veja o que acontece quando seu corpo FINALMENTE coopera com você.

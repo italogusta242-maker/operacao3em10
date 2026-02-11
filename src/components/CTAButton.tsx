@@ -17,11 +17,18 @@ const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse =
     white: "bg-white text-primary hover:shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.3)]",
   };
 
+  const handleClick = () => {
+    if (typeof window !== "undefined" && typeof (window as any).fbq === "function") {
+      (window as any).fbq("track", "InitiateCheckout");
+    }
+  };
+
   return (
     <a
       href="#checkout"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className={`${base} ${variants[variant]} ${pulse ? "animate-pulse-cta" : ""} ${className}`}
     >
       <span className="flex items-center gap-2">

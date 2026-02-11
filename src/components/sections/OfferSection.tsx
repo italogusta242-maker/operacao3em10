@@ -21,7 +21,7 @@ const OfferSection = () => {
     <section className="py-16 md:py-24 bg-gradient-to-b from-[hsl(48_100%_96%)] to-[hsl(48_100%_90%)]" id="oferta">
       <div ref={ref} className={`container max-w-3xl text-center ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-8">
-          Quanto Custa Recuperar Seu Corpo em 10 Dias?
+          Quanto custa recuperar seu corpo em 10 dias?
         </h2>
 
         <p className="text-lg text-muted-foreground mb-6 text-left">Vamos fazer uma conta rápida:</p>
@@ -41,7 +41,7 @@ const OfferSection = () => {
         <p className="text-xl line-through text-muted-foreground mb-2">R$ 497,00</p>
 
         <p className="font-display font-bold text-lg md:text-xl text-foreground mb-6 uppercase tracking-wide">
-          Hoje, Você Garante Tudo Por Apenas:
+          Hoje, você garante tudo por apenas:
         </p>
 
         {/* Price box */}
