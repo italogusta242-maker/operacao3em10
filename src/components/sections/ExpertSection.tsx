@@ -3,10 +3,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 import igorPhoto from "@/assets/igor-correa.jpg";
 import logo from "@/assets/logo-operacao-3em10.png";
 
-const pulseRings = [
-  { delay: 0, duration: 2.5 },
-  { delay: 0.8, duration: 2.5 },
-  { delay: 1.6, duration: 2.5 },
+// Static concentric rings + subtle pulse glow
+const rings = [
+  { size: "w-28 h-28 md:w-36 md:h-36", bg: "bg-[hsl(20_100%_50%/0.25)]" },
+  { size: "w-22 h-22 md:w-28 md:h-28", bg: "bg-[hsl(20_100%_50%/0.45)]" },
+  { size: "w-16 h-16 md:w-20 md:h-20", bg: "bg-accent" },
 ];
 
 const ExpertSection = () => {
@@ -22,24 +23,24 @@ const ExpertSection = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_7%)] via-[hsl(0_0%_7%/60%)] to-transparent to-50%" />
 
-          {/* Badge with pulse rings */}
+          {/* Badge with concentric rings */}
           <div className="absolute bottom-16 right-6 md:right-10 flex items-center justify-center">
-            {pulseRings.map((ring, i) => (
-              <motion.div
+            {/* Outer glow pulse */}
+            <motion.div
+              className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full bg-[hsl(20_100%_50%/0.15)]"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.1, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+            {/* Static concentric rings */}
+            {rings.map((ring, i) => (
+              <div
                 key={i}
-                className="absolute w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-accent"
-                initial={{ scale: 1, opacity: 0.4 }}
-                animate={{ scale: [1, 1.8, 2.2], opacity: [0.4, 0.15, 0] }}
-                transition={{
-                  duration: ring.duration,
-                  delay: ring.delay,
-                  repeat: Infinity,
-                  ease: "easeOut",
-                }}
+                className={`absolute ${ring.size} rounded-full ${ring.bg}`}
               />
             ))}
-            <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
-              <img src={logo} alt="" className="w-9 h-9 md:w-11 md:h-11" />
+            {/* Logo center */}
+            <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
+              <img src={logo} alt="" className="w-7 h-7 md:w-9 md:h-9" />
             </div>
           </div>
         </div>
