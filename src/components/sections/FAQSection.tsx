@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "Preciso treinar todo dia?",
-    a: "NÃO. O protocolo funciona SEM exercício físico. Se você QUISER adicionar atividade física, ótimo — vai acelerar. Mas não é obrigatório pra eliminar os 3kg de inchaço.",
+    a: "NÃO. O protocolo funciona SEM exercício físico. Se você QUISER adicionar atividade física, ótimo, vai acelerar. Mas não é obrigatório pra eliminar os 3kg de inchaço.",
   },
   {
     q: "Funciona pra homens E mulheres?",

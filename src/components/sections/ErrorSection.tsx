@@ -37,7 +37,7 @@ const ErrorSection = () => {
         <div className="border-l-4 border-accent bg-[hsl(30_100%_96%)] rounded-r-lg p-6 md:p-8">
           <p className="text-base md:text-lg text-foreground leading-relaxed">
             O problema <strong>não foi falta de força de vontade</strong>. O problema é que seu corpo estava lutando contra a{" "}
-            <strong className="text-accent">INFLAMAÇÃO</strong> — não contra a gordura.
+            <strong className="text-accent">INFLAMAÇÃO</strong>, não contra a gordura.
           </p>
         </div>
       </div>
