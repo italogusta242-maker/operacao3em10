@@ -1,5 +1,6 @@
-import { FileText, ShoppingCart, Coffee, MonitorPlay, Gift } from "lucide-react";
+import { FileText, ShoppingCart, Coffee, MonitorPlay, Gift, Smartphone, Monitor } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import mockupPlataforma from "@/assets/mockup-plataforma.png";
 
 const products = [
   {
@@ -64,6 +65,36 @@ const SolutionSection = () => {
             </ScrollReveal>
           ))}
         </div>
+
+        {/* Mockup da plataforma */}
+        <ScrollReveal>
+          <div className="relative rounded-2xl overflow-hidden mb-14 py-12 md:py-16 px-5">
+            {/* Blur laranja de fundo */}
+            <div className="absolute inset-0 bg-[hsl(30_100%_96%)]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-accent/30 blur-[120px]" />
+            
+            <div className="relative z-10 flex flex-col items-center text-center">
+              <div className="flex items-center gap-2 mb-4">
+                <Smartphone className="w-5 h-5 text-accent" />
+                <span className="text-sm font-bold text-accent uppercase">+</span>
+                <Monitor className="w-5 h-5 text-accent" />
+              </div>
+              <h3 className="font-display font-bold text-xl md:text-2xl lg:text-3xl text-foreground mb-3">
+                Acesse de qualquer lugar, a qualquer hora
+              </h3>
+              <p className="text-base md:text-lg text-foreground/80 max-w-2xl mb-8 leading-relaxed">
+                A plataforma completa da Operação 3 em 10 funciona perfeitamente no seu celular e no computador. 
+                Assista às aulas, consulte os guias e acompanhe seu progresso de onde você estiver, 
+                no horário que for melhor pra você.
+              </p>
+              <img 
+                src={mockupPlataforma} 
+                alt="Plataforma Operação 3 em 10 disponível no celular e computador" 
+                className="w-full max-w-2xl mx-auto drop-shadow-2xl"
+              />
+            </div>
+          </div>
+        </ScrollReveal>
 
         <div className="w-20 h-0.5 bg-accent mx-auto mb-10" />
 
