@@ -1,7 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import useEmblaCarousel from "embla-carousel-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import depoimento1 from "@/assets/depoimento-1.png";
 import depoimento2 from "@/assets/depoimento-2.png";
@@ -20,31 +25,6 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "center",
-    slidesToScroll: 1,
-  });
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    emblaApi.on("select", onSelect);
-    onSelect();
-    return () => { emblaApi.off("select", onSelect); };
-  }, [emblaApi]);
-
-  // Auto-play
-  useEffect(() => {
-    if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), 4000);
-    return () => clearInterval(interval);
-  }, [emblaApi]);
-
   return (
     <section className="py-16 md:py-24 bg-secondary" id="depoimentos">
       <ScrollReveal className="container max-w-5xl px-5">
@@ -55,56 +35,25 @@ const TestimonialsSection = () => {
           Transformações de alunos da Operação 3 em 10
         </p>
 
-        <div className="relative">
-          {/* Carousel */}
-          <div className="overflow-hidden rounded-xl" ref={emblaRef}>
-            <div className="flex">
-              {testimonials.map(({ src, alt }, i) => (
-                <div
-                  key={i}
-                  className="flex-[0_0_85%] sm:flex-[0_0_60%] md:flex-[0_0_45%] min-w-0 px-2"
-                >
-                  <img
-                    src={src}
-                    alt={alt}
-                    className="w-full rounded-xl shadow-lg object-cover aspect-square"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Navigation buttons */}
-          <button
-            onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-accent/10 transition-colors z-10"
-            aria-label="Anterior"
-          >
-            <ChevronLeft className="w-5 h-5 text-foreground" />
-          </button>
-          <button
-            onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-accent/10 transition-colors z-10"
-            aria-label="Próximo"
-          >
-            <ChevronRight className="w-5 h-5 text-foreground" />
-          </button>
-        </div>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => emblaApi?.scrollTo(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                i === selectedIndex ? "bg-primary" : "bg-foreground/20"
-              }`}
-              aria-label={`Ir para depoimento ${i + 1}`}
-            />
-          ))}
-        </div>
+        <Carousel
+          opts={{ loop: true, align: "center" }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {testimonials.map(({ src, alt }, i) => (
+              <CarouselItem key={i} className="pl-2 md:pl-4 basis-[85%] sm:basis-[60%] md:basis-[45%]">
+                <img
+                  src={src}
+                  alt={alt}
+                  className="w-full rounded-xl shadow-lg object-cover aspect-square"
+                  loading="lazy"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-0 -translate-x-2 md:-translate-x-4" />
+          <CarouselNext className="right-0 translate-x-2 md:translate-x-4" />
+        </Carousel>
       </ScrollReveal>
     </section>
   );
