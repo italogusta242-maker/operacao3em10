@@ -20,7 +20,7 @@ const HeroSection = () => (
       </h1>
 
       <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-        E pode eliminar isso em apenas <strong className="text-foreground">10 dias</strong>, sem passar fome, sem academia matadora e sem receitas complicadas.
+        E pode eliminar isso em apenas <strong className="text-foreground">10 dias</strong>, sem passar fome, sem se matar na academia e sem receitas complicadas.
       </p>
     </div>
 
