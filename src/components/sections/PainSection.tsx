@@ -34,11 +34,8 @@ const PainSection = () => {
         <p className="text-lg md:text-xl font-semibold text-foreground mb-2">
           Então preciso que você pare tudo e leia isso com <strong>MUITA atenção</strong>.
         </p>
-        <p className="text-lg md:text-xl text-foreground mb-2">
-          Porque o que você está sentindo agora <strong className="text-destructive">NÃO é gordura acumulada</strong>.
-        </p>
         <p className="text-lg md:text-xl text-foreground mb-10">
-          <strong>Mas sim</strong>, são processos que podem ser revertidos rapidamente:
+          Porque o que você está sentindo agora <strong className="text-destructive">NÃO é gordura acumulada</strong>.
         </p>
 
         <div className="grid sm:grid-cols-3 gap-4 mb-10">
