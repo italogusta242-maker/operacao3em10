@@ -52,7 +52,7 @@ const SolutionSection = () => {
           Aqui está TUDO o que você recebe:
         </p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
           {products.map(({ icon: Icon, title, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.12}>
               <div className="bg-secondary rounded-xl p-6 hover:shadow-md transition-shadow h-full">
