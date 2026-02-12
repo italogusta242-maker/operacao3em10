@@ -40,20 +40,28 @@ const TestimonialsSection = () => {
           className="w-full"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
-            {testimonials.map(({ src, alt }, i) => (
+            {testimonials.map(({ src, alt, name, duration }, i) => (
               <CarouselItem key={i} className="pl-2 md:pl-4 basis-[85%] sm:basis-[60%] md:basis-[45%]">
-                <img
-                  src={src}
-                  alt={alt}
-                  className="w-full rounded-xl shadow-lg object-cover aspect-square"
-                  loading="lazy"
-                />
+                <div className="flex flex-col items-center">
+                  <img
+                    src={src}
+                    alt={alt}
+                    className="w-full rounded-xl shadow-lg object-cover aspect-square"
+                    loading="lazy"
+                  />
+                  <p className="mt-3 text-center text-sm md:text-base font-semibold text-foreground">{name}</p>
+                  <p className="text-center text-xs md:text-sm text-muted-foreground">{duration}</p>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
           <CarouselPrevious className="left-0 -translate-x-2 md:-translate-x-4" />
           <CarouselNext className="right-0 translate-x-2 md:translate-x-4" />
         </Carousel>
+
+        <p className="text-center text-muted-foreground text-base md:text-lg mt-10 max-w-2xl mx-auto italic">
+          Você não vai querer parar, e consequentemente, terá bem mais resultado do que só -3kg.
+        </p>
       </ScrollReveal>
     </section>
   );
