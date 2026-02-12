@@ -26,11 +26,11 @@ const ExpertSection = () => {
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
             {/* Ring 3 - outermost */}
-            <div className="absolute w-36 h-36 md:w-44 md:h-44 rounded-full bg-[hsl(0_0%_100%/0.08)]" />
+            <div className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-[hsl(0_0%_100%/0.06)]" />
             {/* Ring 2 */}
-            <div className="absolute w-28 h-28 md:w-34 md:h-34 rounded-full bg-[hsl(0_0%_100%/0.12)]" />
+            <div className="absolute w-24 h-24 md:w-30 md:h-30 rounded-full bg-[hsl(0_0%_100%/0.09)]" />
             {/* Ring 1 - inner */}
-            <div className="absolute w-20 h-20 md:w-24 md:h-24 rounded-full bg-[hsl(0_0%_100%/0.18)]" />
+            <div className="absolute w-18 h-18 md:w-22 md:h-22 rounded-full bg-[hsl(0_0%_100%/0.13)]" />
             {/* Logo center - white translucent */}
             <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[hsl(0_0%_100%/0.85)] flex items-center justify-center shadow-xl z-10">
               <img src={logo} alt="" className="w-8 h-8 md:w-10 md:h-10" />
