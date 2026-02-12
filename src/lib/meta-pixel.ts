@@ -5,18 +5,23 @@ export const trackMetaEvent = async (
   customData?: Record<string, unknown>
 ) => {
   try {
-    // Client-side pixel (already fires via fbq)
+    const eventId = crypto.randomUUID();
+
+    // Client-side pixel with event_id for deduplication
     if (typeof window !== "undefined" && typeof (window as any).fbq === "function") {
-      (window as any).fbq("track", eventName, customData);
+      (window as any).fbq("track", eventName, customData, { eventID: eventId });
     }
 
     // Server-side Conversions API
     const payload: Record<string, unknown> = {
       event_name: eventName,
+      event_id: eventId,
       event_time: Math.floor(Date.now() / 1000),
       event_source_url: window.location.href,
       action_source: "website",
-      user_data: {},
+      user_data: {
+        client_user_agent: navigator.userAgent,
+      },
     };
 
     if (customData) {
