@@ -57,7 +57,7 @@ const ExpertSection = () => {
             </p>
             <p>
               Com mais de <strong className="text-accent">500 mil pessoas impactadas</strong> todos os meses nas redes sociais, a{" "}
-              <strong className="text-white">Operação -3kg em 10 dias</strong> te espera.
+              <strong className="text-white">Operação -3kg em 10</strong> te espera.
             </p>
             <p>
               Ambiente certo, com a metodologia correta irão{" "}

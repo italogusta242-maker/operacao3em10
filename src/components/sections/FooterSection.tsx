@@ -21,7 +21,7 @@ const FooterSection = () => (
       </div>
 
       <div className="border-t border-[hsl(0_0%_25%)] pt-8 text-center space-y-2">
-        <p className="text-xs">© 2026 Operação -3kg em 10 dias. Todos os direitos reservados.</p>
+        <p className="text-xs">© 2026 Operação -3kg em 10. Todos os direitos reservados.</p>
         <p className="text-xs">CNPJ: 62.568.265/0001-48</p>
         <p className="text-xs">contatoshapeinsano@gmail.com</p>
         <div className="flex justify-center gap-4 mt-4">
