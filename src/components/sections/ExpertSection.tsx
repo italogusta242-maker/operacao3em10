@@ -26,7 +26,7 @@ const ExpertSection = () => {
 
             <div className="space-y-4 text-base md:text-lg text-gray-300 leading-relaxed">
               <p>
-                Igor Corrêa é <strong className="text-white">atleta de fisiculturismo natural</strong> e estudante de Educação Física.
+                Igor Corrêa é <strong className="text-white">atleta de fisiculturismo natural</strong>.
               </p>
               <p>
                 Em 2021, iniciou sua jornada com um físico magrelo desnutrido e conquistou um <strong className="text-white">Shape Insano</strong>. Sem uso de atalhos hormonais.
