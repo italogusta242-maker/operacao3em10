@@ -4,8 +4,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 const painPoints = [
   "Sua roupa favorita não fechou (ou fechou, mas você se sentiu desconfortável o dia inteiro)",
   "Olhou no espelho e viu um rosto inchado, uma barriga estufada que NÃO estava ali 10 dias atrás",
-  "Sentiu aquela sensação de 'peso', 'inchaço' e culpa que parece não sair de jeito nenhum",
-  "E pensou: 'Pronto, agora vou ter que passar 3 meses na academia e comendo alface pra voltar ao normal'",
+  "Sentiu aquela sensação de 'peso', 'inchaço' e culpa por estar insatisfeito(a) com seu corpo",
+  "E pensou: 'Pronto, agora vou ter que passar 3 meses na academia e comendo só salada pra voltar ao normal'",
 ];
 
 const cards = [
@@ -32,8 +32,11 @@ const PainSection = () => {
         <p className="text-lg md:text-xl font-semibold text-foreground mb-2">
           Então preciso que você pare tudo e leia isso com <strong>MUITA atenção</strong>.
         </p>
-        <p className="text-lg md:text-xl text-foreground mb-10">
+        <p className="text-lg md:text-xl text-foreground mb-4">
           Porque o que você está sentindo agora <strong className="text-destructive">NÃO é gordura acumulada</strong>.
+        </p>
+        <p className="text-lg md:text-xl font-semibold text-foreground mb-10">
+          É o conjunto de <strong className="text-destructive">3 elementos</strong>:
         </p>
 
         <div className="grid sm:grid-cols-3 gap-4 mb-10">

@@ -1,4 +1,4 @@
-import { FileText, ShoppingCart, Coffee, Gift } from "lucide-react";
+import { FileText, ShoppingCart, Coffee, MonitorPlay, Gift } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const products = [
@@ -16,6 +16,11 @@ const products = [
     icon: Coffee,
     title: "Shot Matinal de Destrave",
     desc: "Uma receita simples de 3 ingredientes que você toma em jejum para acelerar a desinflamação. Leva 2 minutos.",
+  },
+  {
+    icon: MonitorPlay,
+    title: "Plataforma de aulas estilo Netflix",
+    desc: "Aulas curtas e diretas ao ponto para te ensinar tudo que você precisa saber para nunca mais ficar refém de reações metabólicas.",
   },
 ];
 
@@ -46,7 +51,7 @@ const SolutionSection = () => {
           Aqui está TUDO o que você recebe:
         </p>
 
-        <div className="grid sm:grid-cols-3 gap-5 mb-14">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
           {products.map(({ icon: Icon, title, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.12}>
               <div className="bg-secondary rounded-xl p-6 hover:shadow-md transition-shadow h-full">

@@ -4,7 +4,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 const mistakes = [
   "Cortar carboidratos radicalmente",
   "Fazer jejum intermitente sem orientação",
-  "Voltar pra academia todo dia às 5h da manhã",
+  "Voltar pra academia todo dia de manhã",
   "Tomar sucos 'detox' milagrosos que não funcionam",
 ];
 

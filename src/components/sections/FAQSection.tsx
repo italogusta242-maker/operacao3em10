@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "Preciso treinar todo dia?",
-    a: "NÃO. O protocolo funciona SEM exercício físico. Se você QUISER adicionar atividade física, ótimo, vai acelerar. Mas não é obrigatório pra eliminar os 3kg de inchaço.",
+    a: "Sim. 30 minutos por dia é o suficiente. Faz sentido investir só esse pequeno tempo do seu dia para se sentir muito mais autoconfiante e bonito ao se olhar no espelho?",
   },
   {
     q: "Funciona pra homens E mulheres?",
