@@ -19,12 +19,12 @@ const Index = () => (
     <PainSection />
     <ErrorSection />
     <MechanismSection />
+    <TestimonialsSection />
     <SolutionSection />
     <OfferSection />
     <ExpertSection />
     <GuaranteeSection />
     <FAQSection />
-    <TestimonialsSection />
     <UrgencySection />
     <FinalCTASection />
     <PostScriptSection />
