@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import CTAButton from "../CTAButton";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const costs = [
   { label: "Uma consulta com nutricionista", price: "R$ 200-400" },
@@ -15,11 +15,9 @@ const comparisons = [
 ];
 
 const OfferSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-[hsl(48_100%_96%)] to-[hsl(48_100%_90%)]" id="oferta">
-      <div ref={ref} className={`container max-w-3xl text-center ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-3xl text-center px-5">
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-8">
           Quanto custa recuperar seu corpo em 10 dias?
         </h2>
@@ -44,7 +42,6 @@ const OfferSection = () => {
           Hoje, você garante tudo por apenas:
         </p>
 
-        {/* Price box */}
         <div className="bg-card border-4 border-primary rounded-2xl p-8 md:p-10 shadow-lg inline-block mb-8">
           <p className="text-muted-foreground text-base mb-1">12x de</p>
           <p className="font-display font-extrabold text-4xl md:text-5xl text-primary">R$ 3,92</p>
@@ -66,7 +63,7 @@ const OfferSection = () => {
           variant="accent"
           pulse
         />
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

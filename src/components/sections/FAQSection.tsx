@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const faqs = [
   {
@@ -25,11 +25,9 @@ const faqs = [
 ];
 
 const FAQSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-24 bg-background" id="faq">
-      <div ref={ref} className={`container max-w-3xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-3xl px-5">
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-10">
           Perguntas que você pode estar se fazendo agora:
         </h2>
@@ -48,7 +46,7 @@ const FAQSection = () => {
             </AccordionItem>
           ))}
         </Accordion>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

@@ -1,12 +1,10 @@
 import { Shield } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const GuaranteeSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-24 bg-[hsl(210_79%_95%)]" id="garantia">
-      <div ref={ref} className={`container max-w-3xl text-center ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-3xl text-center px-5">
         <Shield className="w-16 h-16 text-trust mx-auto mb-6" />
 
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-6">
@@ -30,7 +28,7 @@ const GuaranteeSection = () => {
         <p className="text-lg font-semibold text-foreground">
           Ou seja: você só mantém o investimento se <strong className="text-primary">REALMENTE funcionar</strong> pra você.
         </p>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const mistakes = [
   "Cortar carboidratos radicalmente",
@@ -9,11 +9,9 @@ const mistakes = [
 ];
 
 const ErrorSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-24 bg-background" id="erro">
-      <div ref={ref} className={`container max-w-3xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-3xl px-5">
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-8">
           Por que dietas tradicionais falham nos primeiros 10 dias?
         </h2>
@@ -40,7 +38,7 @@ const ErrorSection = () => {
             <strong className="text-accent">INFLAMAÇÃO</strong>, não contra a gordura.
           </p>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { FileText, ShoppingCart, Coffee, Gift } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const products = [
   {
@@ -33,11 +33,9 @@ const bonuses = [
 ];
 
 const SolutionSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-24 bg-background" id="solucao">
-      <div ref={ref} className={`container max-w-4xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-4xl px-5">
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-4">
           Apresentando: <span className="text-primary">Operação 3 em 10 | Menos 3kg em 10 dias</span>
         </h2>
@@ -48,20 +46,20 @@ const SolutionSection = () => {
           Aqui está TUDO o que você recebe:
         </p>
 
-        {/* Products grid */}
         <div className="grid sm:grid-cols-3 gap-5 mb-14">
           {products.map(({ icon: Icon, title, desc }, i) => (
-            <div key={i} className="bg-secondary rounded-xl p-6 hover:shadow-md transition-shadow">
-              <Icon className="w-12 h-12 text-primary mb-4" />
-              <h4 className="font-display font-bold text-base mb-2 flex items-start gap-1">
-                <span className="text-primary">✅</span> {title}
-              </h4>
-              <p className="text-sm text-muted-foreground">{desc}</p>
-            </div>
+            <ScrollReveal key={i} delay={i * 0.12}>
+              <div className="bg-secondary rounded-xl p-6 hover:shadow-md transition-shadow h-full">
+                <Icon className="w-12 h-12 text-primary mb-4" />
+                <h4 className="font-display font-bold text-base mb-2 flex items-start gap-1">
+                  <span className="text-primary">✅</span> {title}
+                </h4>
+                <p className="text-sm text-muted-foreground">{desc}</p>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        {/* Separator */}
         <div className="w-20 h-0.5 bg-accent mx-auto mb-10" />
 
         <h3 className="font-display font-bold text-xl md:text-2xl text-center mb-8">
@@ -70,18 +68,20 @@ const SolutionSection = () => {
 
         <div className="grid sm:grid-cols-2 gap-5">
           {bonuses.map(({ title, value, desc }, i) => (
-            <div key={i} className="border-2 border-accent bg-[hsl(30_100%_96%)] rounded-xl p-6">
-              <div className="flex items-center gap-2 mb-2">
-                <Gift className="w-6 h-6 text-accent" />
-                <span className="text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
+            <ScrollReveal key={i} delay={i * 0.15}>
+              <div className="border-2 border-accent bg-[hsl(30_100%_96%)] rounded-xl p-6 h-full">
+                <div className="flex items-center gap-2 mb-2">
+                  <Gift className="w-6 h-6 text-accent" />
+                  <span className="text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
+                </div>
+                <h4 className="font-display font-bold text-base mb-1">{title}</h4>
+                <p className="text-sm text-muted-foreground mb-2">(Valor: {value})</p>
+                <p className="text-sm text-foreground/80">{desc}</p>
               </div>
-              <h4 className="font-display font-bold text-base mb-1">{title}</h4>
-              <p className="text-sm text-muted-foreground mb-2">(Valor: {value})</p>
-              <p className="text-sm text-foreground/80">{desc}</p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

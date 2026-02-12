@@ -1,13 +1,11 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 import igorPhoto from "@/assets/igor-correa.jpg";
 import logo from "@/assets/logo-operacao-3em10.png";
 
 const ExpertSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="bg-[hsl(0_0%_7%)] overflow-hidden">
-      <div ref={ref} className={`max-w-3xl mx-auto ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="max-w-3xl mx-auto">
         {/* Photo with gradient fade */}
         <div className="relative w-full">
           <img
@@ -15,17 +13,15 @@ const ExpertSection = () => {
             alt="Igor Corrêa - Atleta de fisiculturismo natural"
             className="w-full h-auto object-cover"
           />
-          {/* Gradient overlay bottom */}
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_7%)] via-[hsl(0_0%_7%/60%)] to-transparent to-50%" />
-          {/* Logo badge - orange background like reference */}
           <div className="absolute bottom-16 right-6 md:right-10 w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl">
             <img src={logo} alt="" className="w-9 h-9 md:w-11 md:h-11" />
           </div>
         </div>
 
         {/* Text content */}
-        <div className="px-6 md:px-10 -mt-6 relative z-10 pb-14">
-          <h2 className="font-display font-extrabold text-4xl md:text-6xl lg:text-7xl text-[hsl(20_100%_55%)] uppercase tracking-tight mb-6">
+        <div className="px-5 md:px-10 -mt-6 relative z-10 pb-14">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-[hsl(20_100%_55%)] uppercase tracking-tight mb-6">
             Igor Corrêa
           </h2>
 
@@ -47,7 +43,7 @@ const ExpertSection = () => {
             </p>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
