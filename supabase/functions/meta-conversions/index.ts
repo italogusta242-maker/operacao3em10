@@ -12,7 +12,7 @@ function getCorsHeaders(req: Request) {
   };
 }
 
-const PIXEL_ID = '894388872511780';
+const PIXEL_ID = '1558200545293720';
 
 const VALID_EVENTS = new Set([
   'PageView', 'ViewContent', 'Lead', 'Purchase', 'AddToCart',
