@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
           Resultados reais de quem seguiu o protocolo
         </h2>
         <p className="text-center text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
-          Transformações de alunos da Operação -3kg em 10 dias
+          Transformações de alunos da Operação -3kg em 10
         </p>
 
         <Carousel
