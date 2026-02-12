@@ -3,13 +3,6 @@ import ScrollReveal from "@/components/ScrollReveal";
 import igorPhoto from "@/assets/igor-correa.jpg";
 import logo from "@/assets/logo-operacao-3em10.png";
 
-// Static concentric rings + subtle pulse glow
-const rings = [
-  { size: "w-28 h-28 md:w-36 md:h-36", bg: "bg-[hsl(20_100%_50%/0.25)]" },
-  { size: "w-22 h-22 md:w-28 md:h-28", bg: "bg-[hsl(20_100%_50%/0.45)]" },
-  { size: "w-16 h-16 md:w-20 md:h-20", bg: "bg-accent" },
-];
-
 const ExpertSection = () => {
   return (
     <section className="bg-[hsl(0_0%_7%)] overflow-hidden">
@@ -27,17 +20,17 @@ const ExpertSection = () => {
           <div className="absolute bottom-16 right-6 md:right-10 flex items-center justify-center">
             {/* Outer glow pulse */}
             <motion.div
-              className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full bg-[hsl(20_100%_50%/0.15)]"
-              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.1, 0.3] }}
+              className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full"
+              style={{ boxShadow: "0 0 30px 10px hsl(20 100% 50% / 0.2)" }}
+              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.2, 0.5] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
-            {/* Static concentric rings */}
-            {rings.map((ring, i) => (
-              <div
-                key={i}
-                className={`absolute ${ring.size} rounded-full ${ring.bg}`}
-              />
-            ))}
+            {/* Ring 3 - outermost */}
+            <div className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-[hsl(20_100%_50%/0.3)]" />
+            {/* Ring 2 */}
+            <div className="absolute w-24 h-24 md:w-30 md:h-30 rounded-full border-[3px] border-[hsl(20_100%_50%/0.5)]" />
+            {/* Ring 1 - inner accent */}
+            <div className="absolute w-[4.5rem] h-[4.5rem] md:w-[5.5rem] md:h-[5.5rem] rounded-full border-[3px] border-accent" />
             {/* Logo center */}
             <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
               <img src={logo} alt="" className="w-7 h-7 md:w-9 md:h-9" />
