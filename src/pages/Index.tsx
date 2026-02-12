@@ -7,6 +7,7 @@ import OfferSection from "@/components/sections/OfferSection";
 import ExpertSection from "@/components/sections/ExpertSection";
 import GuaranteeSection from "@/components/sections/GuaranteeSection";
 import FAQSection from "@/components/sections/FAQSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import UrgencySection from "@/components/sections/UrgencySection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import PostScriptSection from "@/components/sections/PostScriptSection";
@@ -23,6 +24,7 @@ const Index = () => (
     <ExpertSection />
     <GuaranteeSection />
     <FAQSection />
+    <TestimonialsSection />
     <UrgencySection />
     <FinalCTASection />
     <PostScriptSection />
