@@ -16,12 +16,12 @@ import depoimento5 from "@/assets/depoimento-5.png";
 import depoimento6 from "@/assets/depoimento-6.png";
 
 const testimonials = [
-  { src: depoimento1, alt: "Resultado antes e depois - aluno 1" },
-  { src: depoimento2, alt: "Resultado antes e depois - aluno 2" },
-  { src: depoimento3, alt: "Resultado antes e depois - aluno 3" },
-  { src: depoimento4, alt: "Resultado antes e depois - aluna 4" },
-  { src: depoimento5, alt: "Resultado antes e depois - aluno 5" },
-  { src: depoimento6, alt: "Resultado antes e depois - aluno 6" },
+  { src: depoimento1, alt: "Resultado - Guilherme", name: "Guilherme", duration: "Fez a operação durante 10 dias" },
+  { src: depoimento2, alt: "Resultado - Thiago", name: "Thiago", duration: "Fez a operação durante 10 dias" },
+  { src: depoimento3, alt: "Resultado - Igor", name: "Igor", duration: "Desenvolveu o método da operação" },
+  { src: depoimento4, alt: "Resultado - Lara", name: "Lara", duration: "Fez a operação durante 25 dias" },
+  { src: depoimento5, alt: "Resultado - Jhon", name: "Jhon", duration: "Fez a operação durante 30 dias" },
+  { src: depoimento6, alt: "Resultado - Italo", name: "Italo", duration: "Fez a operação durante 30 dias" },
 ];
 
 const TestimonialsSection = () => {
