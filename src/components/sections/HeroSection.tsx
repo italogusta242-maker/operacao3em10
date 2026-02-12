@@ -5,8 +5,9 @@ import logo from "@/assets/logo-operacao-3em10.png";
 const HeroSection = () => (
   <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-gradient-to-b from-[hsl(122_39%_94%)] to-background">
     {/* Logo */}
-    <div className="flex items-center gap-2 mb-10 animate-fade-in">
-      <img src={logo} alt="Operação 3 em 10" className="w-40 md:w-52 h-auto" />
+    <div className="flex items-center gap-3 mb-10 animate-fade-in">
+      <img src={logo} alt="Operação 3 em 10" className="w-10 h-10 md:w-12 md:h-12" />
+      <span className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight">Operação 3 em 10</span>
     </div>
 
     {/* Headline */}
