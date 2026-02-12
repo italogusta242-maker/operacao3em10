@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -37,6 +38,7 @@ const TestimonialsSection = () => {
 
         <Carousel
           opts={{ loop: true, align: "center" }}
+          plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
           className="w-full"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
