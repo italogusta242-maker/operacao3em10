@@ -1,88 +1,33 @@
 
-# Ajuste de responsividade e animações de scroll reveal
 
-## Resumo
+# Melhorias visuais na secao do Expert
 
-A landing page já está bem estruturada para mobile (usa classes responsivas como `sm:grid-cols-3`, `md:text-3xl`, etc.) e já possui um hook `useScrollAnimation` com animações CSS de fade-up via IntersectionObserver. O plano é refinar pontos específicos de responsividade e substituir o sistema atual de animações por Framer Motion para um efeito mais suave e profissional.
+## O que sera feito
 
----
+### 1. Nome "IGOR CORREA" com fonte em degradê
+- Aplicar um gradiente laranja (do laranja claro ao laranja escuro) no texto do nome, similar a imagem de referencia.
+- Usar `background-clip: text` com `text-transparent` do Tailwind para criar o efeito de texto com cor em degradê.
 
-## O que será feito
+### 2. Efeito de pulso/glow na logo (badge circular)
+- Adicionar aneis concentricos animados ao redor do badge circular branco com a logo, inspirado na imagem de referencia.
+- Criar uma animacao de pulso com circulos expandindo para fora (tipo ondas de radar) usando cores laranja com opacidade decrescente.
+- Usar Framer Motion para animar os aneis com escala e opacidade.
 
-### 1. Instalar Framer Motion
-- Adicionar `framer-motion` como dependência do projeto.
-
-### 2. Criar componente reutilizavel de scroll reveal
-- Criar um componente `ScrollReveal` que encapsula a logica do Framer Motion (`motion.div` com `whileInView`).
-- Configuracao: fade-in de baixo para cima (translateY de 40px para 0), opacidade de 0 para 1, duracao de ~0.6s, ease suave.
-- Vai aceitar props opcionais de delay para escalonar elementos.
-
-### 3. Atualizar todas as secoes principais
-Substituir o uso de `useScrollAnimation` + classes CSS (`animate-fade-up` / `opacity-0`) pelo novo componente `ScrollReveal` nas seguintes secoes:
-
-- **HeroSection** - manter animacoes inline (ja visivel no load)
-- **PainSection** - envolver conteudo + cards individuais com delay escalonado
-- **ErrorSection** - envolver conteudo
-- **MechanismSection** - envolver conteudo + steps com delay
-- **SolutionSection** - envolver conteudo + cards/bonus com delay
-- **OfferSection** - envolver conteudo
-- **ExpertSection** - envolver conteudo
-- **GuaranteeSection** - envolver conteudo
-- **FAQSection** - envolver conteudo
-- **UrgencySection** - envolver conteudo
-- **FinalCTASection** - envolver conteudo + cards com delay
-- **PostScriptSection** - envolver conteudo
-
-### 4. Ajustes de responsividade mobile
-- Revisar padding lateral em todas as secoes (garantir minimo de `px-4` ou `px-5` em mobile)
-- Garantir que fontes de titulos nao fiquem excessivamente grandes em telas pequenas (revisar `text-3xl` e maiores)
-- Verificar que grids com `sm:grid-cols-3` e `md:grid-cols-2` empilham corretamente em mobile (ja o fazem, mas confirmar)
-- Ajustar a secao do Expert para nao cortar a imagem em mobile
+### 3. Ajustes gerais
+- Leve brilho (glow) laranja sutil atras do nome para dar mais destaque.
 
 ---
 
 ## Detalhes tecnicos
 
-### Componente ScrollReveal (novo arquivo: `src/components/ScrollReveal.tsx`)
-```tsx
-import { motion } from "framer-motion";
+### Arquivo modificado: `src/components/sections/ExpertSection.tsx`
 
-interface ScrollRevealProps {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}
+**Texto em degradê:**
+- Substituir a classe `text-[hsl(20_100%_55%)]` por classes de gradiente: `bg-gradient-to-r from-[hsl(30_100%_60%)] to-[hsl(15_100%_45%)] bg-clip-text text-transparent`
 
-const ScrollReveal = ({ children, delay = 0, className }: ScrollRevealProps) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-80px" }}
-    transition={{ duration: 0.6, delay, ease: "easeOut" }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
-```
+**Badge com efeito de pulso:**
+- Envolver o badge circular em um container relativo
+- Adicionar 2-3 `motion.div` com `border-radius: 50%` posicionados absolutamente atras do badge
+- Animar com `scale` e `opacity` em loop infinito, cada anel com delay diferente para criar o efeito de ondas expandindo
+- Cores: laranja com opacidade decrescente (40%, 25%, 15%)
 
-### Padrao de migracao em cada secao
-Antes:
-```tsx
-const { ref, isVisible } = useScrollAnimation();
-// ...
-<div ref={ref} className={`... ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
-```
-
-Depois:
-```tsx
-<ScrollReveal>
-  <div className="...">
-```
-
-### Arquivos modificados
-- `package.json` - adicionar framer-motion
-- `src/components/ScrollReveal.tsx` - novo componente
-- Todas as 12 secoes em `src/components/sections/` - trocar useScrollAnimation por ScrollReveal
-- `src/index.css` - manter as animacoes CSS existentes (usadas no Hero), apenas as secoes migram para Framer Motion
-- Pequenos ajustes de padding/fonte onde necessario
