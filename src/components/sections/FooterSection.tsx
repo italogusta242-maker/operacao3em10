@@ -1,5 +1,5 @@
 const disclaimers = [
-  "Os resultados podem variar de pessoa para pessoa. O programa Menos 3kg em 10 Dias é um guia nutricional baseado em princípios de redução de inflamação e desintoxicação metabólica. A perda de peso mencionada refere-se principalmente à eliminação de retenção hídrica, glicogênio muscular e redução de inflamação sistêmica — não exclusivamente à queima de gordura corporal.",
+  "Os resultados podem variar de pessoa para pessoa. O programa Menos 3kg em 10 Dias é um guia nutricional baseado em princípios de redução de inflamação e desintoxicação metabólica. A perda de peso mencionada refere-se principalmente à eliminação de retenção hídrica, glicogênio muscular e redução de inflamação sistêmica, não exclusivamente à queima de gordura corporal.",
   "Este produto não substitui orientação médica ou nutricional profissional. Consulte um médico antes de iniciar qualquer protocolo nutricional, especialmente se possui condições médicas pré-existentes. Mulheres grávidas ou lactantes NÃO devem seguir este protocolo sem supervisão médica.",
   "Imagens meramente ilustrativas. Resultados reais variam conforme adesão ao protocolo e características individuais.",
   "Garantia incondicional de 7 dias a partir da data de compra. Processamento do reembolso em até 7 dias úteis após a solicitação.",

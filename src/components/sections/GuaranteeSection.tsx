@@ -23,7 +23,7 @@ const GuaranteeSection = () => {
 
         <div className="border-l-4 border-trust bg-card rounded-r-xl p-6 md:p-8 text-left shadow-sm mb-8">
           <p className="text-base md:text-lg text-foreground leading-relaxed">
-            Se nos próximos <strong>7 dias</strong> você seguir o protocolo e, por <strong>QUALQUER motivo</strong>, não ficar satisfeito(a) com o resultado — você pede reembolso e recebe de volta <strong>cada centavo investido</strong>. Sem perguntas. Sem burocracia. Sem enrolação.
+            Se nos próximos <strong>7 dias</strong> você seguir o protocolo e, por <strong>QUALQUER motivo</strong>, não ficar satisfeito(a) com o resultado, você pede reembolso e recebe de volta <strong>cada centavo investido</strong>. Sem perguntas. Sem burocracia. Sem enrolação.
           </p>
         </div>
 
