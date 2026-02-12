@@ -3,7 +3,7 @@ import CTAButton from "../CTAButton";
 import logo from "@/assets/logo-operacao-3em10.png";
 
 const HeroSection = () => (
-  <section className="relative min-h-screen flex flex-col items-center justify-center px-5 py-20 overflow-hidden bg-gradient-to-b from-[hsl(122_39%_94%)] to-background">
+  <section className="relative min-h-screen flex flex-col items-center justify-start px-5 pt-12 md:pt-20 pb-20 overflow-hidden bg-gradient-to-b from-[hsl(122_39%_94%)] to-background">
     {/* Logo */}
     <div className="flex items-center gap-3 mb-10 animate-fade-in">
       <img src={logo} alt="Operação 3 em 10" className="w-10 h-10 md:w-12 md:h-12" />
