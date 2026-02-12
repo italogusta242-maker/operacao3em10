@@ -24,7 +24,7 @@ const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse =
 
   return (
     <a
-      href="#checkout"
+      href="https://pay.kiwify.com.br/Uloo88h"
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
