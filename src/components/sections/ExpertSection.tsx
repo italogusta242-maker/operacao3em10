@@ -20,20 +20,20 @@ const ExpertSection = () => {
           <div className="absolute bottom-16 right-6 md:right-10 flex items-center justify-center">
             {/* Outer glow pulse */}
             <motion.div
-              className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full"
-              style={{ boxShadow: "0 0 30px 10px hsl(20 100% 50% / 0.2)" }}
-              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.2, 0.5] }}
+              className="absolute w-36 h-36 md:w-44 md:h-44 rounded-full"
+              style={{ boxShadow: "0 0 40px 15px hsl(0 0% 100% / 0.08)" }}
+              animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.15, 0.4] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
             {/* Ring 3 - outermost */}
-            <div className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-[hsl(20_100%_50%/0.3)]" />
+            <div className="absolute w-36 h-36 md:w-44 md:h-44 rounded-full bg-[hsl(0_0%_100%/0.08)]" />
             {/* Ring 2 */}
-            <div className="absolute w-24 h-24 md:w-30 md:h-30 rounded-full border-[3px] border-[hsl(20_100%_50%/0.5)]" />
-            {/* Ring 1 - inner accent */}
-            <div className="absolute w-[4.5rem] h-[4.5rem] md:w-[5.5rem] md:h-[5.5rem] rounded-full border-[3px] border-accent" />
-            {/* Logo center */}
-            <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center shadow-xl z-10">
-              <img src={logo} alt="" className="w-7 h-7 md:w-9 md:h-9" />
+            <div className="absolute w-28 h-28 md:w-34 md:h-34 rounded-full bg-[hsl(0_0%_100%/0.12)]" />
+            {/* Ring 1 - inner */}
+            <div className="absolute w-20 h-20 md:w-24 md:h-24 rounded-full bg-[hsl(0_0%_100%/0.18)]" />
+            {/* Logo center - white translucent */}
+            <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[hsl(0_0%_100%/0.85)] flex items-center justify-center shadow-xl z-10">
+              <img src={logo} alt="" className="w-8 h-8 md:w-10 md:h-10" />
             </div>
           </div>
         </div>
