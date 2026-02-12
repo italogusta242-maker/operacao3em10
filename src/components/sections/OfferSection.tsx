@@ -26,10 +26,12 @@ const OfferSection = () => {
 
         <ul className="space-y-3 mb-8 text-left">
           {costs.map(({ label, price, bold }, i) => (
-            <li key={i} className={`flex items-center gap-3 ${bold ? "font-bold text-foreground" : ""}`}>
-              <X className="w-4 h-4 text-destructive shrink-0" />
-              <span className="text-base">{label}?</span>
-              <span className="ml-auto text-base line-through text-muted-foreground">{price}</span>
+            <li key={i} className={`flex items-center justify-between gap-2 ${bold ? "font-bold text-foreground" : ""}`}>
+              <div className="flex items-center gap-2 min-w-0">
+                <X className="w-4 h-4 text-destructive shrink-0" />
+                <span className="text-sm md:text-base">{label}?</span>
+              </div>
+              <span className="text-sm md:text-base line-through text-muted-foreground whitespace-nowrap">{price}</span>
             </li>
           ))}
         </ul>
