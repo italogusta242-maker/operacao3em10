@@ -1,12 +1,12 @@
-import { ChevronDown, Leaf } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import CTAButton from "../CTAButton";
+import logo from "@/assets/logo-operacao-3em10.png";
 
 const HeroSection = () => (
   <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-gradient-to-b from-[hsl(122_39%_94%)] to-background">
     {/* Logo */}
     <div className="flex items-center gap-2 mb-10 animate-fade-in">
-      <Leaf className="w-8 h-8 text-primary" />
-      <span className="font-display font-bold text-xl text-primary">Operação 3 em 10</span>
+      <img src={logo} alt="Operação 3 em 10" className="w-40 md:w-52 h-auto" />
     </div>
 
     {/* Headline */}
