@@ -15,7 +15,7 @@ const HeroSection = () => (
     {/* Headline */}
     <div className="max-w-3xl text-center animate-fade-up">
       <h1 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] leading-tight tracking-tight text-foreground">
-        Você não engordou 3kg de gordura em 4 dias de carnaval...{" "}
+        Você não engordou 3kg de gordura no feriado de carnaval...{" "}
         <span className="text-accent">Você acumulou INFLAMAÇÃO.</span>
       </h1>
 
