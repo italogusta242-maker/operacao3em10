@@ -18,7 +18,7 @@ const ExpertSection = () => {
           {/* Gradient overlay bottom */}
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_7%)] via-[hsl(0_0%_7%/60%)] to-transparent to-50%" />
           {/* Logo badge - orange background like reference */}
-          <div className="absolute bottom-16 right-6 md:right-10 w-16 h-16 md:w-20 md:h-20 rounded-full bg-[hsl(20_100%_55%)] flex items-center justify-center shadow-xl border-4 border-[hsl(20_100%_45%)]">
+          <div className="absolute bottom-16 right-6 md:right-10 w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl">
             <img src={logo} alt="" className="w-9 h-9 md:w-11 md:h-11" />
           </div>
         </div>
