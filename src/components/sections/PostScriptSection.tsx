@@ -1,11 +1,9 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const PostScriptSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-20 bg-secondary" id="ps">
-      <div ref={ref} className={`container max-w-2xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-2xl px-5">
         <div className="space-y-6 text-base md:text-lg text-muted-foreground italic leading-relaxed">
           <p>
             <strong className="text-foreground not-italic">P.S.</strong> Lembra que eu falei sobre a diferença entre gordura e inflamação? Aqui está a verdade dura: se você não eliminar a inflamação acumulada AGORA, ela vai continuar travando seu metabolismo. E aí, mesmo que você comece uma dieta "normal" amanhã, seu corpo vai resistir. Você vai suar na academia, cortar carboidratos, passar fome... e o resultado vai ser LENTO e frustrante.
@@ -26,7 +24,7 @@ const PostScriptSection = () => {
             A escolha é sua. Mas se fosse EU, eu já teria clicado no botão.
           </p>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

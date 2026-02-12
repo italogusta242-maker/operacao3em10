@@ -1,5 +1,5 @@
 import { ShieldCheck, Flame, RotateCcw, Lightbulb } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const steps = [
   {
@@ -23,11 +23,9 @@ const steps = [
 ];
 
 const MechanismSection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-[hsl(210_79%_95%)] to-[hsl(122_39%_94%)]" id="como-funciona">
-      <div ref={ref} className={`container max-w-3xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-3xl px-5">
         <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-4">
           O protocolo de esvaziamento de glicogênio e desinflamação celular
         </h2>
@@ -46,22 +44,22 @@ const MechanismSection = () => {
 
         {/* Timeline */}
         <div className="relative pl-8 md:pl-12 space-y-8 mb-10">
-          {/* Vertical line */}
           <div className="absolute left-3 md:left-5 top-0 bottom-0 w-0.5 bg-primary/30" />
 
           {steps.map(({ icon: Icon, days, title, desc }, i) => (
-            <div key={i} className="relative">
-              {/* Dot */}
-              <div className="absolute -left-5 md:-left-7 top-1 w-4 h-4 rounded-full bg-primary border-4 border-background" />
-              <div className="bg-card rounded-xl p-5 md:p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-2">
-                  <Icon className="w-6 h-6 text-primary" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary">{days}</span>
+            <ScrollReveal key={i} delay={i * 0.15}>
+              <div className="relative">
+                <div className="absolute -left-5 md:-left-7 top-1 w-4 h-4 rounded-full bg-primary border-4 border-background" />
+                <div className="bg-card rounded-xl p-5 md:p-6 shadow-sm">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Icon className="w-6 h-6 text-primary" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-primary">{days}</span>
+                  </div>
+                  <h4 className="font-display font-bold text-lg mb-1">{title}</h4>
+                  <p className="text-muted-foreground text-sm md:text-base">{desc}</p>
                 </div>
-                <h4 className="font-display font-bold text-lg mb-1">{title}</h4>
-                <p className="text-muted-foreground text-sm md:text-base">{desc}</p>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
@@ -72,7 +70,7 @@ const MechanismSection = () => {
             <strong>RESULTADO:</strong> Você não precisa de 3 meses de dieta. Você precisa de <strong className="text-primary">10 dias de estratégia bioquímica inteligente</strong>.
           </p>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

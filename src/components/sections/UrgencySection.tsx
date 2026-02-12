@@ -1,13 +1,11 @@
 import { AlertTriangle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const UrgencySection = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section className="py-16 md:py-24 bg-[hsl(0_100%_97%)]" id="urgencia">
-      <div ref={ref} className={`container max-w-3xl ${isVisible ? "animate-fade-up" : "opacity-0"}`}>
+      <ScrollReveal className="container max-w-3xl px-5">
         <div className="border-2 border-destructive/30 bg-card rounded-2xl p-8 md:p-10 text-center">
           <AlertTriangle className="w-12 h-12 text-destructive mx-auto mb-4" />
 
@@ -36,7 +34,7 @@ const UrgencySection = () => {
             Se você está lendo isso agora, a oferta ainda está ativa. Mas não sei por quanto tempo.
           </p>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
