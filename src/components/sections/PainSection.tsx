@@ -9,9 +9,9 @@ const painPoints = [
 
 
 const cards = [
-{ icon: Flame, title: "Inflamação\nCelular", desc: "Suas células retêm líquido e toxinas metabólicas" },
-{ icon: Droplets, title: "Retenção\nLíquida", desc: "Excesso de sódio e carboidratos seguram água no seu corpo" },
-{ icon: Zap, title: "Glicogênio\nEstocado", desc: "Reservas de glicose lotadas travando seu metabolismo" }];
+{ icon: Flame, title: ["Inflamação", "Celular"], desc: "Suas células retêm líquido e toxinas metabólicas" },
+{ icon: Droplets, title: ["Retenção", "Líquida"], desc: "Excesso de sódio e carboidratos seguram água no seu corpo" },
+{ icon: Zap, title: ["Glicogênio", "Estocado"], desc: "Reservas de glicose lotadas travando seu metabolismo" }];
 
 
 const PainSection = () => {
@@ -49,7 +49,7 @@ const PainSection = () => {
               </div>
               <div className="flex items-center justify-center gap-1.5 mb-1">
                 
-                <h4 className="font-display font-bold text-base text-destructive whitespace-pre-line">{title}</h4>
+                <h4 className="font-display font-bold text-base text-destructive">{title[0]}<br />{title[1]}</h4>
               </div>
               <p className="text-sm text-foreground/70">{desc}</p>
             </div>
