@@ -7,7 +7,9 @@ const HeroSection = () => (
     {/* Logo */}
     <div className="flex items-center gap-3 mb-10 animate-fade-in">
       <img src={logo} alt="Operação 3 em 10" className="w-10 h-10 md:w-12 md:h-12" />
-      <span className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight">Operação 3 em 10</span>
+      <span className="font-display font-bold text-xl md:text-2xl tracking-tight">
+        <span className="text-[hsl(20_100%_60%)]">Operação 3</span> <span className="text-[hsl(122_39%_49%)]">em 10</span>
+      </span>
     </div>
 
     {/* Headline */}
