@@ -1,30 +1,59 @@
 
-## Correção: Duplicação de Eventos do Meta Pixel
+
+## Correção: Remover scripts de rastreamento duplicados do index.html
 
 ### Problema
-O PageView do Meta Pixel está sendo disparado múltiplas vezes. Isso acontece porque o mesmo pixel está sendo carregado/disparado por mais de uma fonte:
+A página está disparando eventos continuamente porque existem scripts de rastreamento carregados diretamente no `index.html` que conflitam com tags equivalentes configuradas no Google Tag Manager (GTM):
 
-1. **Script direto no `index.html`** -- inicializa o pixel e dispara `fbq('track', 'PageView')`
-2. **Google Tag Manager (GTM)** -- se houver uma tag do Meta Pixel configurada no GTM, ela também inicializa o pixel e dispara PageView
+1. **Google Analytics (gtag.js)** carregado diretamente no HTML + provavelmente uma tag GA4 no GTM -- isso cria conflito no `dataLayer` e pode causar loops de disparo
+2. **Microsoft Clarity** carregado diretamente no HTML + possivelmente configurado no GTM
 
-Resultado: cada PageView é registrado 2x ou mais.
+O GTM (`GTM-MHKX7VRQ`) deveria ser o **unico orquestrador** de todas as tags de rastreamento.
 
 ### Solução
 
-Remover o script direto do Meta Pixel do `index.html` e deixar **apenas o GTM** gerenciá-lo. Isso centraliza todo o rastreamento no GTM e elimina a duplicação.
+Remover do `index.html` os scripts de:
+- **Google Analytics (gtag.js)** -- linhas 27-34
+- **Microsoft Clarity** -- linhas 36-43
 
-### Alterações
+Manter **apenas** o Google Tag Manager (GTM), que deve gerenciar todas as tags centralizadamente.
+
+### Alteracao
 
 **Arquivo: `index.html`**
-- Remover o bloco inteiro do Meta Pixel (linhas que contêm `fbevents.js`, `fbq('init', ...)` e `fbq('track', 'PageView')`)
-- Manter todos os outros scripts (GTM, Clarity, Utmify)
+- Remover o bloco do Google Analytics (`gtag.js` com ID `G-GCJ3P33ZT3`)
+- Remover o bloco do Microsoft Clarity (ID `vg0dx56k9b`)
+- Manter apenas o GTM (script + noscript)
 
-**Arquivo: `src/lib/meta-pixel.ts`**
-- Manter como está -- a chamada `fbq("track", eventName)` client-side funciona porque o GTM já terá carregado o `fbq`. O `event_id` garante deduplicação com a Conversions API (CAPI).
+O arquivo ficara assim:
 
-### Pré-requisito importante
-Certifique-se de que o GTM tem uma tag do Meta Pixel configurada com o ID `1558200545293720` que dispara no evento "All Pages". Sem isso, o pixel não será carregado e nenhum evento será rastreado.
+```text
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" ... />
+  ... metas ...
+
+  <!-- Google Tag Manager (unico script de rastreamento) -->
+  <script>(...GTM...)</script>
+</head>
+<body>
+  <!-- GTM noscript -->
+  <noscript>...</noscript>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+```
+
+### Pre-requisito importante
+Confirme que no painel do GTM existem tags configuradas para:
+- Google Analytics 4 com ID `G-GCJ3P33ZT3`
+- Microsoft Clarity com ID `vg0dx56k9b`
+- Meta Pixel com ID `1558200545293720`
+
+Se alguma dessas tags nao estiver no GTM, ela precisa ser adicionada antes de publicar esta alteracao.
 
 ### Resultado esperado
-- PageView disparado apenas 1x (via GTM)
-- InitiateCheckout disparado 1x client-side (via `fbq` no React) + 1x server-side (via CAPI), com deduplicação por `event_id`
+- Cada evento disparado apenas 1 vez
+- Sem reloads ou loops de disparo
+- GTM como unica fonte de rastreamento
+
