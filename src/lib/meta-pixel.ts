@@ -7,12 +7,7 @@ export const trackMetaEvent = async (
   try {
     const eventId = crypto.randomUUID();
 
-    // Client-side pixel with event_id for deduplication
-    if (typeof window !== "undefined" && typeof (window as any).fbq === "function") {
-      (window as any).fbq("track", eventName, customData, { eventID: eventId });
-    }
-
-    // Server-side Conversions API
+    // Server-side Conversions API only (GTM handles client-side pixel)
     const payload: Record<string, unknown> = {
       event_name: eventName,
       event_id: eventId,
