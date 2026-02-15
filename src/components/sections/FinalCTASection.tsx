@@ -1,5 +1,4 @@
 import { X, Check } from "lucide-react";
-import CTAButton from "../CTAButton";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const FinalCTASection = () => {
@@ -36,12 +35,6 @@ const FinalCTASection = () => {
           Qual opção faz mais sentido pra você?
         </p>
 
-        <CTAButton
-          text="SIM, QUERO ELIMINAR O INCHAÇO EM 10 DIAS"
-          subtext="GARANTIA TOTAL DE 7 DIAS • ACESSO IMEDIATO"
-          variant="white"
-          pulse
-        />
       </ScrollReveal>
     </section>
   );
