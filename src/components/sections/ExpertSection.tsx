@@ -16,6 +16,7 @@ const ExpertSection = () => {
             width={768}
             height={1024}
             loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_7%)] via-[hsl(0_0%_7%/60%)] to-transparent to-50%" />
 

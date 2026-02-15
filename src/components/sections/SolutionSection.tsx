@@ -92,6 +92,7 @@ const SolutionSection = () => {
                 width={448}
                 height={448}
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
