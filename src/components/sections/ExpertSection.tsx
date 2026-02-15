@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
+import ProgressiveImage from "@/components/ProgressiveImage";
 import igorPhoto from "@/assets/igor-correa.jpg";
 import logo from "@/assets/logo-operacao-3em10.png";
 
@@ -9,7 +10,7 @@ const ExpertSection = () => {
       <ScrollReveal className="max-w-3xl mx-auto">
         {/* Photo with gradient fade */}
         <div className="relative w-full">
-          <img
+          <ProgressiveImage
             src={igorPhoto}
             alt="Igor Corrêa - Atleta de fisiculturismo natural"
             className="w-full h-auto object-cover"
