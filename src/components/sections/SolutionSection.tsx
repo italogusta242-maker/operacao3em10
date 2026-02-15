@@ -70,10 +70,10 @@ const SolutionSection = () => {
         {/* Mockup da plataforma */}
         <ScrollReveal>
           <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(0_0%_7%)]">
-            {/* Concentric orange glows */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[hsl(25_100%_50%/0.08)]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-[hsl(25_100%_50%/0.12)]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full bg-[hsl(25_100%_50%/0.18)] blur-[60px]" />
+            {/* Concentric orange glows — smaller & blurred */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full bg-[hsl(25_100%_50%/0.10)] blur-[30px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full bg-[hsl(25_100%_50%/0.15)] blur-[40px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] rounded-full bg-[hsl(25_100%_50%/0.22)] blur-[60px]" />
             
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-3">
