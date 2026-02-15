@@ -1,5 +1,6 @@
 import { FileText, ShoppingCart, Coffee, MonitorPlay, Gift, Smartphone, Monitor } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import ProgressiveImage from "@/components/ProgressiveImage";
 import mockupPlataforma from "@/assets/mockup-plataforma.png";
 
 const products = [
@@ -85,7 +86,7 @@ const SolutionSection = () => {
               <p className="text-xs md:text-base text-foreground/80 max-w-xl mb-4 md:mb-6 leading-relaxed">
                 A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
               </p>
-              <img 
+              <ProgressiveImage 
                 src={mockupPlataforma} 
                 alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
                 className="w-full max-w-md mx-auto drop-shadow-2xl"

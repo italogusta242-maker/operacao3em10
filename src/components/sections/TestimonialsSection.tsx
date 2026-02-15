@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import ProgressiveImage from "@/components/ProgressiveImage";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -45,7 +46,7 @@ const TestimonialsSection = () => {
             {testimonials.map(({ src, alt, name, duration }, i) => (
               <CarouselItem key={i} className="pl-2 md:pl-4 basis-[85%] sm:basis-[60%] md:basis-[45%]">
                 <div className="flex flex-col items-center">
-                  <img
+                  <ProgressiveImage
                     src={src}
                     alt={alt}
                     className="w-full rounded-xl shadow-lg object-cover aspect-square"
