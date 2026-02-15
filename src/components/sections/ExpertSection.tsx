@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProgressiveImage from "@/components/ProgressiveImage";
-import igorPhoto from "@/assets/igor-correa.jpg";
-import logo from "@/assets/logo-operacao-3em10.png";
+import igorPhoto from "@/assets/igor-correa.webp";
+import logo from "@/assets/logo-operacao-3em10.webp";
 
 const ExpertSection = () => {
   return (

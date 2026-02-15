@@ -10,12 +10,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import depoimento1 from "@/assets/depoimento-1.png";
-import depoimento2 from "@/assets/depoimento-2.png";
-import depoimento3 from "@/assets/depoimento-3.png";
-import depoimento4 from "@/assets/depoimento-4.png";
-import depoimento5 from "@/assets/depoimento-5.png";
-import depoimento6 from "@/assets/depoimento-6.png";
+import depoimento1 from "@/assets/depoimento-1.webp";
+import depoimento2 from "@/assets/depoimento-2.webp";
+import depoimento3 from "@/assets/depoimento-3.webp";
+import depoimento4 from "@/assets/depoimento-4.webp";
+import depoimento5 from "@/assets/depoimento-5.webp";
+import depoimento6 from "@/assets/depoimento-6.webp";
 
 const testimonials = [
   { src: depoimento1, alt: "Resultado - Guilherme", name: "Guilherme", duration: "Fez a operação durante 10 dias" },
