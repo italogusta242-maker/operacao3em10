@@ -15,9 +15,7 @@ const HeroSection = () => (
     <div className="max-w-3xl text-center animate-fade-up">
       <h1 className="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[3.4rem] leading-tight tracking-tight text-foreground">
         Você não engordou 3kg de gordura no feriado de carnaval...{" "}
-        <span className="inline-block mt-2 px-4 py-1.5 rounded-lg bg-destructive/15 border border-destructive/30 text-destructive">
-          Você acumulou INFLAMAÇÃO.
-        </span>
+        <span className="text-accent">Você acumulou INFLAMAÇÃO.</span>
       </h1>
 
       <p className="mt-6 text-base md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
