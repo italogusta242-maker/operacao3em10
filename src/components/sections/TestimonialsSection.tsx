@@ -18,12 +18,12 @@ import depoimento5 from "@/assets/depoimento-5.webp";
 import depoimento6 from "@/assets/depoimento-6.webp";
 
 const testimonials = [
-  { src: depoimento1, alt: "Resultado - Guilherme", name: "Guilherme", duration: "Fez a operação durante 10 dias" },
-  { src: depoimento2, alt: "Resultado - Thiago", name: "Thiago", duration: "Fez a operação durante 10 dias" },
-  { src: depoimento3, alt: "Resultado - Igor", name: "Igor", duration: "Desenvolveu o método da operação" },
+  { src: depoimento1, alt: "Resultado - Igor", name: "Igor", duration: "Desenvolveu o método da operação" },
+  { src: depoimento2, alt: "Resultado - Jhon", name: "Jhon", duration: "Fez a operação durante 30 dias" },
+  { src: depoimento3, alt: "Resultado - Italo", name: "Italo", duration: "Fez a operação durante 30 dias" },
   { src: depoimento4, alt: "Resultado - Lara", name: "Lara", duration: "Fez a operação durante 25 dias" },
-  { src: depoimento5, alt: "Resultado - Jhon", name: "Jhon", duration: "Fez a operação durante 30 dias" },
-  { src: depoimento6, alt: "Resultado - Italo", name: "Italo", duration: "Fez a operação durante 30 dias" },
+  { src: depoimento5, alt: "Resultado - Thiago", name: "Thiago", duration: "Fez a operação durante 10 dias" },
+  { src: depoimento6, alt: "Resultado - Guilherme", name: "Guilherme", duration: "Fez a operação durante 10 dias" },
 ];
 
 const TestimonialsSection = () => {
