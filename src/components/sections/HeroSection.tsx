@@ -1,5 +1,4 @@
 import { ChevronDown } from "lucide-react";
-import CTAButton from "../CTAButton";
 import logo from "@/assets/logo-operacao-3em10.png";
 
 const HeroSection = () => (
@@ -16,17 +15,14 @@ const HeroSection = () => (
     <div className="max-w-3xl text-center animate-fade-up">
       <h1 className="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[3.4rem] leading-tight tracking-tight text-foreground">
         Você não engordou 3kg de gordura no feriado de carnaval...{" "}
-        <span className="text-accent">Você acumulou INFLAMAÇÃO.</span>
+        <span className="inline-block mt-2 px-4 py-1.5 rounded-lg bg-destructive/15 border border-destructive/30 text-destructive">
+          Você acumulou INFLAMAÇÃO.
+        </span>
       </h1>
 
       <p className="mt-6 text-base md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
         E pode eliminar isso em apenas <strong className="text-foreground">10 dias</strong>, sem passar fome, sem se matar na academia e sem receitas complicadas.
       </p>
-    </div>
-
-    {/* CTA */}
-    <div className="mt-10 animate-fade-up animation-delay-400">
-      <CTAButton text="QUERO ELIMINAR O INCHAÇO AGORA" pulse />
     </div>
 
     {/* Scroll arrow */}
