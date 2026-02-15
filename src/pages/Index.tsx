@@ -20,8 +20,11 @@ const Index = () => {
   const offerRef = useRef<HTMLDivElement>(null);
   const viewContentFired = useRef(false);
 
+  const pageViewFired = useRef(false);
+
   useEffect(() => {
-    // PageView via CAPI on mount
+    if (pageViewFired.current) return;
+    pageViewFired.current = true;
     trackMetaEvent("PageView");
   }, []);
 
