@@ -48,10 +48,7 @@ const OfferSection = () => {
           {/* Glow effect */}
           <div className="absolute -inset-3 bg-primary/20 rounded-3xl blur-xl animate-pulse" />
           <div className="relative bg-gradient-to-br from-white to-[hsl(122_39%_97%)] border-4 border-primary rounded-2xl p-6 md:p-10 shadow-[0_8px_40px_-8px_hsl(122_39%_49%/0.4)]">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
-              Oferta especial
-            </div>
-            <p className="text-muted-foreground text-sm md:text-base mb-1 mt-1">12x de</p>
+            <p className="text-muted-foreground text-sm md:text-base mb-1">12x de</p>
             <p className="font-display font-extrabold text-4xl md:text-6xl text-primary drop-shadow-[0_2px_4px_hsl(122_39%_49%/0.3)]">R$ 3,92</p>
             <p className="text-muted-foreground text-sm md:text-base mt-2">
               ou <strong className="text-foreground text-lg md:text-xl">R$ 47,00</strong> à vista
