@@ -1,7 +1,7 @@
 import { FileText, ShoppingCart, Coffee, MonitorPlay, Gift, Smartphone, Monitor } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProgressiveImage from "@/components/ProgressiveImage";
-import mockupPlataforma from "@/assets/mockup-plataforma.png";
+import mockupPlataforma from "@/assets/mockup-plataforma.webp";
 
 const products = [
   {
