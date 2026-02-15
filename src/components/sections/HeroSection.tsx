@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import logo from "@/assets/logo-operacao-3em10-small.webp";
+import logo from "@/assets/logo-operacao-3em10.png";
 
 const HeroSection = () => (
   <section className="relative min-h-[70vh] md:min-h-screen flex flex-col items-center justify-center px-5 py-12 md:py-20 overflow-hidden bg-gradient-to-b from-[hsl(122_39%_94%)] to-background">
