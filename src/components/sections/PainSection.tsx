@@ -9,9 +9,9 @@ const painPoints = [
 ];
 
 const cards = [
-  { icon: Flame, title: ["Inflamação", "Celular"], desc: "Suas células retêm líquido e toxinas metabólicas" },
-  { icon: Droplets, title: ["Retenção", "Líquida"], desc: "Excesso de sódio e carboidratos seguram água no seu corpo" },
-  { icon: Zap, title: ["Glicogênio", "Estocado"], desc: "Reservas de glicose lotadas travando seu metabolismo" },
+  { icon: Flame, title: ["Inflamação", "Celular"], desc: "Suas células retêm líquido e toxinas metabólicas", gradient: "from-red-500 to-orange-500" },
+  { icon: Droplets, title: ["Retenção", "Líquida"], desc: "Excesso de sódio e carboidratos seguram água no seu corpo", gradient: "from-orange-500 to-amber-500" },
+  { icon: Zap, title: ["Glicogênio", "Estocado"], desc: "Reservas de glicose lotadas travando seu metabolismo", gradient: "from-amber-500 to-yellow-500" },
 ];
 
 const PainSection = () => {
@@ -40,11 +40,11 @@ const PainSection = () => {
         </p>
 
         <div className="grid sm:grid-cols-3 gap-4 mb-10">
-          {cards.map(({ icon: Icon, title, desc }, i) => (
+          {cards.map(({ icon: Icon, title, desc, gradient }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="bg-destructive/10 border-2 border-destructive/30 rounded-xl p-6 text-center h-full">
-                <div className="w-14 h-14 rounded-full bg-destructive/15 flex items-center justify-center mx-auto mb-3">
-                  <Icon className="w-7 h-7 text-destructive" />
+              <div className="relative bg-white/60 dark:bg-white/10 backdrop-blur-md border border-white/40 dark:border-white/20 rounded-2xl p-6 text-center h-full shadow-lg shadow-destructive/5 transition-transform hover:scale-[1.02]">
+                <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center mx-auto mb-3 shadow-md`}>
+                  <Icon className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex items-center justify-center gap-1.5 mb-1">
                   <h4 className="font-display font-bold text-base text-destructive">{title[0]}<br />{title[1]}</h4>
@@ -59,6 +59,15 @@ const PainSection = () => {
           E tudo isso pode ser eliminado em <strong className="text-primary">10 dias</strong> com o protocolo certo.
         </p>
       </ScrollReveal>
+
+      {/* Visual divider - pattern break */}
+      <div className="mt-16 flex items-center justify-center gap-3">
+        <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/40" />
+        <div className="w-2 h-2 rounded-full bg-primary/50" />
+        <div className="w-3 h-3 rounded-full bg-primary" />
+        <div className="w-2 h-2 rounded-full bg-primary/50" />
+        <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/40" />
+      </div>
     </section>
   );
 };
