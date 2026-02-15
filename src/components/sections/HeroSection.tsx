@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import logo from "@/assets/logo-operacao-3em10.webp";
 
 const HeroSection = () => (
-  <section className="relative min-h-[55vh] md:min-h-[85vh] flex flex-col items-center justify-center px-5 py-10 md:py-16 overflow-hidden bg-gradient-to-b from-[hsl(122_39%_94%)] to-background">
+  <section className="relative min-h-[45vh] md:min-h-[75vh] flex flex-col items-center justify-center px-5 py-6 md:py-10 overflow-hidden bg-gradient-to-b from-[hsl(122_39%_94%)] to-background">
     {/* Logo */}
     <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-12 animate-fade-in">
       <img src={logo} alt="Operação -3kg em 10" className="w-8 h-8 md:w-12 md:h-12" width={48} height={48} fetchPriority="high" />
