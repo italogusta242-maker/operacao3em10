@@ -1,19 +1,20 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import PainSection from "@/components/sections/PainSection";
-import ErrorSection from "@/components/sections/ErrorSection";
-import MechanismSection from "@/components/sections/MechanismSection";
-import SolutionSection from "@/components/sections/SolutionSection";
-import OfferSection from "@/components/sections/OfferSection";
-import ExpertSection from "@/components/sections/ExpertSection";
-import GuaranteeSection from "@/components/sections/GuaranteeSection";
-import FAQSection from "@/components/sections/FAQSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import UrgencySection from "@/components/sections/UrgencySection";
-import FinalCTASection from "@/components/sections/FinalCTASection";
-import PostScriptSection from "@/components/sections/PostScriptSection";
-import FooterSection from "@/components/sections/FooterSection";
 import { trackMetaEvent } from "@/lib/meta-pixel";
+
+const ErrorSection = lazy(() => import("@/components/sections/ErrorSection"));
+const MechanismSection = lazy(() => import("@/components/sections/MechanismSection"));
+const SolutionSection = lazy(() => import("@/components/sections/SolutionSection"));
+const OfferSection = lazy(() => import("@/components/sections/OfferSection"));
+const ExpertSection = lazy(() => import("@/components/sections/ExpertSection"));
+const GuaranteeSection = lazy(() => import("@/components/sections/GuaranteeSection"));
+const FAQSection = lazy(() => import("@/components/sections/FAQSection"));
+const TestimonialsSection = lazy(() => import("@/components/sections/TestimonialsSection"));
+const UrgencySection = lazy(() => import("@/components/sections/UrgencySection"));
+const FinalCTASection = lazy(() => import("@/components/sections/FinalCTASection"));
+const PostScriptSection = lazy(() => import("@/components/sections/PostScriptSection"));
+const FooterSection = lazy(() => import("@/components/sections/FooterSection"));
 
 const Index = () => {
   const offerRef = useRef<HTMLDivElement>(null);
@@ -52,20 +53,22 @@ const Index = () => {
     <main>
       <HeroSection />
       <PainSection />
-      <ErrorSection />
-      <MechanismSection />
-      <TestimonialsSection />
-      <SolutionSection />
-      <div ref={offerRef}>
-        <OfferSection />
-      </div>
-      <ExpertSection />
-      <GuaranteeSection />
-      <FAQSection />
-      <UrgencySection />
-      <FinalCTASection />
-      <PostScriptSection />
-      <FooterSection />
+      <Suspense fallback={null}>
+        <ErrorSection />
+        <MechanismSection />
+        <TestimonialsSection />
+        <SolutionSection />
+        <div ref={offerRef}>
+          <OfferSection />
+        </div>
+        <ExpertSection />
+        <GuaranteeSection />
+        <FAQSection />
+        <UrgencySection />
+        <FinalCTASection />
+        <PostScriptSection />
+        <FooterSection />
+      </Suspense>
     </main>
   );
 };
