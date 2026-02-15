@@ -69,10 +69,11 @@ const SolutionSection = () => {
 
         {/* Mockup da plataforma */}
         <ScrollReveal>
-          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-6 md:py-10 px-5">
-            {/* Blur laranja de fundo */}
-            <div className="absolute inset-0 bg-[hsl(30_100%_96%)]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-accent/30 blur-[100px]" />
+          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(0_0%_7%)]">
+            {/* Concentric orange glows */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[hsl(25_100%_50%/0.08)]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-[hsl(25_100%_50%/0.12)]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full bg-[hsl(25_100%_50%/0.18)] blur-[60px]" />
             
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-3">
@@ -80,16 +81,16 @@ const SolutionSection = () => {
                 <span className="text-xs font-bold text-accent uppercase">+</span>
                 <Monitor className="w-4 h-4 text-accent" />
               </div>
-              <h3 className="font-display font-bold text-base md:text-xl text-foreground mb-2">
+              <h3 className="font-display font-bold text-base md:text-xl text-white mb-2">
                 Acesse de qualquer lugar, a qualquer hora
               </h3>
-              <p className="text-xs md:text-base text-foreground/80 max-w-xl mb-4 md:mb-6 leading-relaxed">
+              <p className="text-xs md:text-base text-gray-400 max-w-xl mb-4 md:mb-6 leading-relaxed">
                 A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
               </p>
               <ProgressiveImage 
                 src={mockupPlataforma} 
                 alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
-                className="w-full max-w-md mx-auto drop-shadow-2xl"
+                className="w-full max-w-md mx-auto drop-shadow-[0_20px_60px_hsl(25_100%_50%/0.3)]"
                 width={448}
                 height={448}
                 loading="lazy"
