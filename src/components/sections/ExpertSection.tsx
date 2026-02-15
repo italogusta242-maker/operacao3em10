@@ -41,13 +41,13 @@ const ExpertSection = () => {
         {/* Text content */}
         <div className="px-5 md:px-10 -mt-6 relative z-10 pb-14">
           <h2
-            className="font-display font-extrabold text-3xl sm:text-4xl md:text-6xl lg:text-7xl uppercase tracking-tight mb-6 bg-gradient-to-r from-[hsl(30_100%_60%)] to-[hsl(15_100%_45%)] bg-clip-text text-transparent"
+            className="font-display font-extrabold text-2xl sm:text-3xl md:text-6xl lg:text-7xl uppercase tracking-tight mb-4 md:mb-6 bg-gradient-to-r from-[hsl(30_100%_60%)] to-[hsl(15_100%_45%)] bg-clip-text text-transparent"
             style={{ filter: "drop-shadow(0 0 24px hsl(20 100% 55% / 0.35))" }}
           >
             Igor Corrêa
           </h2>
 
-          <div className="space-y-5 text-base md:text-lg text-gray-300 leading-relaxed">
+          <div className="space-y-4 md:space-y-5 text-sm md:text-lg text-gray-300 leading-relaxed">
             <p>
               Igor Corrêa é <strong className="text-white">atleta de fisiculturismo natural</strong>.
             </p>
