@@ -50,6 +50,9 @@ const TestimonialsSection = () => {
                     alt={alt}
                     className="w-full rounded-xl shadow-lg object-cover aspect-square"
                     loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={400}
                   />
                   <p className="mt-3 text-center text-sm md:text-base font-semibold text-foreground">{name}</p>
                   <p className="text-center text-xs md:text-sm text-muted-foreground">{duration}</p>
