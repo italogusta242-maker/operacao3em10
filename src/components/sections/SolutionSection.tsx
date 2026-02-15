@@ -69,11 +69,9 @@ const SolutionSection = () => {
 
         {/* Mockup da plataforma */}
         <ScrollReveal>
-          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(25_100%_94%)]" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, hsl(25 100% 85% / 0.8), transparent 70%)' }}>
-            {/* Concentric orange circles */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border-2 border-[hsl(25_100%_60%/0.3)]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border-2 border-[hsl(25_100%_55%/0.4)]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140px] h-[140px] rounded-full bg-[hsl(25_100%_60%/0.2)] blur-[30px]" />
+          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(25_100%_94%)]" style={{ backgroundImage: 'radial-gradient(circle at 50% 60%, hsl(25 100% 70% / 0.5), hsl(25 100% 85% / 0.3) 50%, transparent 75%)' }}>
+            {/* Soft radial glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[hsl(25_100%_60%/0.15)] blur-[60px]" />
             
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-3">
