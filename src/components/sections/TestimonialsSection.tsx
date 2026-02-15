@@ -27,12 +27,12 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-secondary" id="depoimentos">
+    <section className="py-12 md:py-24 bg-secondary" id="depoimentos">
       <ScrollReveal className="container max-w-5xl px-5">
-        <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-4">
+        <h2 className="font-display font-bold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
           Resultados reais de quem seguiu o protocolo
         </h2>
-        <p className="text-center text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
+        <p className="text-center text-muted-foreground text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto">
           Transformações de alunos da Operação -3kg em 10
         </p>
 
@@ -61,7 +61,7 @@ const TestimonialsSection = () => {
           <CarouselNext className="right-0 translate-x-2 md:translate-x-4" />
         </Carousel>
 
-        <p className="text-center text-muted-foreground text-base md:text-lg mt-10 max-w-2xl mx-auto italic">
+        <p className="text-center text-muted-foreground text-sm md:text-lg mt-8 md:mt-10 max-w-2xl mx-auto italic">
           Você não vai querer parar, e consequentemente, terá bem mais resultado do que só -3kg.
         </p>
       </ScrollReveal>

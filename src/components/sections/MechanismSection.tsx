@@ -24,39 +24,39 @@ const steps = [
 
 const MechanismSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-[hsl(210_79%_95%)] to-[hsl(122_39%_94%)]" id="como-funciona">
+    <section className="py-12 md:py-24 bg-gradient-to-br from-[hsl(210_79%_95%)] to-[hsl(122_39%_94%)]" id="como-funciona">
       <ScrollReveal className="container max-w-3xl px-5">
-        <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground text-center mb-4">
+        <h2 className="font-display font-bold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
           O protocolo de esvaziamento de glicogênio e desinflamação celular
         </h2>
-        <p className="text-center text-lg text-muted-foreground mb-6">Aqui está a verdade que ninguém te contou:</p>
+        <p className="text-center text-sm md:text-lg text-muted-foreground mb-4 md:mb-6">Aqui está a verdade que ninguém te contou:</p>
 
-        <p className="text-base md:text-lg text-foreground mb-4 leading-relaxed">
+        <p className="text-sm md:text-lg text-foreground mb-3 md:mb-4 leading-relaxed">
           Quando você exagera no álcool, açúcar e carboidratos refinados, seu corpo entra em um estado de <strong>inflamação aguda</strong>. Suas células ficam 'inchadas' de líquido, glicose e toxinas metabólicas.
         </p>
-        <p className="text-base md:text-lg text-foreground mb-10 leading-relaxed">
+        <p className="text-sm md:text-lg text-foreground mb-8 md:mb-10 leading-relaxed">
           Você <strong className="text-destructive">NÃO</strong> acumulou 3kg de gordura pura em 4 dias. Você acumulou <strong>lixo metabólico</strong> que está travando seu metabolismo.
         </p>
 
-        <h3 className="font-display font-bold text-xl md:text-2xl text-center mb-10">
+        <h3 className="font-display font-bold text-lg md:text-2xl text-center mb-8 md:mb-10">
           E é exatamente por isso que o reset funciona:
         </h3>
 
         {/* Timeline */}
-        <div className="relative pl-8 md:pl-12 space-y-8 mb-10">
+        <div className="relative pl-8 md:pl-12 space-y-6 md:space-y-8 mb-8 md:mb-10">
           <div className="absolute left-3 md:left-5 top-0 bottom-0 w-0.5 bg-primary/30" />
 
           {steps.map(({ icon: Icon, days, title, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
               <div className="relative">
                 <div className="absolute -left-5 md:-left-7 top-1 w-4 h-4 rounded-full bg-primary border-4 border-background" />
-                <div className="bg-card rounded-xl p-5 md:p-6 shadow-sm">
+                <div className="bg-card rounded-xl p-4 md:p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-2">
-                    <Icon className="w-6 h-6 text-primary" />
+                    <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                     <span className="text-xs font-bold uppercase tracking-wider text-primary">{days}</span>
                   </div>
-                  <h4 className="font-display font-bold text-lg mb-1">{title}</h4>
-                  <p className="text-muted-foreground text-sm md:text-base">{desc}</p>
+                  <h4 className="font-display font-bold text-base md:text-lg mb-1">{title}</h4>
+                  <p className="text-muted-foreground text-xs md:text-base">{desc}</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -64,9 +64,9 @@ const MechanismSection = () => {
         </div>
 
         {/* Result box */}
-        <div className="bg-[hsl(122_39%_94%)] border-2 border-primary/30 rounded-xl p-6 flex gap-3 items-start">
-          <Lightbulb className="w-6 h-6 text-primary shrink-0 mt-0.5" />
-          <p className="text-base md:text-lg font-semibold text-foreground">
+        <div className="bg-[hsl(122_39%_94%)] border-2 border-primary/30 rounded-xl p-4 md:p-6 flex gap-3 items-start">
+          <Lightbulb className="w-5 h-5 md:w-6 md:h-6 text-primary shrink-0 mt-0.5" />
+          <p className="text-sm md:text-lg font-semibold text-foreground">
             <strong>RESULTADO:</strong> Você não precisa de 3 meses de dieta. Você precisa de <strong className="text-primary">10 dias de estratégia bioquímica inteligente</strong>.
           </p>
         </div>
