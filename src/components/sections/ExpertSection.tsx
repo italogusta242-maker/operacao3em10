@@ -13,6 +13,9 @@ const ExpertSection = () => {
             src={igorPhoto}
             alt="Igor Corrêa - Atleta de fisiculturismo natural"
             className="w-full h-auto object-cover"
+            width={768}
+            height={1024}
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0_0%_7%)] via-[hsl(0_0%_7%/60%)] to-transparent to-50%" />
 

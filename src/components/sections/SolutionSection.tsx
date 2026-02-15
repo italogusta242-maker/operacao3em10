@@ -89,6 +89,9 @@ const SolutionSection = () => {
                 src={mockupPlataforma} 
                 alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
                 className="w-full max-w-md mx-auto drop-shadow-2xl"
+                width={448}
+                height={448}
+                loading="lazy"
               />
             </div>
           </div>
