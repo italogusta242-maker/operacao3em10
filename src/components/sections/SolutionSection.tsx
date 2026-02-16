@@ -69,9 +69,7 @@ const SolutionSection = () => {
 
         {/* Mockup da plataforma */}
         <ScrollReveal>
-          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(25_100%_94%)]" style={{ backgroundImage: 'radial-gradient(circle at 50% 60%, hsl(25 100% 70% / 0.5), hsl(25 100% 85% / 0.3) 50%, transparent 75%)' }}>
-            {/* Soft radial glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[hsl(25_100%_60%/0.15)] blur-[60px]" />
+          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(20_15%_12%)]" style={{ backgroundImage: 'radial-gradient(circle at 30% 80%, hsl(25 100% 30% / 0.4), transparent 60%)' }}>
             
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-3">
@@ -79,10 +77,10 @@ const SolutionSection = () => {
                 <span className="text-xs font-bold text-accent uppercase">+</span>
                 <Monitor className="w-4 h-4 text-accent" />
               </div>
-              <h3 className="font-display font-bold text-base md:text-xl text-foreground mb-2">
+              <h3 className="font-display font-bold text-base md:text-xl text-white mb-2">
                 Acesse de qualquer lugar, a qualquer hora
               </h3>
-              <p className="text-xs md:text-base text-muted-foreground max-w-xl mb-4 md:mb-6 leading-relaxed">
+              <p className="text-xs md:text-base text-gray-400 max-w-xl mb-4 md:mb-6 leading-relaxed">
                 A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
               </p>
               <ProgressiveImage 
