@@ -56,7 +56,7 @@ const OfferSection = () => {
         <div className="relative inline-block mb-8 md:mb-10 w-full max-w-sm mx-auto">
           <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-b from-[hsl(160_80%_45%)] via-[hsl(160_80%_45%/0.3)] to-[hsl(160_80%_45%)]" />
           <div className="relative bg-gradient-to-b from-[hsl(160_15%_14%)] to-[hsl(160_15%_10%)] rounded-2xl p-8 md:p-12">
-            <p className="text-gray-500 text-sm md:text-base line-through mb-3">R$ 497,00</p>
+            <p className="text-gray-500 text-sm md:text-base line-through mb-3">R$ 147,00</p>
             <div className="inline-flex items-center gap-2 bg-[hsl(160_80%_45%)] text-[hsl(160_20%_8%)] rounded-full px-4 py-1.5 mb-4">
               <Sparkles className="w-4 h-4" />
               <span className="text-xs md:text-sm font-bold uppercase">Oferta especial</span>
