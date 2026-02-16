@@ -9,15 +9,18 @@ const painPoints = [
 ];
 
 const cards = [
-  { icon: Flame, title: ["Inflamação", "Celular"], desc: "Suas células retêm líquido e toxinas metabólicas", gradient: "from-red-500 to-orange-500" },
-  { icon: Droplets, title: ["Retenção", "Líquida"], desc: "Excesso de sódio e carboidratos seguram água no seu corpo", gradient: "from-orange-500 to-amber-500" },
-  { icon: Zap, title: ["Glicogênio", "Estocado"], desc: "Reservas de glicose lotadas travando seu metabolismo", gradient: "from-amber-500 to-yellow-500" },
+  { icon: Flame, title: ["Inflamação", "Celular"], desc: "Suas células retêm líquido e toxinas metabólicas" },
+  { icon: Droplets, title: ["Retenção", "Líquida"], desc: "Excesso de sódio e carboidratos seguram água no seu corpo" },
+  { icon: Zap, title: ["Glicogênio", "Estocado"], desc: "Reservas de glicose lotadas travando seu metabolismo" },
 ];
 
 const PainSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-secondary" id="dor">
-      <ScrollReveal className="container max-w-3xl px-5">
+    <section className="py-12 md:py-24 bg-secondary relative overflow-hidden" id="dor">
+      {/* Subtle background accent */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-[hsl(0_80%_50%/0.03)] rounded-full blur-[100px]" />
+      
+      <ScrollReveal className="container max-w-3xl px-5 relative z-10">
         <h3 className="font-display font-bold text-lg md:text-2xl text-foreground mb-6 md:mb-8">Se você acordou hoje e:</h3>
 
         <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10">
@@ -40,16 +43,16 @@ const PainSection = () => {
         </p>
 
         <div className="grid sm:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
-          {cards.map(({ icon: Icon, title, desc, gradient }, i) => (
+          {cards.map(({ icon: Icon, title, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="relative bg-white/60 dark:bg-white/10 backdrop-blur-md border border-white/40 dark:border-white/20 rounded-2xl p-4 md:p-6 text-center h-full shadow-lg shadow-destructive/5 transition-transform hover:scale-[1.02]">
-                <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center mx-auto mb-2 md:mb-3 shadow-md`}>
+              <div className="relative bg-white/70 backdrop-blur-md border border-white/50 rounded-2xl p-4 md:p-6 text-center h-full shadow-lg shadow-destructive/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-destructive/10">
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-destructive to-accent flex items-center justify-center mx-auto mb-2 md:mb-3 shadow-md">
                   <Icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
                 </div>
                 <div className="flex items-center justify-center gap-1.5 mb-1">
                   <h4 className="font-display font-bold text-sm md:text-base text-destructive">{title[0]}<br />{title[1]}</h4>
                 </div>
-                <p className="text-xs md:text-sm text-foreground/70">{desc}</p>
+                <p className="text-xs md:text-sm text-muted-foreground">{desc}</p>
               </div>
             </ScrollReveal>
           ))}
@@ -59,15 +62,6 @@ const PainSection = () => {
           E tudo isso pode ser eliminado em <strong className="text-primary">10 dias</strong> com o protocolo certo.
         </p>
       </ScrollReveal>
-
-      {/* Visual divider - pattern break */}
-      <div className="mt-12 md:mt-16 flex items-center justify-center gap-3">
-        <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/40" />
-        <div className="w-2 h-2 rounded-full bg-primary/50" />
-        <div className="w-3 h-3 rounded-full bg-primary" />
-        <div className="w-2 h-2 rounded-full bg-primary/50" />
-        <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/40" />
-      </div>
     </section>
   );
 };

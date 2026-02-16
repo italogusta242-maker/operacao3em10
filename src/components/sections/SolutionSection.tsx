@@ -41,10 +41,12 @@ const bonuses = [
 
 const SolutionSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-background" id="solucao">
-      <ScrollReveal className="container max-w-4xl px-5">
-        <h2 className="font-display font-bold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
-          Apresentando: <span className="text-primary">Operação -3kg em 10</span>
+    <section className="py-12 md:py-24 bg-background relative overflow-hidden" id="solucao">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[hsl(122_50%_50%/0.04)] rounded-full blur-[120px]" />
+      
+      <ScrollReveal className="container max-w-4xl px-5 relative z-10">
+        <h2 className="font-display font-extrabold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
+          Apresentando: <span className="text-gradient-primary">Operação -3kg em 10</span>
         </h2>
         <p className="text-center text-muted-foreground text-sm md:text-lg mb-3 md:mb-4 max-w-2xl mx-auto">
           Este não é apenas "mais um PDF de dieta". É um sistema completo de eliminação de inflamação e reset metabólico.
@@ -56,7 +58,7 @@ const SolutionSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-10 md:mb-14">
           {products.map(({ icon: Icon, title, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.12}>
-              <div className="bg-secondary rounded-xl p-4 md:p-6 hover:shadow-md transition-shadow h-full">
+              <div className="bg-secondary/80 backdrop-blur-sm rounded-xl p-4 md:p-6 hover:shadow-md transition-all duration-300 h-full border border-border/30 hover:border-primary/20">
                 <Icon className="w-8 h-8 md:w-12 md:h-12 text-primary mb-3 md:mb-4" />
                 <h4 className="font-display font-bold text-sm md:text-base mb-2 flex items-start gap-1">
                   <span className="text-primary">✅</span> {title}
@@ -100,7 +102,7 @@ const SolutionSection = () => {
           </div>
         </ScrollReveal>
 
-        <div className="w-20 h-0.5 bg-accent mx-auto mb-8 md:mb-10" />
+        <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mb-8 md:mb-10" />
 
         <h3 className="font-display font-bold text-lg md:text-2xl text-center mb-6 md:mb-8">
           E como bônus exclusivo:
