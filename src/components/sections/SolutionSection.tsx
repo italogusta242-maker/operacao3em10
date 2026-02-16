@@ -105,14 +105,14 @@ const SolutionSection = () => {
         <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
           {bonuses.map(({ title, value, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="border-2 border-accent bg-[hsl(30_100%_96%)] rounded-xl p-4 md:p-6 h-full">
-                <div className="flex items-center gap-2 mb-2">
-                  <Gift className="w-5 h-5 md:w-6 md:h-6 text-accent" />
+              <div className="border border-[hsl(25_100%_40%/0.5)] bg-[hsl(20_15%_12%)] rounded-xl p-4 md:p-6 h-full">
+                <div className="flex items-center gap-2 mb-3">
+                  <Gift className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                   <span className="text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
                 </div>
-                <h4 className="font-display font-bold text-sm md:text-base mb-1">{title}</h4>
-                <p className="text-xs md:text-sm text-muted-foreground mb-2">(Valor: {value})</p>
-                <p className="text-xs md:text-sm text-foreground/80">{desc}</p>
+                <h4 className="font-display font-bold text-sm md:text-base text-white mb-1">{title}</h4>
+                <p className="text-xs md:text-sm text-accent mb-2">(Valor: {value})</p>
+                <p className="text-xs md:text-sm text-gray-400">{desc}</p>
               </div>
             </ScrollReveal>
           ))}
