@@ -69,7 +69,7 @@ const SolutionSection = () => {
 
         {/* Mockup da plataforma */}
         <ScrollReveal>
-          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-secondary border-2 border-accent/40">
+          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-accent/10 border-2 border-accent/30">
             
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-3">
@@ -83,15 +83,19 @@ const SolutionSection = () => {
               <p className="text-xs md:text-base text-muted-foreground max-w-xl mb-4 md:mb-6 leading-relaxed">
                 A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
               </p>
-              <ProgressiveImage 
-                src={mockupPlataforma} 
-                alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
-                className="w-full max-w-md mx-auto drop-shadow-[0_10px_30px_hsl(25_100%_50%/0.15)]"
-                width={448}
-                height={448}
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="relative">
+                {/* Radial fade glow around mockup */}
+                <div className="absolute inset-0 rounded-full bg-accent/15 blur-3xl scale-110" />
+                <ProgressiveImage 
+                  src={mockupPlataforma} 
+                  alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
+                  className="relative w-full max-w-md mx-auto drop-shadow-[0_15px_40px_hsl(25_100%_50%/0.25)]"
+                  width={448}
+                  height={448}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
           </div>
         </ScrollReveal>
