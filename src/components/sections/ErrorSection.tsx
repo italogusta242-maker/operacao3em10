@@ -10,10 +10,12 @@ const mistakes = [
 
 const ErrorSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-background" id="erro">
-      <ScrollReveal className="container max-w-3xl px-5">
-        <h2 className="font-display font-bold text-xl md:text-3xl lg:text-4xl text-foreground mb-6 md:mb-8">
-          Por que dietas tradicionais falham nos primeiros 10 dias?
+    <section className="py-12 md:py-24 bg-background relative overflow-hidden" id="erro">
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[hsl(30_100%_60%/0.04)] rounded-full blur-[100px]" />
+      
+      <ScrollReveal className="container max-w-3xl px-5 relative z-10">
+        <h2 className="font-display font-extrabold text-xl md:text-3xl lg:text-4xl text-foreground mb-6 md:mb-8">
+          Por que dietas tradicionais <span className="text-gradient-accent">falham</span> nos primeiros 10 dias?
         </h2>
 
         <h3 className="font-display font-bold text-base md:text-xl mb-4 md:mb-6 text-foreground">Você já deve ter tentado:</h3>
@@ -32,7 +34,7 @@ const ErrorSection = () => {
           Você ficou com fome. Perdeu energia. Ficou irritado(a). E no terceiro dia... <strong>desistiu</strong>.
         </p>
 
-        <div className="border-l-4 border-accent bg-[hsl(30_100%_96%)] rounded-r-lg p-4 md:p-8">
+        <div className="border-l-4 border-accent bg-gradient-to-r from-[hsl(30_100%_96%)] to-background rounded-r-lg p-4 md:p-8">
           <p className="text-sm md:text-lg text-foreground leading-relaxed">
             O problema <strong>não foi falta de força de vontade</strong>. O problema é que seu corpo estava lutando contra a{" "}
             <strong className="text-accent">INFLAMAÇÃO</strong>, não contra a gordura.

@@ -40,7 +40,6 @@ const UrgencySection = () => {
     const timer = setInterval(() => {
       step++;
       const t = step / steps;
-      // ease-out cubic
       const eased = 1 - Math.pow(1 - t, 3);
       setProgress(Math.round(eased * PERCENTAGE));
       setCount(Math.round(eased * TARGET_VALUE));
@@ -51,12 +50,14 @@ const UrgencySection = () => {
   }, [hasAnimated]);
 
   return (
-    <section className="py-16 md:py-24 bg-[hsl(0_100%_97%)]" id="urgencia">
-      <ScrollReveal className="container max-w-3xl px-5">
-        <div className="border-2 border-destructive/30 bg-card rounded-2xl p-5 md:p-10 text-left">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-[hsl(0_100%_98%)] to-[hsl(0_80%_96%)] relative overflow-hidden" id="urgencia">
+      <div className="absolute top-0 right-0 w-60 h-60 bg-[hsl(0_80%_50%/0.04)] rounded-full blur-[100px]" />
+      
+      <ScrollReveal className="container max-w-3xl px-5 relative z-10">
+        <div className="border-2 border-destructive/20 bg-card rounded-2xl p-5 md:p-10 text-left shadow-lg shadow-destructive/5">
           <AlertTriangle className="w-8 h-8 md:w-12 md:h-12 text-destructive mb-3 md:mb-4" />
 
-          <h2 className="font-display font-bold text-lg md:text-2xl lg:text-3xl text-foreground mb-4 md:mb-6">
+          <h2 className="font-display font-extrabold text-lg md:text-2xl lg:text-3xl text-foreground mb-4 md:mb-6">
             ⚠️ Atenção: vagas limitadas
           </h2>
 
