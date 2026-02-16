@@ -69,24 +69,24 @@ const SolutionSection = () => {
 
         {/* Mockup da plataforma */}
         <ScrollReveal>
-          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(30_60%_95%)] border border-[hsl(25_80%_80%/0.5)]">
+          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-[hsl(20_15%_12%)]" style={{ backgroundImage: 'radial-gradient(circle at 30% 80%, hsl(25 100% 30% / 0.4), transparent 60%)' }}>
             
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-3">
-                <Smartphone className="w-4 h-4 text-primary" />
-                <span className="text-xs font-bold text-primary uppercase">+</span>
-                <Monitor className="w-4 h-4 text-primary" />
+                <Smartphone className="w-4 h-4 text-accent" />
+                <span className="text-xs font-bold text-accent uppercase">+</span>
+                <Monitor className="w-4 h-4 text-accent" />
               </div>
-              <h3 className="font-display font-bold text-base md:text-xl text-foreground mb-2">
+              <h3 className="font-display font-bold text-base md:text-xl text-white mb-2">
                 Acesse de qualquer lugar, a qualquer hora
               </h3>
-              <p className="text-xs md:text-base text-muted-foreground max-w-xl mb-4 md:mb-6 leading-relaxed">
+              <p className="text-xs md:text-base text-gray-400 max-w-xl mb-4 md:mb-6 leading-relaxed">
                 A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
               </p>
               <ProgressiveImage 
                 src={mockupPlataforma} 
                 alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
-                className="w-full max-w-md mx-auto drop-shadow-[0_10px_30px_hsl(25_60%_50%/0.15)]"
+                className="w-full max-w-md mx-auto drop-shadow-[0_20px_60px_hsl(25_100%_50%/0.3)]"
                 width={448}
                 height={448}
                 loading="lazy"
@@ -105,15 +105,17 @@ const SolutionSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
           {bonuses.map(({ title, value, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="relative bg-[hsl(30_60%_95%)] border border-[hsl(25_80%_80%/0.5)] rounded-xl overflow-hidden h-full">
+              <div className="relative border border-[hsl(25_100%_40%/0.5)] bg-[hsl(20_15%_12%)] rounded-xl overflow-hidden h-full">
+                {/* Top gradient glow */}
+                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[hsl(25_100%_40%/0.15)] to-transparent" />
                 <div className="relative p-5 md:p-6">
-                  <div className="inline-flex items-center gap-1.5 border border-primary/40 rounded-full px-3 py-1 mb-4">
-                    <Gift className="w-3.5 h-3.5 text-primary" />
-                    <span className="text-[10px] md:text-xs font-bold text-primary uppercase">Bônus #{i + 1}</span>
+                  <div className="inline-flex items-center gap-1.5 border border-accent/40 rounded-full px-3 py-1 mb-4">
+                    <Gift className="w-3.5 h-3.5 text-accent" />
+                    <span className="text-[10px] md:text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
                   </div>
-                  <h4 className="font-display font-bold text-base md:text-lg text-foreground mb-2">{title}</h4>
-                  <p className="text-xs md:text-sm text-primary mb-3">(Valor: {value})</p>
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                  <h4 className="font-display font-bold text-base md:text-lg text-white mb-2">{title}</h4>
+                  <p className="text-xs md:text-sm text-accent mb-3">(Valor: {value})</p>
+                  <p className="text-xs md:text-sm text-gray-400 leading-relaxed">{desc}</p>
                 </div>
               </div>
             </ScrollReveal>
