@@ -1,4 +1,4 @@
-import { X, ShieldCheck, Clock, Zap, Sparkles } from "lucide-react";
+import { X, ShieldCheck, Clock, Zap } from "lucide-react";
 import CTAButton from "../CTAButton";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -25,7 +25,7 @@ const OfferSection = () => {
     <section className="py-12 md:py-24 bg-[hsl(160_20%_8%)]" id="oferta">
       <ScrollReveal className="container max-w-3xl text-center px-5">
         <h2 className="font-display font-bold text-xl md:text-3xl lg:text-4xl text-white mb-6 md:mb-8">
-          Quanto custa recuperar seu corpo em <span className="text-[hsl(160_80%_45%)]">10 dias</span>?
+          Quanto custa recuperar seu corpo em <span className="text-[hsl(160_80%_45%)]">10&nbsp;dias</span>?
         </h2>
 
         <p className="text-sm md:text-lg text-gray-400 mb-4 md:mb-6 text-left">Vamos fazer uma conta rápida:</p>
@@ -57,8 +57,7 @@ const OfferSection = () => {
           <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-b from-[hsl(160_80%_45%)] via-[hsl(160_80%_45%/0.3)] to-[hsl(160_80%_45%)]" />
           <div className="relative bg-gradient-to-b from-[hsl(160_15%_14%)] to-[hsl(160_15%_10%)] rounded-2xl p-8 md:p-12">
             <p className="text-gray-500 text-sm md:text-base line-through mb-3">R$ 497,00</p>
-            <div className="inline-flex items-center gap-2 bg-[hsl(160_80%_45%)] text-[hsl(160_20%_8%)] rounded-full px-4 py-1.5 mb-4">
-              <Sparkles className="w-4 h-4" />
+            <div className="inline-flex items-center bg-[hsl(160_80%_45%)] text-[hsl(160_20%_8%)] rounded-full px-4 py-1.5 mb-4">
               <span className="text-xs md:text-sm font-bold uppercase">Oferta especial</span>
             </div>
             <p className="text-gray-400 text-sm md:text-base mb-1">12x de</p>
