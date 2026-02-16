@@ -10,7 +10,7 @@ interface CTAButtonProps {
 }
 
 const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse = false }: CTAButtonProps) => {
-  const base = "inline-flex flex-col items-center justify-center gap-1 rounded-xl px-6 md:px-8 py-4 md:py-5 font-display font-bold text-base md:text-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-ring/30 cursor-pointer w-full md:w-auto";
+  const base = "inline-flex flex-col items-center justify-center gap-1 rounded-xl px-5 md:px-8 py-3 md:py-4 font-display font-bold text-sm md:text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-ring/30 cursor-pointer w-full md:w-auto";
 
   const variants = {
     primary: "bg-primary text-primary-foreground hover:shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.5)]",
