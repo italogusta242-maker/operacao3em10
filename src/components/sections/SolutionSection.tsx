@@ -102,17 +102,21 @@ const SolutionSection = () => {
           E como bônus exclusivo:
         </h3>
 
-        <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
           {bonuses.map(({ title, value, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="border border-[hsl(25_100%_40%/0.5)] bg-[hsl(20_15%_12%)] rounded-xl p-4 md:p-6 h-full">
-                <div className="flex items-center gap-2 mb-3">
-                  <Gift className="w-4 h-4 md:w-5 md:h-5 text-accent" />
-                  <span className="text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
+              <div className="relative border border-[hsl(25_100%_40%/0.5)] bg-[hsl(20_15%_12%)] rounded-xl overflow-hidden h-full">
+                {/* Top gradient glow */}
+                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[hsl(25_100%_40%/0.15)] to-transparent" />
+                <div className="relative p-5 md:p-6">
+                  <div className="inline-flex items-center gap-1.5 border border-accent/40 rounded-full px-3 py-1 mb-4">
+                    <Gift className="w-3.5 h-3.5 text-accent" />
+                    <span className="text-[10px] md:text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
+                  </div>
+                  <h4 className="font-display font-bold text-base md:text-lg text-white mb-2">{title}</h4>
+                  <p className="text-xs md:text-sm text-accent mb-3">(Valor: {value})</p>
+                  <p className="text-xs md:text-sm text-gray-400 leading-relaxed">{desc}</p>
                 </div>
-                <h4 className="font-display font-bold text-sm md:text-base text-white mb-1">{title}</h4>
-                <p className="text-xs md:text-sm text-accent mb-2">(Valor: {value})</p>
-                <p className="text-xs md:text-sm text-gray-400">{desc}</p>
               </div>
             </ScrollReveal>
           ))}
