@@ -22,33 +22,33 @@ const badges = [
 
 const OfferSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-[hsl(160_20%_8%)]" id="oferta">
+    <section className="py-12 md:py-24 relative overflow-hidden" id="oferta" style={{ background: 'radial-gradient(ellipse at center, hsl(160 60% 92%) 0%, hsl(160 30% 96%) 40%, hsl(0 0% 100%) 75%)' }}>
       <ScrollReveal className="container max-w-3xl text-center px-5">
-        <h2 className="font-display font-bold text-xl md:text-3xl lg:text-4xl text-white mb-6 md:mb-8">
-          Quanto custa recuperar seu corpo em <span className="text-[hsl(160_80%_45%)]">10&nbsp;dias</span>?
+        <h2 className="font-display font-bold text-xl md:text-3xl lg:text-4xl text-foreground mb-6 md:mb-8">
+          Quanto custa recuperar seu corpo em <span className="text-[hsl(160_80%_35%)]">10&nbsp;dias</span>?
         </h2>
 
-        <p className="text-sm md:text-lg text-gray-400 mb-4 md:mb-6 text-left">Vamos fazer uma conta rápida:</p>
+        <p className="text-sm md:text-lg text-muted-foreground mb-4 md:mb-6 text-left">Vamos fazer uma conta rápida:</p>
 
         <div className="space-y-2 md:space-y-3 mb-2 md:mb-3 text-left">
           {costs.map(({ label, price }, i) => (
-            <div key={i} className="flex items-center justify-between gap-2 bg-[hsl(160_10%_14%)] border border-[hsl(160_10%_20%)] rounded-lg px-4 py-3">
+            <div key={i} className="flex items-center justify-between gap-2 bg-white/70 border border-[hsl(160_30%_85%)] rounded-lg px-4 py-3">
               <div className="flex items-center gap-2 min-w-0">
                 <X className="w-4 h-4 text-red-500 shrink-0" />
-                <span className="text-xs md:text-base text-gray-300">{label}</span>
+                <span className="text-xs md:text-base text-foreground">{label}</span>
               </div>
-              <span className="text-xs md:text-base line-through text-gray-500 whitespace-nowrap">{price}</span>
+              <span className="text-xs md:text-base line-through text-muted-foreground whitespace-nowrap">{price}</span>
             </div>
           ))}
         </div>
 
         {/* Total row */}
-        <div className="flex items-center justify-between gap-2 bg-[hsl(160_80%_45%/0.15)] border border-[hsl(160_80%_45%/0.3)] rounded-lg px-4 py-3 mb-8 md:mb-10">
-          <span className="text-sm md:text-base font-bold text-white">TOTAL</span>
-          <span className="text-sm md:text-base line-through text-[hsl(160_80%_45%)] font-bold">R$ 450-950</span>
+        <div className="flex items-center justify-between gap-2 bg-[hsl(160_80%_35%/0.12)] border border-[hsl(160_80%_35%/0.3)] rounded-lg px-4 py-3 mb-8 md:mb-10">
+          <span className="text-sm md:text-base font-bold text-foreground">TOTAL</span>
+          <span className="text-sm md:text-base line-through text-[hsl(160_80%_35%)] font-bold">R$ 450-950</span>
         </div>
 
-        <p className="text-base md:text-xl font-bold text-white mb-6 md:mb-8">
+        <p className="text-base md:text-xl font-bold text-foreground mb-6 md:mb-8">
           Mas você <span className="underline">NÃO</span> vai pagar isso hoje.
         </p>
 
@@ -70,10 +70,10 @@ const OfferSection = () => {
           </div>
         </div>
 
-        <p className="text-sm md:text-base text-gray-400 mb-4">Isso é menos que:</p>
+        <p className="text-sm md:text-base text-muted-foreground mb-4">Isso é menos que:</p>
         <ul className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-10">
           {comparisons.map((c, i) => (
-            <li key={i} className="bg-[hsl(160_10%_14%)] rounded-full px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm text-gray-300 border border-[hsl(160_10%_20%)]">
+            <li key={i} className="bg-white/70 rounded-full px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm text-foreground border border-[hsl(160_30%_85%)]">
               • <strong>{c}</strong>
             </li>
           ))}
@@ -90,10 +90,10 @@ const OfferSection = () => {
         <div className="flex justify-center gap-6 md:gap-10 mt-8">
           {badges.map(({ icon: Icon, label }, i) => (
             <div key={i} className="flex flex-col items-center gap-2">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[hsl(160_80%_45%/0.15)] flex items-center justify-center">
-                <Icon className="w-5 h-5 md:w-6 md:h-6 text-[hsl(160_80%_45%)]" />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[hsl(160_80%_35%/0.15)] flex items-center justify-center">
+                <Icon className="w-5 h-5 md:w-6 md:h-6 text-[hsl(160_80%_35%)]" />
               </div>
-              <span className="text-[10px] md:text-xs text-gray-400 font-medium whitespace-pre-line text-center">{label}</span>
+              <span className="text-[10px] md:text-xs text-muted-foreground font-medium whitespace-pre-line text-center">{label}</span>
             </div>
           ))}
         </div>
