@@ -11,7 +11,7 @@ const GuaranteeSection = () => {
   return (
     <section className="relative overflow-hidden" id="garantia">
       <div className="section-divider" />
-      <div className="py-12 md:py-24 bg-secondary relative">
+      <div className="py-12 md:py-16 bg-secondary relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(122_50%_40%/0.03),transparent_70%)]" />
 
         <ScrollReveal className="container max-w-3xl text-center px-5 relative z-10">

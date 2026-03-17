@@ -35,7 +35,7 @@ const MechanismSection = () => {
   return (
     <section className="relative overflow-hidden" id="como-funciona">
       <div className="section-divider" />
-      <div className="py-12 md:py-24 bg-secondary">
+      <div className="py-12 md:py-16 bg-secondary">
         <div className="absolute top-20 right-0 w-64 h-64 bg-[radial-gradient(circle,hsl(122_60%_50%/0.06),transparent_70%)]" />
         <div className="absolute bottom-10 left-10 w-48 h-48 bg-[radial-gradient(circle,hsl(24_100%_50%/0.04),transparent_70%)]" />
 

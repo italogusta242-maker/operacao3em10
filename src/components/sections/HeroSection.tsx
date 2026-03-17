@@ -1,4 +1,4 @@
-import { ChevronDown, Star } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo-operacao-3em10.webp";
 import igorPhoto from "@/assets/igor-correa.webp";
@@ -44,18 +44,15 @@ const HeroSection = () => (
       </span>
     </motion.div>
 
-    {/* Pill badge */}
+    {/* Igor photo placeholder */}
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
       className="relative z-10 mb-4 md:mb-6"
     >
-      <div className="inline-flex items-center gap-2 border border-accent/50 rounded-full px-4 py-1.5 bg-accent/10 shadow-[0_0_20px_hsl(24_100%_50%/0.15)]">
-        <Star className="w-3.5 h-3.5 text-accent fill-accent" />
-        <span className="text-xs md:text-sm text-accent font-semibold uppercase tracking-wider">
-          Método validado por mais de 5.000 pessoas
-        </span>
+      <div className="w-[160px] h-[200px] rounded-xl border-2 border-accent bg-[hsl(0_0%_10%)] flex items-center justify-center">
+        <span className="text-muted-foreground text-xs text-center px-4">Foto do Igor</span>
       </div>
     </motion.div>
 
@@ -81,19 +78,13 @@ const HeroSection = () => (
         O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
       </motion.p>
 
-      {/* CTA - anchor link to offer section */}
+      {/* Live viewers */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.7 }}
         className="mt-6 md:mt-10"
       >
-        <a
-          href="#oferta"
-          className="inline-flex items-center justify-center gap-2 rounded-lg px-6 md:px-10 py-4 md:py-5 font-display font-black text-base md:text-xl transition-all duration-300 hover:scale-105 w-full md:w-auto border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-white"
-        >
-          ACEITA O DESAFIO? →
-        </a>
         <LiveViewerCounter />
       </motion.div>
     </motion.div>

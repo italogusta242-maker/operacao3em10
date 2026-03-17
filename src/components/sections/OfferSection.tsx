@@ -40,7 +40,7 @@ const OfferSection = () => {
   return (
     <section className="relative overflow-hidden" id="oferta">
       <div className="section-divider" />
-      <div className="py-12 md:py-24 bg-background">
+      <div className="py-12 md:py-16 bg-background">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse,hsl(24_100%_50%/0.06),transparent_70%)]" />
 
         <div className="container max-w-3xl text-center px-5 relative z-10">
