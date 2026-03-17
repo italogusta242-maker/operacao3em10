@@ -7,7 +7,7 @@ const solutionBullets = [
   "Esvaziar os estoques de glicogênio que pesam na balança",
   "Acelerar seu metabolismo para queimar mais o dia todo",
   "Desinchar a barriga visivelmente em poucos dias",
-  "Te dar mais energia e disposição — não menos!",
+  "Te dar mais energia e disposição. Não menos!",
 ];
 
 const steps = [
@@ -67,7 +67,6 @@ const MechanismSection = () => {
 
           {/* Timeline */}
           <div className="relative pl-8 md:pl-12 space-y-6 md:space-y-8 mb-8 md:mb-10">
-            {/* Animated timeline line */}
             <motion.div
               className="absolute left-3 md:left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/60 via-accent/30 to-accent/10 origin-top"
               initial={{ scaleY: 0 }}
@@ -79,7 +78,6 @@ const MechanismSection = () => {
             {steps.map(({ icon: Icon, days, title, desc }, i) => (
               <ScrollReveal key={i} delay={i * 0.2 + 0.3}>
                 <div className="relative">
-                  {/* Sonar dot */}
                   <div className="absolute -left-5 md:-left-7 top-1 w-4 h-4 rounded-full bg-accent border-4 border-background shadow-[0_0_12px_hsl(24_100%_50%/0.5)] timeline-dot-sonar" />
                   <div className="card-glow rounded-xl p-4 md:p-6 border-l-[3px] !border-l-accent hover:border-accent/40 transition-all">
                     <div className="flex items-center gap-3 mb-2">

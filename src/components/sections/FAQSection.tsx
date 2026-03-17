@@ -8,7 +8,7 @@ const faqs = [
   },
   {
     q: "Preciso ir pra academia?",
-    a: "Os treinos do protocolo são curtos e intensos. Podem ser feitos em casa ou na academia — você escolhe. O importante é seguir o método.",
+    a: "Os treinos do protocolo são curtos e intensos. Podem ser feitos em casa ou na academia, você escolhe. O importante é seguir o método.",
   },
   {
     q: "Quanto tempo por dia preciso dedicar?",
@@ -20,15 +20,15 @@ const faqs = [
   },
   {
     q: "E se eu tiver restrição alimentar?",
-    a: "O plano alimentar inclui substituições para as principais restrições — lactose, glúten, etc. Se você tiver uma condição específica, sempre consulte seu médico.",
+    a: "O plano alimentar inclui substituições para as principais restrições (lactose, glúten, etc). Se você tiver uma condição específica, sempre consulte seu médico.",
   },
   {
     q: "Vou ter efeito sanfona?",
-    a: "O Bônus 1 — Guia de Manutenção Pós-10 Dias — existe exatamente para evitar isso. Ele ensina como manter os resultados sem precisar seguir o protocolo pra sempre.",
+    a: "O Bônus 1 (Guia de Manutenção Pós-10 Dias) existe exatamente para evitar isso. Ele ensina como manter os resultados sem precisar seguir o protocolo pra sempre.",
   },
   {
     q: "É diferente de outras dietas que já tentei?",
-    a: "Sim. O foco aqui não é fazer dieta — é desinflamar seu corpo de forma estratégica. Por isso funciona tão rápido e sem sofrimento.",
+    a: "Sim. O foco aqui não é fazer dieta. É desinflamar seu corpo de forma estratégica. Por isso funciona tão rápido e sem sofrimento.",
   },
   {
     q: "Como recebo o acesso?",

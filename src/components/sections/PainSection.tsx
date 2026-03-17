@@ -44,7 +44,7 @@ const PainSection = () => {
 
           <ScrollReveal delay={0.4}>
             <p className="text-sm md:text-lg text-foreground/80 leading-relaxed">
-              E a boa notícia? Isso pode ser revertido em poucos dias — se você souber exatamente o que fazer.
+              E a boa notícia? Isso pode ser revertido em poucos dias, se você souber exatamente o que fazer.
             </p>
           </ScrollReveal>
         </div>
