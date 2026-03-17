@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo-operacao-3em10.webp";
-import igorPhoto from "@/assets/igor-hero.jpg";
+import igorPhoto from "@/assets/igor-correa.webp";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import LiveViewerCounter from "@/components/LiveViewerCounter";
 

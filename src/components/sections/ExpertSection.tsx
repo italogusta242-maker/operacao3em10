@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProgressiveImage from "@/components/ProgressiveImage";
-import igorPhoto from "@/assets/igor-correa.webp";
+import igorPhoto from "@/assets/igor-hero.jpg";
 import { Users, Trophy, Leaf } from "lucide-react";
 
 const stats = [
