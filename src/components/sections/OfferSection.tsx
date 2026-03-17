@@ -101,6 +101,8 @@ const OfferSection = () => {
             <CTAButton
               text="QUERO COMEÇAR MINHA TRANSFORMAÇÃO"
               subtext="ACESSO IMEDIATO • GARANTIA DE 7 DIAS • PAGAMENTO 100% SEGURO"
+              variant="accent"
+              pulse
             />
           </div>
 

@@ -35,6 +35,8 @@ const FinalCTASection = () => {
           <CTAButton
             text="QUERO PERDER 3KG EM 10 DIAS"
             subtext="ACESSO IMEDIATO • GARANTIA DE 7 DIAS"
+            variant="accent"
+            pulse
             className="text-xl py-6"
           />
 
