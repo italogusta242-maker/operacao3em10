@@ -7,57 +7,48 @@ const StickyMobileCTA = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const triggerEl = document.getElementById("como-funciona");
-    const footerEl = document.querySelector("footer");
+    let intersectionObserver: IntersectionObserver | null = null;
+    let mutationObserver: MutationObserver | null = null;
 
-    if (!triggerEl) return;
+    const setupObserver = () => {
+      const triggerEl = document.getElementById('como-funciona');
+      const footerEl = document.querySelector('footer');
 
-    let triggerReached = false;
+      if (!triggerEl) return false;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === triggerEl) {
-            if (entry.isIntersecting) {
-              triggerReached = true;
+      intersectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === triggerEl && entry.isIntersecting) {
               setVisible(true);
             }
-          }
-          if (entry.target === footerEl) {
-            if (entry.isIntersecting) {
-              setVisible(false);
-            } else if (triggerReached) {
-              setVisible(true);
+            if (entry.target === footerEl) {
+              setVisible(!entry.isIntersecting);
             }
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-    observer.observe(triggerEl);
+      intersectionObserver.observe(triggerEl);
+      if (footerEl) intersectionObserver.observe(footerEl);
 
-    const timer = setTimeout(() => {
-      const footer = document.querySelector("footer");
-      if (footer) observer.observe(footer);
-    }, 2000);
-
-    const handleScroll = () => {
-      if (!triggerReached) return;
-      const footerRect = document.querySelector("footer")?.getBoundingClientRect();
-      if (footerRect && footerRect.top < window.innerHeight) {
-        setVisible(false);
-      } else {
-        setVisible(true);
-      }
+      return true;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    if (!setupObserver()) {
+      mutationObserver = new MutationObserver(() => {
+        if (setupObserver()) {
+          mutationObserver?.disconnect();
+          mutationObserver = null;
+        }
+      });
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+    }
 
     return () => {
-      observer.disconnect();
-      clearTimeout(timer);
-      window.removeEventListener("scroll", handleScroll);
+      intersectionObserver?.disconnect();
+      mutationObserver?.disconnect();
     };
   }, []);
 
