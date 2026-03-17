@@ -12,7 +12,7 @@ const ErrorSection = () => {
   return (
     <section className="relative overflow-hidden" id="erro">
       <div className="section-divider" />
-      <div className="py-12 md:py-24 bg-background">
+      <div className="py-12 md:py-24 bg-[hsl(0_0%_2%)]">
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[radial-gradient(circle,hsl(24_100%_50%/0.05),transparent_70%)]" />
 
         <ScrollReveal className="container max-w-3xl px-5 relative z-10">
@@ -22,10 +22,12 @@ const ErrorSection = () => {
 
           <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8">
             {mistakes.map((m, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <X className="w-4 h-4 md:w-5 md:h-5 text-destructive shrink-0 mt-1" />
-                <span className="text-sm md:text-lg text-foreground/80">{m}</span>
-              </li>
+              <ScrollReveal key={i} delay={i * 0.1}>
+                <li className="flex items-start gap-3">
+                  <X className="w-4 h-4 md:w-5 md:h-5 text-destructive shrink-0 mt-1" />
+                  <span className="text-sm md:text-lg text-foreground/80">{m}</span>
+                </li>
+              </ScrollReveal>
             ))}
           </ul>
 
@@ -36,6 +38,8 @@ const ErrorSection = () => {
           </div>
         </ScrollReveal>
       </div>
+      {/* Section transition gradient */}
+      <div className="h-16 bg-gradient-to-b from-[hsl(0_0%_2%)] to-secondary" />
     </section>
   );
 };
