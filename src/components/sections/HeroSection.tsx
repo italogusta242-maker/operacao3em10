@@ -64,14 +64,19 @@ const HeroSection = () => (
             O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
           </motion.p>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-4 font-display font-bold italic text-xl text-accent text-glow-accent"
+            className="mt-4"
           >
-            Aceita o desafio?
-          </motion.p>
+            <button
+              onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center justify-center gap-2 rounded-lg px-8 py-4 font-display font-black text-lg text-white bg-[#FF6B00] shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:shadow-[0_0_30px_rgba(255,107,0,0.7)] transition-all duration-300 cursor-pointer border-0 animate-pulse-cta"
+            >
+              Aceita o desafio?
+            </button>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
