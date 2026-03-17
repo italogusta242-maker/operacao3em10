@@ -9,7 +9,7 @@ const StickyMobileCTA = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const trigger = document.getElementById("como-funciona");
+      const trigger = document.getElementById("solucao");
       const footer = document.querySelector("footer");
 
       if (!trigger) return;
@@ -17,17 +17,13 @@ const StickyMobileCTA = () => {
       const triggerRect = trigger.getBoundingClientRect();
       const footerRect = footer ? footer.getBoundingClientRect() : null;
 
-      // Mostra quando o topo da secao "como-funciona" passou pela viewport
       const triggerPassed = triggerRect.top < window.innerHeight;
-
-      // Esconde quando o footer aparece
       const footerVisible = footerRect ? footerRect.top < window.innerHeight : false;
 
       setVisible(triggerPassed && !footerVisible);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Checa uma vez apos montar (para caso de scroll rapido)
     setTimeout(handleScroll, 500);
 
     return () => {
