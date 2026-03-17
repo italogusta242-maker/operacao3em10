@@ -2,11 +2,11 @@ import { ChevronDown } from "lucide-react";
 import logo from "@/assets/logo-operacao-3em10.webp";
 
 const HeroSection = () => (
-  <section className="relative min-h-[45vh] md:min-h-[75vh] flex flex-col items-center justify-center px-5 py-6 pb-16 md:py-10 md:pb-20 overflow-hidden bg-gradient-to-b from-[hsl(122_40%_90%)] via-[hsl(130_25%_96%)] to-background grain-overlay">
+  <section className="relative min-h-[45vh] md:min-h-[75vh] flex flex-col items-center justify-center px-5 py-6 pb-16 md:py-10 md:pb-20 overflow-hidden bg-gradient-to-b from-[hsl(0_0%_4%)] via-background to-background grain-overlay">
     {/* Background blur orbs */}
-    <div className="absolute top-10 left-1/4 w-80 h-80 bg-[hsl(122_55%_55%/0.12)] rounded-full blur-[120px]" />
-    <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-[hsl(20_100%_60%/0.06)] rounded-full blur-[140px]" />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[hsl(122_40%_80%/0.08)] rounded-full blur-[160px]" />
+    <div className="absolute top-10 left-1/4 w-80 h-80 bg-[hsl(122_60%_50%/0.08)] rounded-full blur-[120px]" />
+    <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-[hsl(24_100%_50%/0.05)] rounded-full blur-[140px]" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[hsl(122_50%_40%/0.06)] rounded-full blur-[160px]" />
 
     {/* Logo */}
     <div className="relative z-10 flex items-center gap-2 md:gap-3 mb-6 md:mb-12 animate-fade-in">

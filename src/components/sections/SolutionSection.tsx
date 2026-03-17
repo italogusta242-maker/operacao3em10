@@ -41,8 +41,8 @@ const bonuses = [
 
 const SolutionSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-background relative overflow-hidden" id="solucao">
-      <div className="absolute top-0 right-0 w-80 h-80 bg-[hsl(122_50%_50%/0.04)] rounded-full blur-[120px]" />
+    <section className="py-12 md:py-24 bg-secondary relative overflow-hidden" id="solucao">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[hsl(122_60%_50%/0.05)] rounded-full blur-[120px]" />
       
       <ScrollReveal className="container max-w-4xl px-5 relative z-10">
         <h2 className="font-display font-extrabold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
@@ -58,7 +58,7 @@ const SolutionSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-10 md:mb-14">
           {products.map(({ icon: Icon, title, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.12}>
-              <div className="bg-secondary/80 backdrop-blur-sm rounded-xl p-4 md:p-6 hover:shadow-md transition-all duration-300 h-full border border-border/30 hover:border-primary/20">
+              <div className="bg-card rounded-xl p-4 md:p-6 hover:border-primary/30 transition-all duration-300 h-full border border-border">
                 <Icon className="w-8 h-8 md:w-12 md:h-12 text-primary mb-3 md:mb-4" />
                 <h4 className="font-display font-bold text-sm md:text-base mb-2 flex items-start gap-1">
                   <span className="text-primary">✅</span> {title}
@@ -71,7 +71,7 @@ const SolutionSection = () => {
 
         {/* Mockup da plataforma */}
         <ScrollReveal>
-          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-accent/10 border-2 border-accent/30">
+          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-card border-2 border-accent/30">
             
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-3">
@@ -86,12 +86,11 @@ const SolutionSection = () => {
                 A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
               </p>
               <div className="relative">
-                {/* Radial fade glow around mockup */}
-                <div className="absolute inset-0 rounded-full bg-accent/15 blur-3xl scale-110" />
+                <div className="absolute inset-0 rounded-full bg-accent/10 blur-3xl scale-110" />
                 <ProgressiveImage 
                   src={mockupPlataforma} 
                   alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
-                  className="relative w-full max-w-md mx-auto drop-shadow-[0_15px_40px_hsl(25_100%_50%/0.25)]"
+                  className="relative w-full max-w-md mx-auto drop-shadow-[0_15px_40px_hsl(24_100%_50%/0.25)]"
                   width={448}
                   height={448}
                   loading="lazy"
@@ -111,17 +110,16 @@ const SolutionSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
           {bonuses.map(({ title, value, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="relative border border-[hsl(25_100%_40%/0.5)] bg-[hsl(20_15%_12%)] rounded-xl overflow-hidden h-full">
-                {/* Top gradient glow */}
-                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[hsl(25_100%_40%/0.15)] to-transparent" />
+              <div className="relative border border-accent/40 bg-card rounded-xl overflow-hidden h-full">
+                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[hsl(24_100%_50%/0.1)] to-transparent" />
                 <div className="relative p-5 md:p-6">
                   <div className="inline-flex items-center gap-1.5 border border-accent/40 rounded-full px-3 py-1 mb-4">
                     <Gift className="w-3.5 h-3.5 text-accent" />
                     <span className="text-[10px] md:text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
                   </div>
-                  <h4 className="font-display font-bold text-base md:text-lg text-white mb-2">{title}</h4>
+                  <h4 className="font-display font-bold text-base md:text-lg text-foreground mb-2">{title}</h4>
                   <p className="text-xs md:text-sm text-accent mb-3">(Valor: {value})</p>
-                  <p className="text-xs md:text-sm text-gray-400 leading-relaxed">{desc}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
               </div>
             </ScrollReveal>

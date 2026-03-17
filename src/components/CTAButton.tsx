@@ -13,9 +13,9 @@ const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse =
   const base = "inline-flex flex-col items-center justify-center gap-1 rounded-xl px-6 md:px-8 py-4 md:py-5 font-display font-bold text-base md:text-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-ring/30 cursor-pointer w-full md:w-auto";
 
   const variants = {
-    primary: "bg-primary text-primary-foreground hover:shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.5)]",
-    accent: "bg-accent text-accent-foreground hover:shadow-[0_8px_30px_-4px_hsl(var(--accent)/0.5)]",
-    white: "bg-white text-primary hover:shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.3)]",
+    primary: "bg-primary text-primary-foreground shadow-[0_0_20px_hsl(122_60%_50%/0.3)] hover:shadow-[0_0_30px_hsl(122_60%_50%/0.5)]",
+    accent: "bg-accent text-accent-foreground shadow-[0_0_20px_hsl(24_100%_50%/0.3)] hover:shadow-[0_0_30px_hsl(24_100%_50%/0.5)]",
+    white: "bg-white text-primary shadow-[0_0_20px_hsl(0_0%_100%/0.1)] hover:shadow-[0_0_30px_hsl(0_0%_100%/0.2)]",
   };
 
   const handleClick = () => {
