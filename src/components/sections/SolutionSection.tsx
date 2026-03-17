@@ -41,7 +41,7 @@ const SolutionSection = () => {
   return (
     <section className="relative overflow-hidden" id="solucao">
       <div className="section-divider" />
-      <div className="py-12 md:py-16 bg-secondary">
+      <div className="py-8 md:py-12 bg-secondary">
         <div className="absolute top-0 right-0 w-80 h-80 bg-[radial-gradient(circle,hsl(122_60%_50%/0.05),transparent_70%)]" />
 
         <div className="container max-w-4xl px-5 relative z-10">

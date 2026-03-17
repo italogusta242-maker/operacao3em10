@@ -4,7 +4,7 @@ const PostScriptSection = () => {
   return (
     <section className="relative overflow-hidden" id="ps">
       <div className="section-divider" />
-      <div className="py-12 md:py-20 bg-secondary">
+      <div className="py-8 md:py-12 bg-secondary">
         <div className="container max-w-2xl px-5">
           <div className="space-y-4 md:space-y-6 text-sm md:text-lg text-muted-foreground italic leading-relaxed">
             <ScrollReveal>

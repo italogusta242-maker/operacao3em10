@@ -12,7 +12,7 @@ const ErrorSection = () => {
   return (
     <section className="relative overflow-hidden" id="erro">
       <div className="section-divider" />
-      <div className="py-12 md:py-16 bg-[hsl(0_0%_2%)]">
+      <div className="py-8 md:py-12 bg-[hsl(0_0%_2%)]">
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[radial-gradient(circle,hsl(24_100%_50%/0.05),transparent_70%)]" />
 
         <ScrollReveal className="container max-w-3xl px-5 relative z-10">

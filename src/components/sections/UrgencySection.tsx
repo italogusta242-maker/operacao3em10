@@ -52,7 +52,7 @@ const UrgencySection = () => {
   return (
     <section className="relative overflow-hidden" id="urgencia">
       <div className="section-divider" />
-      <div className="py-12 md:py-16 bg-secondary">
+      <div className="py-8 md:py-12 bg-secondary">
         <div className="absolute top-0 right-0 w-60 h-60 bg-[radial-gradient(circle,hsl(0_80%_50%/0.06),transparent_70%)]" />
 
         <ScrollReveal className="container max-w-3xl px-5 relative z-10">
