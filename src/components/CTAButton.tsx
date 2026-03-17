@@ -24,7 +24,7 @@ const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse =
 
   return (
     <a
-      href="https://pay.kiwify.com.br/Uloo88h"
+      href="https://payment.ticto.app/O0656C50E"
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
