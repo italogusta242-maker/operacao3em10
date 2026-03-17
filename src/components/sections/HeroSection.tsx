@@ -49,7 +49,7 @@ const HeroSection = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          <h1 className="font-display font-black text-4xl lg:text-[3.2rem] leading-[1.15] tracking-tight text-foreground">
+          <h1 className="font-display font-black text-4xl lg:text-5xl leading-[1.15] tracking-tight text-foreground text-left">
             Elimine no mínimo 3kg de inchaço, destrave seu metabolismo e seque em{" "}
             <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
             <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
