@@ -41,91 +41,94 @@ const bonuses = [
 
 const SolutionSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-secondary relative overflow-hidden" id="solucao">
-      <div className="absolute top-0 right-0 w-80 h-80 bg-[hsl(122_60%_50%/0.05)] rounded-full blur-[120px]" />
-      
-      <ScrollReveal className="container max-w-4xl px-5 relative z-10">
-        <h2 className="font-display font-extrabold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
-          Apresentando: <span className="text-gradient-primary">Operação -3kg em 10</span>
-        </h2>
-        <p className="text-center text-muted-foreground text-sm md:text-lg mb-3 md:mb-4 max-w-2xl mx-auto">
-          Este não é apenas "mais um PDF de dieta". É um sistema completo de eliminação de inflamação e reset metabólico.
-        </p>
-        <p className="text-center font-display font-bold text-lg md:text-2xl mb-8 md:mb-10">
-          Aqui está TUDO o que você recebe:
-        </p>
+    <section className="relative overflow-hidden" id="solucao">
+      <div className="section-divider" />
+      <div className="py-12 md:py-24 bg-secondary">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[radial-gradient(circle,hsl(122_60%_50%/0.05),transparent_70%)]" />
+        
+        <ScrollReveal className="container max-w-4xl px-5 relative z-10">
+          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
+            <span className="text-accent text-glow-accent">Apresentando:</span> <span className="text-gradient-primary">Operação -3kg em 10</span>
+          </h2>
+          <p className="text-center text-muted-foreground text-sm md:text-lg mb-3 md:mb-4 max-w-2xl mx-auto">
+            Este não é apenas "mais um PDF de dieta". É um sistema completo de eliminação de inflamação e reset metabólico.
+          </p>
+          <p className="text-center font-display font-black text-lg md:text-2xl mb-8 md:mb-10">
+            Aqui está <span className="text-accent text-glow-accent">TUDO</span> o que você recebe:
+          </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-10 md:mb-14">
-          {products.map(({ icon: Icon, title, desc }, i) => (
-            <ScrollReveal key={i} delay={i * 0.12}>
-              <div className="bg-card rounded-xl p-4 md:p-6 hover:border-primary/30 transition-all duration-300 h-full border border-border">
-                <Icon className="w-8 h-8 md:w-12 md:h-12 text-primary mb-3 md:mb-4" />
-                <h4 className="font-display font-bold text-sm md:text-base mb-2 flex items-start gap-1">
-                  <span className="text-primary">✅</span> {title}
-                </h4>
-                <p className="text-xs md:text-sm text-muted-foreground">{desc}</p>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        {/* Mockup da plataforma */}
-        <ScrollReveal>
-          <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 bg-card border-2 border-accent/30">
-            
-            <div className="relative z-10 flex flex-col items-center text-center">
-              <div className="flex items-center gap-2 mb-3">
-                <Smartphone className="w-4 h-4 text-accent" />
-                <span className="text-xs font-bold text-accent uppercase">+</span>
-                <Monitor className="w-4 h-4 text-accent" />
-              </div>
-              <h3 className="font-display font-bold text-base md:text-xl text-foreground mb-2">
-                Acesse de qualquer lugar, a qualquer hora
-              </h3>
-              <p className="text-xs md:text-base text-muted-foreground max-w-xl mb-4 md:mb-6 leading-relaxed">
-                A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
-              </p>
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-accent/10 blur-3xl scale-110" />
-                <ProgressiveImage 
-                  src={mockupPlataforma} 
-                  alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
-                  className="relative w-full max-w-md mx-auto drop-shadow-[0_15px_40px_hsl(24_100%_50%/0.25)]"
-                  width={448}
-                  height={448}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-10 md:mb-14">
+            {products.map(({ icon: Icon, title, desc }, i) => (
+              <ScrollReveal key={i} delay={i * 0.12}>
+                <div className="card-glow rounded-xl p-4 md:p-6 hover:scale-[1.02] h-full">
+                  <Icon className="w-8 h-8 md:w-12 md:h-12 text-accent mb-3 md:mb-4" />
+                  <h4 className="font-display font-bold text-sm md:text-base mb-2 flex items-start gap-1">
+                    <span className="text-accent">✅</span> {title}
+                  </h4>
+                  <p className="text-xs md:text-sm text-muted-foreground">{desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
-        </ScrollReveal>
 
-        <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mb-8 md:mb-10" />
-
-        <h3 className="font-display font-bold text-lg md:text-2xl text-center mb-6 md:mb-8">
-          E como bônus exclusivo:
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
-          {bonuses.map(({ title, value, desc }, i) => (
-            <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="relative border border-accent/40 bg-card rounded-xl overflow-hidden h-full">
-                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[hsl(24_100%_50%/0.1)] to-transparent" />
-                <div className="relative p-5 md:p-6">
-                  <div className="inline-flex items-center gap-1.5 border border-accent/40 rounded-full px-3 py-1 mb-4">
-                    <Gift className="w-3.5 h-3.5 text-accent" />
-                    <span className="text-[10px] md:text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
-                  </div>
-                  <h4 className="font-display font-bold text-base md:text-lg text-foreground mb-2">{title}</h4>
-                  <p className="text-xs md:text-sm text-accent mb-3">(Valor: {value})</p>
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+          {/* Mockup da plataforma */}
+          <ScrollReveal>
+            <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 card-glow !border-accent/30">
+              
+              <div className="relative z-10 flex flex-col items-center text-center">
+                <div className="flex items-center gap-2 mb-3">
+                  <Smartphone className="w-4 h-4 text-accent" />
+                  <span className="text-xs font-bold text-accent uppercase">+</span>
+                  <Monitor className="w-4 h-4 text-accent" />
+                </div>
+                <h3 className="font-display font-bold text-base md:text-xl text-foreground mb-2">
+                  <span className="text-accent">Acesse</span> de qualquer lugar, a qualquer hora
+                </h3>
+                <p className="text-xs md:text-base text-muted-foreground max-w-xl mb-4 md:mb-6 leading-relaxed">
+                  A plataforma funciona no celular e no computador. Assista às aulas e acompanhe seu progresso de onde estiver.
+                </p>
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-full bg-accent/10 blur-3xl scale-110" />
+                  <ProgressiveImage 
+                    src={mockupPlataforma} 
+                    alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
+                    className="relative w-full max-w-md mx-auto drop-shadow-[0_15px_40px_hsl(24_100%_50%/0.25)]"
+                    width={448}
+                    height={448}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </ScrollReveal>
+            </div>
+          </ScrollReveal>
+
+          <div className="section-divider max-w-xs mx-auto mb-8 md:mb-10" />
+
+          <h3 className="font-display font-bold text-lg md:text-2xl text-center mb-6 md:mb-8">
+            <span className="text-accent text-glow-accent">E como bônus</span> exclusivo:
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
+            {bonuses.map(({ title, value, desc }, i) => (
+              <ScrollReveal key={i} delay={i * 0.15}>
+                <div className="relative card-glow !border-accent/30 rounded-xl overflow-hidden h-full">
+                  <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[hsl(24_100%_50%/0.1)] to-transparent" />
+                  <div className="relative p-5 md:p-6">
+                    <div className="inline-flex items-center gap-1.5 border border-accent/40 rounded-full px-3 py-1 mb-4">
+                      <Gift className="w-3.5 h-3.5 text-accent" />
+                      <span className="text-[10px] md:text-xs font-bold text-accent uppercase">Bônus #{i + 1}</span>
+                    </div>
+                    <h4 className="font-display font-bold text-base md:text-lg text-foreground mb-2">{title}</h4>
+                    <p className="text-xs md:text-sm text-accent mb-3">(Valor: {value})</p>
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </ScrollReveal>
+      </div>
     </section>
   );
 };

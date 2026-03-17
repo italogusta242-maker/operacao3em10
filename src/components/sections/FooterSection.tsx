@@ -8,26 +8,29 @@ const disclaimers = [
 ];
 
 const FooterSection = () => (
-  <footer className="py-12 md:py-16 bg-[hsl(0_0%_3%)] text-muted-foreground">
-    <div className="container max-w-3xl">
-      <h3 className="text-xs uppercase tracking-widest font-bold mb-6 text-muted-foreground/60">
-        Aviso Legal e Disclaimers
-      </h3>
+  <footer className="relative overflow-hidden">
+    <div className="h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+    <div className="py-12 md:py-16 bg-[hsl(0_0%_2%)] text-muted-foreground">
+      <div className="container max-w-3xl">
+        <h3 className="text-xs uppercase tracking-widest font-bold mb-6 text-muted-foreground/60">
+          Aviso Legal e Disclaimers
+        </h3>
 
-      <div className="space-y-4 mb-10">
-        {disclaimers.map((d, i) => (
-          <p key={i} className="text-xs leading-relaxed">* {d}</p>
-        ))}
-      </div>
+        <div className="space-y-4 mb-10">
+          {disclaimers.map((d, i) => (
+            <p key={i} className="text-xs leading-relaxed">* {d}</p>
+          ))}
+        </div>
 
-      <div className="border-t border-border pt-8 text-center space-y-2">
-        <p className="text-xs">© 2026 Operação -3kg em 10. Todos os direitos reservados.</p>
-        <p className="text-xs">CNPJ: 62.568.265/0001-48</p>
-        <p className="text-xs">contatoshapeinsano@gmail.com</p>
-        <div className="flex justify-center gap-4 mt-4">
-          <a href="#" className="text-xs hover:text-foreground transition-colors underline-offset-2 hover:underline">Termos de Uso</a>
-          <a href="#" className="text-xs hover:text-foreground transition-colors underline-offset-2 hover:underline">Política de Privacidade</a>
-          <a href="#faq" className="text-xs hover:text-foreground transition-colors underline-offset-2 hover:underline">FAQ</a>
+        <div className="border-t border-[hsl(24_100%_50%/0.15)] pt-8 text-center space-y-2">
+          <p className="text-xs">© 2026 Operação -3kg em 10. Todos os direitos reservados.</p>
+          <p className="text-xs">CNPJ: 62.568.265/0001-48</p>
+          <p className="text-xs">contatoshapeinsano@gmail.com</p>
+          <div className="flex justify-center gap-4 mt-4">
+            <a href="#" className="text-xs hover:text-accent transition-colors underline-offset-2 hover:underline">Termos de Uso</a>
+            <a href="#" className="text-xs hover:text-accent transition-colors underline-offset-2 hover:underline">Política de Privacidade</a>
+            <a href="#faq" className="text-xs hover:text-accent transition-colors underline-offset-2 hover:underline">FAQ</a>
+          </div>
         </div>
       </div>
     </div>

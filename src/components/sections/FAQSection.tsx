@@ -26,29 +26,32 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-background relative overflow-hidden" id="faq">
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-[hsl(122_60%_50%/0.03)] rounded-full blur-[100px]" />
-      
-      <ScrollReveal className="container max-w-3xl px-5 relative z-10">
-        <h2 className="font-display font-extrabold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-8 md:mb-10">
-          Perguntas que você pode estar se fazendo agora:
-        </h2>
+    <section className="relative overflow-hidden" id="faq">
+      <div className="section-divider" />
+      <div className="py-12 md:py-24 bg-background">
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-[radial-gradient(circle,hsl(24_100%_50%/0.04),transparent_70%)]" />
+        
+        <ScrollReveal className="container max-w-3xl px-5 relative z-10">
+          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-8 md:mb-10">
+            <span className="text-accent text-glow-accent">Perguntas</span> que você pode estar se fazendo agora:
+          </h2>
 
-        <Accordion type="single" collapsible className="space-y-2 md:space-y-3">
-          {faqs.map(({ q, a }, i) => (
-            <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-xl px-4 md:px-5 bg-card hover:border-primary/30 transition-colors">
-              <AccordionTrigger className="font-display font-bold text-sm md:text-lg text-left hover:no-underline py-4 md:py-5">
-                <span className="flex items-center gap-2">
-                  <span className="text-accent">❓</span> {q}
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className="text-sm md:text-base text-foreground/70 leading-relaxed pb-4 md:pb-5">
-                {a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </ScrollReveal>
+          <Accordion type="single" collapsible className="space-y-2 md:space-y-3">
+            {faqs.map(({ q, a }, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} className="card-glow rounded-xl px-4 md:px-5 hover:!border-accent/40 transition-colors">
+                <AccordionTrigger className="font-display font-bold text-sm md:text-lg text-left hover:no-underline py-4 md:py-5">
+                  <span className="flex items-center gap-2">
+                    <span className="text-accent text-lg">❓</span> {q}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-sm md:text-base text-foreground/70 leading-relaxed pb-4 md:pb-5">
+                  {a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </ScrollReveal>
+      </div>
     </section>
   );
 };
