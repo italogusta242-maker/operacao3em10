@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import logo from "@/assets/logo-operacao-3em10.webp";
 import igorPhoto from "@/assets/igor-hero.jpg";
 import FloatingOrbs from "@/components/FloatingOrbs";
-import LiveViewerCounter from "@/components/LiveViewerCounter";
+import CTAButton from "@/components/CTAButton";
 
 const HeroSection = () => (
   <section className="relative min-h-screen flex flex-col items-center justify-end md:justify-center px-5 pb-10 md:pb-0 overflow-hidden bg-background grain-overlay">
@@ -22,69 +22,56 @@ const HeroSection = () => (
     </div>
 
     {/* Corner glow effects */}
-    <div className="absolute top-0 left-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_top_left,hsl(24_100%_50%/0.15),transparent_70%)] z-[1]" />
-    <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_top_right,hsl(30_100%_50%/0.12),transparent_70%)] z-[1]" />
+    <div className="absolute top-0 left-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_top_left,hsl(24_100%_50%/0.12),transparent_70%)] z-[1]" />
 
     <FloatingOrbs />
 
     {/* DESKTOP: Two-column layout */}
     <div className="relative z-10 w-full max-w-6xl mx-auto hidden md:flex items-center min-h-screen py-8">
-      {/* Left column: text ~55% */}
-      <div className="w-[55%] pr-8">
+      {/* Left column: text */}
+      <div className="w-[55%] pr-8 flex flex-col items-start">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex items-center gap-3 mb-6"
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 mb-8"
         >
-          <img src={logo} alt="Operação -3kg em 10" className="w-12 h-12" width={48} height={48} fetchPriority="high" />
-          <span className="font-display font-black text-2xl tracking-tight">
-            <span className="text-gradient-accent text-glow-accent">Operação -3kg</span>{" "}
-            <span className="text-gradient-primary">em 10</span>
+          <img src={logo} alt="Operação -3kg em 10" className="w-11 h-11" width={44} height={44} fetchPriority="high" />
+          <span className="font-display font-bold text-xl tracking-tight text-foreground">
+            Operação <span className="text-accent">-3kg</span> em 10
           </span>
         </motion.div>
 
-        <motion.div
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="font-display font-extrabold text-4xl lg:text-[3.2rem] leading-[1.12] tracking-tight text-foreground text-left"
         >
-          <h1 className="font-display font-black text-4xl lg:text-[3.2rem] leading-[1.15] tracking-tight text-foreground">
-            Elimine no mínimo 3kg de inchaço, destrave seu metabolismo e seque em{" "}
-            <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
-            <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
-          </h1>
+          Elimine no mínimo 3kg de inchaço, destrave seu metabolismo e seque em{" "}
+          <span className="text-accent">10 dias</span>.
+        </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-6 text-lg text-muted-foreground leading-relaxed"
-          >
-            O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
-          </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="mt-5 text-lg text-muted-foreground leading-relaxed text-left max-w-xl"
+        >
+          O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição.
+        </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-4 font-display font-bold italic text-xl text-accent text-glow-accent"
-          >
-            Aceita o desafio?
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="mt-6"
-          >
-            <LiveViewerCounter />
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-8 w-full max-w-md"
+        >
+          <CTAButton text="QUERO COMEÇAR AGORA" subtext="Garantia incondicional de 7 dias" />
         </motion.div>
       </div>
 
-      {/* Right column: Igor photo ~45% */}
+      {/* Right column: Igor photo */}
       <div className="w-[45%] relative h-screen">
         <img
           src={igorPhoto}
@@ -93,66 +80,51 @@ const HeroSection = () => (
           loading="eager"
           fetchPriority="high"
         />
-        {/* Left fade to blend with text area */}
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #000 0%, transparent 40%)" }} />
-        {/* Bottom fade */}
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #000 0%, transparent 30%)" }} />
       </div>
     </div>
 
     {/* MOBILE: Content pinned to bottom */}
-    <div className="relative z-10 flex flex-col items-center w-full max-w-3xl md:hidden">
+    <div className="relative z-10 flex flex-col items-center w-full max-w-lg md:hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.5 }}
         className="flex items-center gap-2 mb-4"
       >
-        <img src={logo} alt="Operação -3kg em 10" className="w-8 h-8" width={48} height={48} fetchPriority="high" />
-        <span className="font-display font-black text-lg tracking-tight">
-          <span className="text-gradient-accent text-glow-accent">Operação -3kg</span>{" "}
-          <span className="text-gradient-primary">em 10</span>
+        <img src={logo} alt="Operação -3kg em 10" className="w-8 h-8" width={32} height={32} fetchPriority="high" />
+        <span className="font-display font-bold text-base tracking-tight text-foreground">
+          Operação <span className="text-accent">-3kg</span> em 10
         </span>
       </motion.div>
 
-      <motion.div
+      <motion.h1
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        className="text-center"
+        transition={{ duration: 0.6, delay: 0.15 }}
+        className="font-display font-extrabold text-xl sm:text-2xl leading-[1.15] tracking-tight text-foreground text-center"
       >
-        <h1 className="font-display font-black text-xl sm:text-2xl leading-[1.15] tracking-tight text-foreground">
-          Elimine no mínimo 3kg de inchaço, destrave seu metabolismo e seque em{" "}
-          <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
-          <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
-        </h1>
+        Elimine no mínimo 3kg de inchaço, destrave seu metabolismo e seque em{" "}
+        <span className="text-accent">10 dias</span>.
+      </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-2xl mx-auto"
-        >
-          O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
-        </motion.p>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.35 }}
+        className="mt-3 text-sm text-muted-foreground leading-relaxed text-center"
+      >
+        O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição.
+      </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-3 font-display font-bold italic text-base text-accent text-glow-accent"
-        >
-          Aceita o desafio?
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="mt-4"
-        >
-          <LiveViewerCounter />
-        </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="mt-5 w-full"
+      >
+        <CTAButton text="QUERO COMEÇAR AGORA" subtext="Garantia incondicional de 7 dias" />
       </motion.div>
     </div>
 
