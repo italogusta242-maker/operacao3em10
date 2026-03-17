@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { trackMetaEvent } from "@/lib/meta-pixel";
-
-const CTA_URL = "https://payment.ticto.app/O0656C50E";
 
 const StickyMobileCTA = () => {
   const [visible, setVisible] = useState(false);
