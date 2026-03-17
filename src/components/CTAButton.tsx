@@ -9,6 +9,7 @@ interface CTAButtonProps {
   variant?: "primary" | "accent" | "white";
   className?: string;
   pulse?: boolean;
+  scrollToOffer?: boolean;
 }
 
 const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse = false }: CTAButtonProps) => {
