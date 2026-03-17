@@ -57,36 +57,29 @@ const SolutionSection = () => {
             </p>
           </ScrollReveal>
 
-          {/* Products - cards with watermark numbers */}
+          {/* Products - single column with prominent glow numbers */}
           <div className="grid grid-cols-1 gap-4 md:gap-5 mb-8 md:mb-10">
             {products.map(({ num, title, desc }, i) => (
               <ScrollReveal key={i} delay={i * 0.12}>
-                <div className="relative card-glow rounded-xl p-5 md:p-6 hover:scale-[1.02] hover:!border-accent/40 transition-all overflow-hidden">
-                  {/* Watermark number */}
+                <div className="card-glow rounded-xl p-5 md:p-6 hover:scale-[1.02] hover:!border-accent/40 transition-all">
                   <span
-                    className="absolute -top-4 -right-2 font-display font-black text-[8rem] md:text-[10rem] leading-none text-accent/[0.07] select-none pointer-events-none"
+                    className="font-display font-black text-5xl md:text-6xl text-accent leading-none block mb-3"
+                    style={{ textShadow: "0 0 20px rgba(255,107,0,0.8)" }}
                   >
                     {num}
                   </span>
-                  <div className="relative z-10">
-                    <h4 className="font-display font-bold text-sm md:text-lg text-foreground mb-2">{title}</h4>
-                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                  </div>
+                  <h4 className="font-display font-bold text-sm md:text-lg text-foreground mb-2">{title}</h4>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
 
-          {/* Closing text - split into separate lines */}
+          {/* Closing text for items */}
           <ScrollReveal>
-            <div className="text-center mb-8 md:mb-10 space-y-2">
-              <p className="font-display font-bold text-base md:text-xl text-foreground">
-                Resumindo: você recebe o mapa completo.
-              </p>
-              <p className="font-display font-black text-lg md:text-2xl text-accent text-glow-accent">
-                Só precisa seguir o caminho.
-              </p>
-            </div>
+            <p className="text-center font-display font-bold text-base md:text-xl text-foreground mb-8 md:mb-10">
+              Resumindo: você recebe o mapa completo. Só precisa seguir o caminho.
+            </p>
           </ScrollReveal>
 
           {/* Bonus header */}

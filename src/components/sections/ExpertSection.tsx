@@ -83,7 +83,7 @@ const ExpertSection = () => {
               <p className="text-sm md:text-lg text-foreground italic leading-relaxed">
                 "Se eu consigo, você também consegue. Só precisa do protocolo certo."
               </p>
-              <p className="text-sm md:text-base text-accent font-bold mt-2">Igor Corrêa</p>
+              <p className="text-sm md:text-base text-accent font-bold mt-2">— Igor Corrêa</p>
             </div>
           </ScrollReveal>
         </div>
