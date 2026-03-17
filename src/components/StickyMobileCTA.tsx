@@ -71,7 +71,7 @@ const StickyMobileCTA = () => {
             <span className="text-[10px] text-muted-foreground">Garantia 7 dias</span>
           </div>
           <a
-            href="https://pay.kiwify.com.br/Uloo88h"
+            href="https://payment.ticto.app/O0656C50E"
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleClick}
