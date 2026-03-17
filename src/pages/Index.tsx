@@ -1,5 +1,6 @@
 import { useEffect, useRef, lazy, Suspense } from "react";
 import HeroSection from "@/components/sections/HeroSection";
+import CredibilityBanner from "@/components/sections/CredibilityBanner";
 import PainSection from "@/components/sections/PainSection";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { trackMetaEvent } from "@/lib/meta-pixel";
@@ -54,6 +55,7 @@ const Index = () => {
   return (
     <main className="pb-16 md:pb-0">
       <HeroSection />
+      <CredibilityBanner />
       <PainSection />
       <Suspense fallback={null}>
         <ErrorSection />

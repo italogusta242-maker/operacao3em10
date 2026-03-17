@@ -2,7 +2,6 @@ import { ChevronDown, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo-operacao-3em10.webp";
 import igorPhoto from "@/assets/igor-correa.webp";
-import CTAButton from "@/components/CTAButton";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import LiveViewerCounter from "@/components/LiveViewerCounter";
 
@@ -79,21 +78,22 @@ const HeroSection = () => (
         transition={{ duration: 0.6, delay: 0.5 }}
         className="mt-4 md:mt-6 text-sm md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto"
       >
-        O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição — mesmo que você já tenha tentado de tudo.
+        O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
       </motion.p>
 
-      {/* CTA */}
+      {/* CTA - anchor link to offer section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.7 }}
         className="mt-6 md:mt-10"
       >
-        <CTAButton
-          text="ACEITA O DESAFIO?"
-          variant="accent"
-          pulse
-        />
+        <a
+          href="#oferta"
+          className="inline-flex items-center justify-center gap-2 rounded-lg px-6 md:px-10 py-4 md:py-5 font-display font-black text-base md:text-xl transition-all duration-300 hover:scale-105 w-full md:w-auto border-2 border-accent text-accent bg-transparent hover:bg-accent hover:text-white"
+        >
+          ACEITA O DESAFIO? →
+        </a>
         <LiveViewerCounter />
       </motion.div>
     </motion.div>

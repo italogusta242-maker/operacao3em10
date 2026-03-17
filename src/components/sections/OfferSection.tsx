@@ -70,7 +70,7 @@ const OfferSection = () => {
 
           <ScrollReveal>
             <p className="text-sm md:text-lg text-foreground/80 mt-6 md:mt-8 mb-2 leading-relaxed">
-              Por menos de <strong className="text-accent text-glow-accent">R$ 5 por dia</strong> — o preço de um café — você tem acesso a um protocolo completo, testado por mais de 5.000 pessoas, que funciona.
+              Por menos de <strong className="text-accent text-glow-accent">R$ 5 por dia</strong>, o preço de um café, você tem acesso a um protocolo completo, testado por mais de 5.000 pessoas, que funciona.
             </p>
             <p className="text-sm md:text-base text-muted-foreground mb-8 md:mb-10">
               Isso dá apenas <strong className="text-accent">R$ 4,70 por dia</strong> para transformar seu corpo.
@@ -88,12 +88,11 @@ const OfferSection = () => {
                   <Sparkles className="w-4 h-4" />
                   <span className="text-xs md:text-sm font-black uppercase">Oferta especial</span>
                 </div>
-                <p className="text-muted-foreground text-sm md:text-base mb-1">12x de</p>
                 <p className="font-display font-black text-5xl md:text-7xl text-accent drop-shadow-[0_0_30px_hsl(24_100%_50%/0.5)]">
-                  R$ 3,92
+                  R$ 47<span className="text-2xl md:text-3xl">,00</span>
                 </p>
                 <p className="text-muted-foreground text-sm md:text-base mt-3">
-                  ou <strong className="text-white text-lg md:text-2xl">R$ 47,00</strong> à vista
+                  ou 12x de <strong className="text-foreground/80">R$ 4,70</strong> no cartão
                 </p>
               </div>
             </div>
