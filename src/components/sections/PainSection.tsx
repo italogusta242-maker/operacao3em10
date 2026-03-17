@@ -49,7 +49,7 @@ const PainSection = () => {
           </ScrollReveal>
         </div>
       </div>
-      <div className="h-16 bg-gradient-to-b from-secondary to-[hsl(0_0%_2%)]" />
+      <div className="h-4 bg-gradient-to-b from-secondary to-[hsl(0_0%_2%)]" />
     </section>
   );
 };
