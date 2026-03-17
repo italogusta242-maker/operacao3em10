@@ -7,16 +7,12 @@ const StickyMobileCTA = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const section = document.getElementById("solucao");
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.05 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      setVisible(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleClick = () => {

@@ -5,7 +5,7 @@ import igorPhoto from "@/assets/igor-correa.webp";
 import { Users, Trophy, Leaf } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: "500K+", label: "seguidores nas redes" },
+  { icon: Users, value: "80K+", label: "seguidores nas redes" },
   { icon: Trophy, value: "5.000+", label: "alunos transformados" },
   { icon: Leaf, value: "100%", label: "natural, sem hormônios" },
 ];

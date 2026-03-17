@@ -57,21 +57,19 @@ const SolutionSection = () => {
             </p>
           </ScrollReveal>
 
-          {/* Products - single column on mobile with watermark numbers */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-8 md:mb-10">
+          {/* Products - single column with prominent glow numbers */}
+          <div className="grid grid-cols-1 gap-4 md:gap-5 mb-8 md:mb-10">
             {products.map(({ num, title, desc }, i) => (
               <ScrollReveal key={i} delay={i * 0.12}>
-                <div className="relative card-glow rounded-xl p-5 md:p-6 hover:scale-[1.02] h-full hover:!border-accent/40 transition-all overflow-hidden">
-                  {/* Watermark number */}
-                  <span className="absolute top-2 right-3 font-display font-black text-5xl md:text-6xl text-accent/15 select-none pointer-events-none leading-none">
+                <div className="card-glow rounded-xl p-5 md:p-6 hover:scale-[1.02] hover:!border-accent/40 transition-all">
+                  <span
+                    className="font-display font-black text-5xl md:text-6xl text-accent leading-none block mb-3"
+                    style={{ textShadow: "0 0 20px rgba(255,107,0,0.8)" }}
+                  >
                     {num}
                   </span>
-                  <div className="relative z-10">
-                    <h4 className="font-display font-bold text-sm md:text-base mb-2 flex items-start gap-1">
-                      <span className="text-accent">✅</span> {title}
-                    </h4>
-                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                  </div>
+                  <h4 className="font-display font-bold text-sm md:text-lg text-foreground mb-2">{title}</h4>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
               </ScrollReveal>
             ))}
