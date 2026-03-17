@@ -7,22 +7,22 @@ const products = [
   {
     icon: FileText,
     title: "Guia de Execução 10D",
-    desc: "O roteiro dia a dia do que comer, quando comer e como preparar. Sem receitas complicadas. Sem ingredientes caros. Tudo direto ao ponto.",
+    desc: "Você acorda e já sabe exatamente o que fazer. O que comer no café, no almoço, no jantar. Quando comer. O que treinar. Como fazer os exercícios. Zero adivinhação no treino e na alimentação. É só seguir o roteiro.",
   },
   {
     icon: ShoppingCart,
     title: "Lista de Compras Anti-Inflamatória",
-    desc: "Exatamente o que comprar no supermercado comum, nada de loja de produtos naturais ou importados, para os 10 dias.",
+    desc: "Antes de começar, você recebe a lista exata do que comprar — tudo encontrado em supermercado comum. Nada de loja de produtos naturais, nada de importados. Você vai uma vez, compra tudo pros 10 dias, e não precisa pensar mais nisso.",
   },
   {
     icon: Coffee,
     title: "Shot Matinal de Destrave",
-    desc: "Uma receita simples de 3 ingredientes que você toma em jejum para acelerar a desinflamação. Leva 2 minutos.",
+    desc: "Todo dia, antes de comer qualquer coisa, você toma um shot de 3 ingredientes simples. Leva 2 minutos pra fazer. Esse shot acelera a desinflamação e faz você sentir a barriga menos inchada já nas primeiras manhãs.",
   },
   {
     icon: MonitorPlay,
-    title: "Plataforma de aulas estilo Netflix",
-    desc: "Aulas curtas e diretas ao ponto para te ensinar tudo que você precisa saber para nunca mais ficar refém de reações metabólicas.",
+    title: "Plataforma de Aulas Estilo Netflix",
+    desc: "Aulas curtas e diretas ao ponto que te ensinam o método completo. Sem enrolação, sem teoria desnecessária. Você assiste, entende, e aplica. Acesso anual para reassistir quando quiser.",
   },
 ];
 
@@ -30,12 +30,12 @@ const bonuses = [
   {
     title: "Guia de Manutenção Pós-10 Dias",
     value: "R$ 47",
-    desc: "Mostra exatamente como MANTER o peso perdido sem precisar seguir o protocolo pra sempre.",
+    desc: "Mostra exatamente como MANTER o peso perdido sem precisar seguir o protocolo pra sempre. Chega de efeito sanfona.",
   },
   {
     title: "Protocolo SOS Viagem/Evento",
     value: "R$ 37",
-    desc: "Tem um evento daqui 3-5 dias e precisa desinchar urgente? Este protocolo acelerado mostra como fazer isso de forma segura.",
+    desc: "Tem um evento daqui 3-5 dias e precisa desinchar urgente? Este protocolo acelerado mostra como fazer isso de forma segura. Perfeito para casamentos, formaturas ou aquela viagem de praia.",
   },
 ];
 
@@ -45,16 +45,16 @@ const SolutionSection = () => {
       <div className="section-divider" />
       <div className="py-12 md:py-24 bg-secondary">
         <div className="absolute top-0 right-0 w-80 h-80 bg-[radial-gradient(circle,hsl(122_60%_50%/0.05),transparent_70%)]" />
-        
+
         <ScrollReveal className="container max-w-4xl px-5 relative z-10">
-          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
-            <span className="text-accent text-glow-accent">Apresentando:</span> <span className="text-gradient-primary">Operação -3kg em 10</span>
+          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-2 md:mb-3">
+            <span className="text-accent text-glow-accent">Como funciona</span> a Operação -3kg em 10
           </h2>
           <p className="text-center text-muted-foreground text-sm md:text-lg mb-3 md:mb-4 max-w-2xl mx-auto">
-            Este não é apenas "mais um PDF de dieta". É um sistema completo de eliminação de inflamação e reset metabólico.
+            Simples de entender. Fácil de seguir. Impossível de errar.
           </p>
-          <p className="text-center font-display font-black text-lg md:text-2xl mb-8 md:mb-10">
-            Aqui está <span className="text-accent text-glow-accent">TUDO</span> o que você recebe:
+          <p className="text-center text-foreground/80 text-sm md:text-base mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+            Você recebe um sistema completo de desinflamação e reset metabólico — não é mais um PDF de dieta. É um método passo a passo que funciona mesmo pra quem nunca conseguiu seguir nada até o fim.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-10 md:mb-14">
@@ -74,7 +74,7 @@ const SolutionSection = () => {
           {/* Mockup da plataforma */}
           <ScrollReveal>
             <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 card-glow !border-accent/30">
-              
+
               <div className="relative z-10 flex flex-col items-center text-center">
                 <div className="flex items-center gap-2 mb-3">
                   <Smartphone className="w-4 h-4 text-accent" />
@@ -89,9 +89,9 @@ const SolutionSection = () => {
                 </p>
                 <div className="relative">
                   <div className="absolute inset-0 rounded-full bg-accent/10 blur-3xl scale-110" />
-                  <ProgressiveImage 
-                    src={mockupPlataforma} 
-                    alt="Plataforma Operação -3kg em 10 disponível no celular e computador" 
+                  <ProgressiveImage
+                    src={mockupPlataforma}
+                    alt="Plataforma Operação -3kg em 10 disponível no celular e computador"
                     className="relative w-full max-w-md mx-auto drop-shadow-[0_15px_40px_hsl(24_100%_50%/0.25)]"
                     width={448}
                     height={448}
@@ -103,11 +103,9 @@ const SolutionSection = () => {
             </div>
           </ScrollReveal>
 
-          <div className="section-divider max-w-xs mx-auto mb-8 md:mb-10" />
-
-          <h3 className="font-display font-bold text-lg md:text-2xl text-center mb-6 md:mb-8">
-            <span className="text-accent text-glow-accent">E como bônus</span> exclusivo:
-          </h3>
+          <p className="text-center font-display font-bold text-base md:text-xl text-foreground mb-8 md:mb-10">
+            Resumindo: você recebe o mapa completo. Só precisa seguir o caminho. E ainda separei <span className="text-accent text-glow-accent">2 bônus SURREAIS</span> pra você.
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
             {bonuses.map(({ title, value, desc }, i) => (

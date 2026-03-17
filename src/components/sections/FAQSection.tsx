@@ -4,23 +4,35 @@ import ScrollReveal from "@/components/ScrollReveal";
 const faqs = [
   {
     q: "Vou passar fome?",
-    a: "NÃO. Este não é um protocolo de restrição calórica radical. Você vai comer 3-4 refeições por dia com alimentos REAIS. A saciedade vem da combinação inteligente de proteínas, gorduras boas e fibras.",
+    a: "Não. O protocolo inclui um plano alimentar completo com refeições satisfatórias. Você vai comer, só que de forma estratégica para desinchar e acelerar o metabolismo.",
   },
   {
-    q: "Preciso comprar ingredientes caros ou exóticos?",
-    a: "NÃO. Tudo que você precisa está no supermercado comum. Nada de açaí em pó importado, spirulina orgânica ou queijo vegano gourmet. Comida de verdade, acessível.",
+    q: "Preciso ir pra academia?",
+    a: "Os treinos do protocolo são curtos e intensos. Podem ser feitos em casa ou na academia — você escolhe. O importante é seguir o método.",
   },
   {
-    q: "Vou recuperar tudo em 2 dias depois?",
-    a: "NÃO se você seguir o Guia de Manutenção (que está INCLUSO). O protocolo te ensina a 'resetar' o corpo E a manter o resultado sem viver em dieta eterna.",
+    q: "Quanto tempo por dia preciso dedicar?",
+    a: "Os treinos duram entre 30-45 minutos. A preparação das refeições é simples e prática. No total, você vai investir cerca de 1 hora por dia na sua transformação.",
   },
   {
-    q: "Preciso treinar todo dia?",
-    a: "Sim. 30 minutos por dia é o suficiente. Faz sentido investir só esse pequeno tempo do seu dia para se sentir muito mais autoconfiante e bonito ao se olhar no espelho?",
+    q: "Funciona pra quem tem mais de 40 anos?",
+    a: "Sim! O protocolo é baseado em princípios fisiológicos que funcionam em qualquer idade. O metabolismo pode ser mais lento, mas o método compensa isso.",
   },
   {
-    q: "Funciona pra homens E mulheres?",
-    a: "SIM. A inflamação celular e o acúmulo de glicogênio funcionam da mesma forma em homens e mulheres. O protocolo é universalmente aplicável.",
+    q: "E se eu tiver restrição alimentar?",
+    a: "O plano alimentar inclui substituições para as principais restrições — lactose, glúten, etc. Se você tiver uma condição específica, sempre consulte seu médico.",
+  },
+  {
+    q: "Vou ter efeito sanfona?",
+    a: "O Bônus 1 — Guia de Manutenção Pós-10 Dias — existe exatamente para evitar isso. Ele ensina como manter os resultados sem precisar seguir o protocolo pra sempre.",
+  },
+  {
+    q: "É diferente de outras dietas que já tentei?",
+    a: "Sim. O foco aqui não é fazer dieta — é desinflamar seu corpo de forma estratégica. Por isso funciona tão rápido e sem sofrimento.",
+  },
+  {
+    q: "Como recebo o acesso?",
+    a: "Imediatamente após a confirmação do pagamento, você recebe o acesso completo no seu email. Pode começar hoje mesmo.",
   },
 ];
 
@@ -30,7 +42,7 @@ const FAQSection = () => {
       <div className="section-divider" />
       <div className="py-12 md:py-24 bg-background">
         <div className="absolute bottom-0 right-0 w-72 h-72 bg-[radial-gradient(circle,hsl(24_100%_50%/0.04),transparent_70%)]" />
-        
+
         <ScrollReveal className="container max-w-3xl px-5 relative z-10">
           <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-8 md:mb-10">
             <span className="text-accent text-glow-accent">Perguntas</span> que você pode estar se fazendo agora:
