@@ -1,3 +1,4 @@
+import { useEffect, useRef, useCallback } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProgressiveImage from "@/components/ProgressiveImage";
 import Autoplay from "embla-carousel-autoplay";
@@ -9,22 +10,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import depoimento1 from "@/assets/depoimento-1.webp";
-import depoimento2 from "@/assets/depoimento-2.webp";
-import depoimento3 from "@/assets/depoimento-3.webp";
-import depoimento4 from "@/assets/depoimento-4.webp";
-import depoimento5 from "@/assets/depoimento-5.webp";
-import depoimento6 from "@/assets/depoimento-6.webp";
 import depoimentoDavid from "@/assets/depoimento-david.png";
 import depoimentoSamuel from "@/assets/depoimento-samuel.png";
 
 const testimonials = [
-  { src: depoimento1, alt: "Resultado - Igor", name: "Igor" },
-  { src: depoimento2, alt: "Resultado - Jhon", name: "Jhon" },
-  { src: depoimento3, alt: "Resultado - Italo", name: "Italo" },
-  { src: depoimento4, alt: "Resultado - Lara", name: "Lara" },
-  { src: depoimento5, alt: "Resultado - Guilherme", name: "Guilherme" },
-  { src: depoimento6, alt: "Resultado - Thiago", name: "Thiago" },
+  { src: new URL("@/assets/depoimento-1.webp", import.meta.url).href, alt: "Resultado - Igor", name: "Igor" },
+  { src: new URL("@/assets/depoimento-2.webp", import.meta.url).href, alt: "Resultado - Jhon", name: "Jhon" },
+  { src: new URL("@/assets/depoimento-3.webp", import.meta.url).href, alt: "Resultado - Italo", name: "Italo" },
+  { src: new URL("@/assets/depoimento-4.webp", import.meta.url).href, alt: "Resultado - Lara", name: "Lara" },
+  { src: new URL("@/assets/depoimento-5.webp", import.meta.url).href, alt: "Resultado - Guilherme", name: "Guilherme" },
+  { src: new URL("@/assets/depoimento-6.webp", import.meta.url).href, alt: "Resultado - Thiago", name: "Thiago" },
 ];
 
 const screenshotTestimonials = [
@@ -33,8 +28,29 @@ const screenshotTestimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const autoplayRef = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
+
+  const handleVisibility = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        autoplayRef.current.play();
+      } else {
+        autoplayRef.current.stop();
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(handleVisibility, { threshold: 0.1 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [handleVisibility]);
+
   return (
-    <section className="relative overflow-hidden" id="depoimentos">
+    <section ref={sectionRef} className="relative overflow-hidden" id="depoimentos">
       <div className="section-divider" />
       <div className="py-12 md:py-16 bg-background">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(circle,hsl(24_100%_50%/0.04),transparent_70%)]" />
@@ -51,7 +67,7 @@ const TestimonialsSection = () => {
 
           <Carousel
             opts={{ loop: true, align: "center" }}
-            plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
+            plugins={[autoplayRef.current]}
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
@@ -87,6 +103,8 @@ const TestimonialsSection = () => {
                     className="w-full h-auto rounded-xl"
                     loading="lazy"
                     decoding="async"
+                    width={320}
+                    height={480}
                   />
                 </div>
               </ScrollReveal>
