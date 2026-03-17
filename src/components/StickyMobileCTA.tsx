@@ -1,84 +1,79 @@
 import { useState, useEffect } from "react";
-import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackMetaEvent } from "@/lib/meta-pixel";
+
+const CTA_URL = "https://payment.ticto.app/O0656C50E";
 
 const StickyMobileCTA = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    let intersectionObserver: IntersectionObserver | null = null;
-    let mutationObserver: MutationObserver | null = null;
+    const handleScroll = () => {
+      const trigger = document.getElementById("como-funciona");
+      const footer = document.querySelector("footer");
 
-    const setupObserver = () => {
-      const triggerEl = document.getElementById('como-funciona');
-      const footerEl = document.querySelector('footer');
+      if (!trigger) return;
 
-      if (!triggerEl) return false;
+      const triggerRect = trigger.getBoundingClientRect();
+      const footerRect = footer ? footer.getBoundingClientRect() : null;
 
-      intersectionObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.target === triggerEl && entry.isIntersecting) {
-              setVisible(true);
-            }
-            if (entry.target === footerEl) {
-              setVisible(!entry.isIntersecting);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+      // Mostra quando o topo da secao "como-funciona" passou pela viewport
+      const triggerPassed = triggerRect.top < window.innerHeight;
 
-      intersectionObserver.observe(triggerEl);
-      if (footerEl) intersectionObserver.observe(footerEl);
+      // Esconde quando o footer aparece
+      const footerVisible = footerRect ? footerRect.top < window.innerHeight : false;
 
-      return true;
+      setVisible(triggerPassed && !footerVisible);
     };
 
-    if (!setupObserver()) {
-      mutationObserver = new MutationObserver(() => {
-        if (setupObserver()) {
-          mutationObserver?.disconnect();
-          mutationObserver = null;
-        }
-      });
-      mutationObserver.observe(document.body, { childList: true, subtree: true });
-    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Checa uma vez apos montar (para caso de scroll rapido)
+    setTimeout(handleScroll, 500);
 
     return () => {
-      intersectionObserver?.disconnect();
-      mutationObserver?.disconnect();
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   const handleClick = () => {
     trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
+    window.open(CTA_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          exit={{ y: 100 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-t border-accent/30 px-4 py-3 flex items-center justify-between gap-3"
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed bottom-0 left-0 right-0 z-50 bg-[hsl(0_0%_4%)] border-t border-[hsl(0_0%_15%)] px-4 py-3 flex items-center justify-between gap-3 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]"
         >
           <div className="flex flex-col">
-            <span className="text-xs font-bold text-foreground">R$ 47</span>
-            <span className="text-[10px] text-muted-foreground">Garantia 7 dias</span>
+            <span className="text-foreground font-black text-base">R$ 47</span>
+            <span className="text-muted-foreground text-xs">Garantia 7 dias</span>
           </div>
-          <a
-            href="https://payment.ticto.app/O0656C50E"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             onClick={handleClick}
-            className="flex-1 max-w-[200px] flex items-center justify-center gap-2 bg-gradient-to-r from-[hsl(22_100%_50%)] to-[hsl(30_100%_55%)] text-white font-display font-black text-sm py-3 rounded-lg cta-shimmer cta-sonar"
+            className="flex-1 max-w-xs bg-gradient-to-r from-[hsl(22_100%_50%)] to-[hsl(30_100%_55%)] text-white font-black text-sm rounded-lg py-3 px-5 flex items-center justify-center gap-2 shadow-[0_0_20px_hsl(24_100%_50%/0.5)] cursor-pointer border-0"
           >
-            COMEÇAR <ArrowRight className="w-4 h-4" />
-          </a>
+            COMEÇAR
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
         </motion.div>
       )}
     </AnimatePresence>
