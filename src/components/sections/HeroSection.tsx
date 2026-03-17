@@ -79,6 +79,20 @@ const HeroSection = () => (
             transition={{ duration: 0.5, delay: 0.7 }}
             className="mt-6"
           >
+            <button
+              onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
+              className="w-full lg:w-auto bg-accent hover:bg-accent/90 text-white font-display font-black text-base lg:text-lg py-4 px-8 rounded-lg shadow-[0_0_20px_hsl(24_100%_50%/0.5)] hover:shadow-[0_0_40px_hsl(24_100%_50%/0.8)] transition-all duration-300 cursor-pointer"
+            >
+              QUERO COMEÇAR MINHA TRANSFORMAÇÃO →
+            </button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="mt-4"
+          >
             <LiveViewerCounter />
           </motion.div>
         </motion.div>
@@ -149,6 +163,20 @@ const HeroSection = () => (
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
+          className="mt-4 w-full"
+        >
+          <button
+            onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
+            className="w-full bg-accent hover:bg-accent/90 text-white font-display font-black text-base py-4 px-8 rounded-lg shadow-[0_0_20px_hsl(24_100%_50%/0.5)] hover:shadow-[0_0_40px_hsl(24_100%_50%/0.8)] transition-all duration-300 cursor-pointer"
+          >
+            QUERO COMEÇAR MINHA TRANSFORMAÇÃO →
+          </button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
           className="mt-4"
         >
           <LiveViewerCounter />
