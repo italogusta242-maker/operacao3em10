@@ -1,25 +1,30 @@
 import { FileText, ShoppingCart, Coffee, MonitorPlay, Gift, Smartphone, Monitor } from "lucide-react";
+import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProgressiveImage from "@/components/ProgressiveImage";
 import mockupPlataforma from "@/assets/mockup-plataforma.png";
 
 const products = [
   {
+    emoji: "🧾",
     icon: FileText,
     title: "Guia de Execução 10D",
     desc: "Você acorda e já sabe exatamente o que fazer. O que comer no café, no almoço, no jantar. Quando comer. O que treinar. Como fazer os exercícios. Zero adivinhação no treino e na alimentação. É só seguir o roteiro.",
   },
   {
+    emoji: "🛒",
     icon: ShoppingCart,
     title: "Lista de Compras Anti-Inflamatória",
     desc: "Antes de começar, você recebe a lista exata do que comprar — tudo encontrado em supermercado comum. Nada de loja de produtos naturais, nada de importados. Você vai uma vez, compra tudo pros 10 dias, e não precisa pensar mais nisso.",
   },
   {
+    emoji: "☕",
     icon: Coffee,
     title: "Shot Matinal de Destrave",
     desc: "Todo dia, antes de comer qualquer coisa, você toma um shot de 3 ingredientes simples. Leva 2 minutos pra fazer. Esse shot acelera a desinflamação e faz você sentir a barriga menos inchada já nas primeiras manhãs.",
   },
   {
+    emoji: "📺",
     icon: MonitorPlay,
     title: "Plataforma de Aulas Estilo Netflix",
     desc: "Aulas curtas e diretas ao ponto que te ensinam o método completo. Sem enrolação, sem teoria desnecessária. Você assiste, entende, e aplica. Acesso anual para reassistir quando quiser.",
@@ -46,26 +51,32 @@ const SolutionSection = () => {
       <div className="py-12 md:py-24 bg-secondary">
         <div className="absolute top-0 right-0 w-80 h-80 bg-[radial-gradient(circle,hsl(122_60%_50%/0.05),transparent_70%)]" />
 
-        <ScrollReveal className="container max-w-4xl px-5 relative z-10">
-          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-2 md:mb-3">
-            <span className="text-accent text-glow-accent">Como funciona</span> a Operação -3kg em 10
-          </h2>
-          <p className="text-center text-muted-foreground text-sm md:text-lg mb-3 md:mb-4 max-w-2xl mx-auto">
-            Simples de entender. Fácil de seguir. Impossível de errar.
-          </p>
-          <p className="text-center text-foreground/80 text-sm md:text-base mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-            Você recebe um sistema completo de desinflamação e reset metabólico — não é mais um PDF de dieta. É um método passo a passo que funciona mesmo pra quem nunca conseguiu seguir nada até o fim.
-          </p>
+        <div className="container max-w-4xl px-5 relative z-10">
+          <ScrollReveal>
+            <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-2 md:mb-3">
+              <span className="text-accent text-glow-accent">Como funciona</span> a Operação -3kg em 10
+            </h2>
+            <p className="text-center text-muted-foreground text-sm md:text-lg mb-3 md:mb-4 max-w-2xl mx-auto">
+              Simples de entender. Fácil de seguir. Impossível de errar.
+            </p>
+            <p className="text-center text-foreground/80 text-sm md:text-base mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+              Você recebe um sistema completo de desinflamação e reset metabólico — não é mais um PDF de dieta. É um método passo a passo que funciona mesmo pra quem nunca conseguiu seguir nada até o fim.
+            </p>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-10 md:mb-14">
-            {products.map(({ icon: Icon, title, desc }, i) => (
+          {/* Products - single column on mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-10 md:mb-14">
+            {products.map(({ emoji, icon: Icon, title, desc }, i) => (
               <ScrollReveal key={i} delay={i * 0.12}>
-                <div className="card-glow rounded-xl p-4 md:p-6 hover:scale-[1.02] h-full">
-                  <Icon className="w-8 h-8 md:w-12 md:h-12 text-accent mb-3 md:mb-4" />
+                <div className="card-glow rounded-xl p-5 md:p-6 hover:scale-[1.02] h-full hover:!border-accent/40 transition-all">
+                  {/* Emoji icon with circular bg */}
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent/15 flex items-center justify-center mb-3 md:mb-4">
+                    <span className="text-2xl md:text-3xl">{emoji}</span>
+                  </div>
                   <h4 className="font-display font-bold text-sm md:text-base mb-2 flex items-start gap-1">
                     <span className="text-accent">✅</span> {title}
                   </h4>
-                  <p className="text-xs md:text-sm text-muted-foreground">{desc}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -74,7 +85,6 @@ const SolutionSection = () => {
           {/* Mockup da plataforma */}
           <ScrollReveal>
             <div className="relative rounded-2xl overflow-hidden mb-10 md:mb-14 py-8 md:py-12 px-5 card-glow !border-accent/30">
-
               <div className="relative z-10 flex flex-col items-center text-center">
                 <div className="flex items-center gap-2 mb-3">
                   <Smartphone className="w-4 h-4 text-accent" />
@@ -103,9 +113,11 @@ const SolutionSection = () => {
             </div>
           </ScrollReveal>
 
-          <p className="text-center font-display font-bold text-base md:text-xl text-foreground mb-8 md:mb-10">
-            Resumindo: você recebe o mapa completo. Só precisa seguir o caminho. E ainda separei <span className="text-accent text-glow-accent">2 bônus SURREAIS</span> pra você.
-          </p>
+          <ScrollReveal>
+            <p className="text-center font-display font-bold text-base md:text-xl text-foreground mb-8 md:mb-10">
+              Resumindo: você recebe o mapa completo. Só precisa seguir o caminho. E ainda separei <span className="text-accent text-glow-accent">2 bônus SURREAIS</span> pra você.
+            </p>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
             {bonuses.map(({ title, value, desc }, i) => (
@@ -125,8 +137,9 @@ const SolutionSection = () => {
               </ScrollReveal>
             ))}
           </div>
-        </ScrollReveal>
+        </div>
       </div>
+      <div className="h-16 bg-gradient-to-b from-secondary to-background" />
     </section>
   );
 };

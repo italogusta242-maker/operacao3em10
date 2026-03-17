@@ -44,13 +44,15 @@ const TestimonialsSection = () => {
       <div className="py-12 md:py-24 bg-background">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(circle,hsl(24_100%_50%/0.04),transparent_70%)]" />
 
-        <ScrollReveal className="container max-w-5xl px-5 relative z-10">
-          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
-            <span className="text-accent text-glow-accent">Resultados reais</span> de quem seguiu o protocolo...
-          </h2>
-          <p className="text-center text-muted-foreground text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto">
-            Mais de 5.000 pessoas já transformaram seus corpos com a metodologia do Igor Corrêa
-          </p>
+        <div className="container max-w-5xl px-5 relative z-10">
+          <ScrollReveal>
+            <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">
+              <span className="text-accent text-glow-accent">Resultados reais</span> de quem seguiu o protocolo...
+            </h2>
+            <p className="text-center text-muted-foreground text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto">
+              Mais de 5.000 pessoas já transformaram seus corpos com a metodologia do Igor Corrêa
+            </p>
+          </ScrollReveal>
 
           <Carousel
             opts={{ loop: true, align: "center" }}
@@ -64,7 +66,7 @@ const TestimonialsSection = () => {
                     <ProgressiveImage
                       src={src}
                       alt={alt}
-                      className="w-full rounded-xl shadow-lg object-cover aspect-square border border-[hsl(24_100%_50%/0.2)]"
+                      className="w-full rounded-xl shadow-lg object-cover aspect-square border border-accent/20"
                       loading="lazy"
                       decoding="async"
                       width={400}
@@ -84,7 +86,7 @@ const TestimonialsSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mt-8 md:mt-10 max-w-3xl mx-auto">
             {textTestimonials.map(({ name, text }, i) => (
               <ScrollReveal key={i} delay={i * 0.15}>
-                <div className="card-glow rounded-xl p-4 md:p-6 h-full">
+                <div className="card-glow rounded-xl p-4 md:p-6 h-full hover:!border-accent/40 transition-all">
                   <MessageSquareQuote className="w-5 h-5 text-accent mb-3" />
                   <p className="text-xs md:text-sm text-foreground/80 leading-relaxed italic mb-3">
                     "{text}"
@@ -95,11 +97,14 @@ const TestimonialsSection = () => {
             ))}
           </div>
 
-          <p className="text-center text-muted-foreground text-sm md:text-lg mt-8 md:mt-10 max-w-2xl mx-auto italic">
-            Você não vai querer parar, e consequentemente, terá bem mais resultado do que só -3kg.
-          </p>
-        </ScrollReveal>
+          <ScrollReveal>
+            <p className="text-center text-muted-foreground text-sm md:text-lg mt-8 md:mt-10 max-w-2xl mx-auto italic">
+              Você não vai querer parar, e consequentemente, terá bem mais resultado do que só -3kg.
+            </p>
+          </ScrollReveal>
+        </div>
       </div>
+      <div className="h-16 bg-gradient-to-b from-background to-secondary" />
     </section>
   );
 };

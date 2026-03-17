@@ -1,6 +1,7 @@
 import { useEffect, useRef, lazy, Suspense } from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import PainSection from "@/components/sections/PainSection";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 
 const ErrorSection = lazy(() => import("@/components/sections/ErrorSection"));
@@ -19,7 +20,6 @@ const FooterSection = lazy(() => import("@/components/sections/FooterSection"));
 const Index = () => {
   const offerRef = useRef<HTMLDivElement>(null);
   const viewContentFired = useRef(false);
-
   const pageViewFired = useRef(false);
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // ViewContent when user scrolls to the offer section
     if (!offerRef.current) return;
 
     const observer = new IntersectionObserver(
@@ -53,7 +52,7 @@ const Index = () => {
   }, []);
 
   return (
-    <main>
+    <main className="pb-16 md:pb-0">
       <HeroSection />
       <PainSection />
       <Suspense fallback={null}>
@@ -72,6 +71,7 @@ const Index = () => {
         <PostScriptSection />
         <FooterSection />
       </Suspense>
+      <StickyMobileCTA />
     </main>
   );
 };
