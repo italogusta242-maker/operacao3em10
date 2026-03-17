@@ -10,7 +10,7 @@ const disclaimers = [
 const FooterSection = () => (
   <footer className="relative overflow-hidden">
     <div className="h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-    <div className="py-12 md:py-16 bg-[hsl(0_0%_2%)] text-muted-foreground">
+    <div className="py-8 md:py-12 bg-[hsl(0_0%_2%)] text-muted-foreground">
       <div className="container max-w-3xl">
         <h3 className="text-xs uppercase tracking-widest font-bold mb-6 text-muted-foreground/60">
           Aviso Legal e Disclaimers

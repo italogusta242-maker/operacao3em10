@@ -52,7 +52,7 @@ const TestimonialsSection = () => {
   return (
     <section ref={sectionRef} className="relative overflow-hidden" id="depoimentos">
       <div className="section-divider" />
-      <div className="py-12 md:py-16 bg-background">
+      <div className="py-8 md:py-12 bg-background">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(circle,hsl(24_100%_50%/0.04),transparent_70%)]" />
 
         <div className="container max-w-5xl px-5 relative z-10">
