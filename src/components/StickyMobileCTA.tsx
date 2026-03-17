@@ -7,12 +7,60 @@ const StickyMobileCTA = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const solutionEl = document.getElementById("solucao");
+    const footerEl = document.querySelector("footer");
+
+    if (!solutionEl) return;
+
+    let solutionReached = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === solutionEl) {
+            if (entry.isIntersecting) {
+              solutionReached = true;
+              setVisible(true);
+            }
+          }
+          if (entry.target === footerEl) {
+            if (entry.isIntersecting) {
+              setVisible(false);
+            } else if (solutionReached) {
+              setVisible(true);
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(solutionEl);
+
+    // Observe footer with a slight delay to ensure it's rendered (lazy loaded)
+    const timer = setTimeout(() => {
+      const footer = document.querySelector("footer");
+      if (footer) observer.observe(footer);
+    }, 2000);
+
+    // Also handle scroll to check if user is past solution section
     const handleScroll = () => {
-      setVisible(window.scrollY > 400);
+      if (!solutionReached) return;
+      const footerRect = document.querySelector("footer")?.getBoundingClientRect();
+      if (footerRect && footerRect.top < window.innerHeight) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleClick = () => {

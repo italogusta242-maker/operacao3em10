@@ -40,7 +40,7 @@ const FAQSection = () => {
   return (
     <section className="relative overflow-hidden" id="faq">
       <div className="section-divider" />
-      <div className="py-12 md:py-24 bg-background">
+      <div className="py-12 md:py-16 bg-background">
         <div className="absolute bottom-0 right-0 w-72 h-72 bg-[radial-gradient(circle,hsl(24_100%_50%/0.04),transparent_70%)]" />
 
         <div className="container max-w-3xl px-5 relative z-10">
