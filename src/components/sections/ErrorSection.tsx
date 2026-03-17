@@ -2,10 +2,10 @@ import { X } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const mistakes = [
-  "Cortar carboidratos radicalmente",
-  "Fazer jejum intermitente sem orientação",
-  "Voltar pra academia todo dia de manhã",
-  "Tomar sucos 'detox' milagrosos que não funcionam",
+  "Começa uma dieta super restritiva que não aguenta por 3 dias",
+  "Passa horas na esteira achando que vai queimar tudo",
+  "Fica se culpando e acaba desistindo de tudo",
+  "Tenta um detox milagroso que só causa mais frustração",
 ];
 
 const ErrorSection = () => {
@@ -14,13 +14,11 @@ const ErrorSection = () => {
       <div className="section-divider" />
       <div className="py-12 md:py-24 bg-background">
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[radial-gradient(circle,hsl(24_100%_50%/0.05),transparent_70%)]" />
-        
-        <ScrollReveal className="container max-w-3xl px-5 relative z-10">
-          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground mb-6 md:mb-8">
-            <span className="text-accent text-glow-accent">Por que dietas tradicionais</span> falham nos primeiros 10 dias?
-          </h2>
 
-          <h3 className="font-display font-bold text-base md:text-xl mb-4 md:mb-6 text-foreground">Você já deve ter tentado:</h3>
+        <ScrollReveal className="container max-w-3xl px-5 relative z-10">
+          <h3 className="font-display font-bold text-base md:text-xl mb-4 md:mb-6 text-foreground">
+            O problema é que a maioria das pessoas, quando quer emagrecer, entra em desespero e faz exatamente o que <span className="text-accent text-glow-accent">NÃO</span> deveria fazer:
+          </h3>
 
           <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8">
             {mistakes.map((m, i) => (
@@ -31,15 +29,9 @@ const ErrorSection = () => {
             ))}
           </ul>
 
-          <p className="text-sm md:text-lg text-foreground mb-2">E sabe o que aconteceu?</p>
-          <p className="text-sm md:text-lg text-foreground mb-6 md:mb-8">
-            Você ficou com fome. Perdeu energia. Ficou irritado(a). E no terceiro dia... <strong className="text-accent text-glow-accent">desistiu</strong>.
-          </p>
-
           <div className="border-l-4 border-accent card-glow rounded-r-lg p-4 md:p-8">
             <p className="text-sm md:text-lg text-foreground leading-relaxed">
-              O problema <strong>não foi falta de força de vontade</strong>. O problema é que seu corpo estava lutando contra a{" "}
-              <strong className="text-accent text-glow-accent">INFLAMAÇÃO</strong>, não contra a gordura.
+              <strong className="text-accent text-glow-accent">Resultado?</strong> Semanas se passam, o peso não sai, a motivação acaba, e você continua se sentindo inchado e travado.
             </p>
           </div>
         </ScrollReveal>

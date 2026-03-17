@@ -3,19 +3,14 @@ import CTAButton from "../CTAButton";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const costs = [
-  { label: "Uma consulta com nutricionista?", price: "R$ 200-400" },
-  { label: "Um mês de academia?", price: "R$ 150-300" },
-  { label: "Suplementos 'detox' milagrosos?", price: "R$ 100-250" },
-];
-
-const comparisons = [
-  "Um combo no McDonald's",
-  "2 cafés no Starbucks",
-  "Uma pizza delivery",
+  { label: "Uma consulta com nutricionista", price: "R$ 200-400" },
+  { label: "Personal trainer por mês", price: "R$ 300-800" },
+  { label: "Suplementos milagrosos", price: "R$ 150-300" },
+  { label: "Semanas de frustração tentando sozinho", price: "Incalculável" },
 ];
 
 const badges = [
-  { icon: ShieldCheck, label: "Compra 100%\nsegura" },
+  { icon: ShieldCheck, label: "Garantia\nincondicional" },
   { icon: Clock, label: "Acesso\nimediato" },
   { icon: Zap, label: "100%\ndigital" },
 ];
@@ -26,13 +21,13 @@ const OfferSection = () => {
       <div className="section-divider" />
       <div className="py-12 md:py-24 bg-black">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse,hsl(24_100%_50%/0.06),transparent_70%)]" />
-        
+
         <ScrollReveal className="container max-w-3xl text-center px-5 relative z-10">
           <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-white mb-6 md:mb-8">
-            <span className="text-accent text-glow-accent">Quanto custa</span> recuperar seu corpo em <span className="text-primary text-glow-primary">10 dias</span>?
+            <span className="text-accent text-glow-accent">Quanto vale</span> recuperar sua forma em <span className="text-primary text-glow-primary">10 dias</span>?
           </h2>
 
-          <p className="text-sm md:text-lg text-gray-400 mb-4 md:mb-6 text-left">Vamos fazer uma conta rápida:</p>
+          <p className="text-sm md:text-lg text-gray-400 mb-4 md:mb-6 text-left">Pensa comigo:</p>
 
           <div className="space-y-2 md:space-y-3 mb-2 md:mb-3 text-left">
             {costs.map(({ label, price }, i) => (
@@ -46,14 +41,11 @@ const OfferSection = () => {
             ))}
           </div>
 
-          {/* Total row */}
-          <div className="flex items-center justify-between gap-2 border border-accent/30 bg-[hsl(24_100%_50%/0.08)] rounded-lg px-4 py-3 mb-8 md:mb-10">
-            <span className="text-sm md:text-base font-black text-white">TOTAL</span>
-            <span className="text-sm md:text-base line-through text-accent font-bold">R$ 450-950</span>
-          </div>
-
-          <p className="text-base md:text-xl font-black text-white mb-6 md:mb-8 text-glow-accent">
-            Mas você <span className="underline">NÃO</span> vai pagar isso hoje.
+          <p className="text-sm md:text-lg text-foreground/80 mt-6 md:mt-8 mb-2 leading-relaxed">
+            Por menos de <strong className="text-accent text-glow-accent">R$ 5 por dia</strong> — o preço de um café — você tem acesso a um protocolo completo, testado por mais de 5.000 pessoas, que funciona.
+          </p>
+          <p className="text-sm md:text-base text-muted-foreground mb-8 md:mb-10">
+            Isso dá apenas <strong className="text-accent">R$ 4,70 por dia</strong> para transformar seu corpo.
           </p>
 
           {/* Price card */}
@@ -75,18 +67,9 @@ const OfferSection = () => {
             </div>
           </div>
 
-          <p className="text-sm md:text-base text-gray-400 mb-4">Isso é menos que:</p>
-          <ul className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-10">
-            {comparisons.map((c, i) => (
-              <li key={i} className="card-glow rounded-full px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm text-gray-300">
-                • <strong>{c}</strong>
-              </li>
-            ))}
-          </ul>
-
           <CTAButton
-            text="QUERO ELIMINAR O INCHAÇO AGORA"
-            subtext="ACESSO IMEDIATO • 100% DIGITAL • SEM MENSALIDADES"
+            text="QUERO COMEÇAR MINHA TRANSFORMAÇÃO"
+            subtext="ACESSO IMEDIATO • GARANTIA DE 7 DIAS • PAGAMENTO 100% SEGURO"
             variant="accent"
             pulse
           />

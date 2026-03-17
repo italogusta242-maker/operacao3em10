@@ -1,17 +1,11 @@
-import { Check, Flame, Droplets, Zap } from "lucide-react";
+import { Droplets, Flame, Zap, HeartPulse } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
-const painPoints = [
-  "Sua roupa favorita não fechou (ou fechou, mas você se sentiu desconfortável o dia inteiro)",
-  "Olhou no espelho e viu um rosto inchado, uma barriga estufada que NÃO estava ali 10 dias atrás",
-  "Sentiu aquela sensação de 'peso', 'inchaço' e culpa por estar insatisfeito(a) com seu corpo",
-  "E pensou: 'Pronto, agora vou ter que passar 3 meses na academia e comendo só salada pra voltar ao normal'",
-];
-
-const cards = [
-  { icon: Flame, title: ["Inflamação", "Celular"], desc: "Suas células retêm líquido e toxinas metabólicas" },
-  { icon: Droplets, title: ["Retenção", "Líquida"], desc: "Excesso de sódio e carboidratos seguram água no seu corpo" },
-  { icon: Zap, title: ["Glicogênio", "Estocado"], desc: "Reservas de glicose lotadas travando seu metabolismo" },
+const elements = [
+  { icon: Droplets, label: "Retenção de líquido" },
+  { icon: Flame, label: "Inchaço crônico" },
+  { icon: Zap, label: "Glicogênio acumulado" },
+  { icon: HeartPulse, label: "Intestino sobrecarregado" },
 ];
 
 const PainSection = () => {
@@ -20,49 +14,32 @@ const PainSection = () => {
       <div className="section-divider" />
       <div className="py-12 md:py-24 bg-secondary">
         <div className="absolute top-0 right-0 w-72 h-72 bg-[radial-gradient(circle,hsl(0_80%_50%/0.06),transparent_70%)]" />
-        
+
         <ScrollReveal className="container max-w-3xl px-5 relative z-10">
-          <h3 className="font-display font-black text-lg md:text-2xl text-foreground mb-6 md:mb-8">
-            <span className="text-accent text-glow-accent">Se você acordou</span> hoje e:
-          </h3>
+          <h2 className="font-display font-black text-xl md:text-3xl lg:text-4xl text-foreground mb-6 md:mb-8">
+            <span className="text-accent text-glow-accent">Você sabia</span> que boa parte do peso que te incomoda não é gordura?
+          </h2>
 
-          <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10">
-            {painPoints.map((p, i) => (
-              <li key={i} className="flex gap-3 items-start">
-                <Check className="w-5 h-5 md:w-6 md:h-6 text-accent shrink-0 mt-0.5" />
-                <span className="text-sm md:text-lg text-foreground/80">{p}</span>
-              </li>
-            ))}
-          </ul>
-
-          <p className="text-base md:text-xl font-semibold text-foreground mb-2">
-            Então preciso que você pare tudo e leia isso com <strong className="text-glow-accent text-accent">MUITA atenção</strong>.
-          </p>
-          <p className="text-base md:text-xl text-foreground mb-4">
-            Porque o que você está sentindo agora <strong className="text-destructive">NÃO é gordura acumulada</strong>.
-          </p>
-          <p className="text-base md:text-xl font-semibold text-foreground mb-8 md:mb-10">
-            É o conjunto de <strong className="text-destructive text-glow-accent">3 elementos</strong>:
+          <p className="text-sm md:text-lg text-foreground/80 leading-relaxed mb-6 md:mb-8">
+            Parece loucura, mas é verdade. Aquele número na balança que te frustra, aquela barriga que não abaixa, aquela sensação de estar estufado o tempo todo... Na maioria dos casos, o problema é: <strong className="text-accent text-glow-accent">seu corpo está inflamado</strong>.
           </p>
 
-          <div className="grid sm:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
-            {cards.map(({ icon: Icon, title, desc }, i) => (
-              <ScrollReveal key={i} delay={i * 0.15}>
-                <div className="card-glow rounded-2xl p-4 md:p-6 text-center h-full hover:scale-[1.02]">
-                  <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-destructive to-accent flex items-center justify-center mx-auto mb-2 md:mb-3 shadow-[0_0_20px_hsl(24_100%_50%/0.3)]">
-                    <Icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
+          {/* Element cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
+            {elements.map(({ icon: Icon, label }, i) => (
+              <ScrollReveal key={i} delay={i * 0.1}>
+                <div className="card-glow rounded-xl p-3 md:p-4 text-center h-full">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-destructive to-accent flex items-center justify-center mx-auto mb-2 shadow-[0_0_15px_hsl(24_100%_50%/0.3)]">
+                    <Icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   </div>
-                  <div className="flex items-center justify-center gap-1.5 mb-1">
-                    <h4 className="font-display font-black text-sm md:text-base text-accent">{title[0]}<br />{title[1]}</h4>
-                  </div>
-                  <p className="text-xs md:text-sm text-muted-foreground">{desc}</p>
+                  <p className="text-xs md:text-sm font-bold text-accent">{label}</p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
 
-          <p className="text-base md:text-xl text-center font-semibold text-foreground">
-            E tudo isso pode ser eliminado em <strong className="text-primary text-glow-primary">10 dias</strong> com o protocolo certo.
+          <p className="text-sm md:text-lg text-foreground/80 leading-relaxed">
+            E a boa notícia? Isso pode ser revertido em poucos dias — se você souber exatamente o que fazer.
           </p>
         </ScrollReveal>
       </div>

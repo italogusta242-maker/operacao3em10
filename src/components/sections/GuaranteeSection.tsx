@@ -1,5 +1,11 @@
-import { Shield } from "lucide-react";
+import { Shield, ShieldCheck, RotateCcw, HelpCircle } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+
+const badges = [
+  { icon: ShieldCheck, label: "Garantia\nincondicional" },
+  { icon: RotateCcw, label: "Reembolso\nem até 7 dias" },
+  { icon: HelpCircle, label: "Sem\nperguntas" },
+];
 
 const GuaranteeSection = () => {
   return (
@@ -7,7 +13,7 @@ const GuaranteeSection = () => {
       <div className="section-divider" />
       <div className="py-12 md:py-24 bg-secondary">
         <div className="absolute top-10 right-10 w-60 h-60 bg-[radial-gradient(circle,hsl(210_80%_50%/0.05),transparent_70%)]" />
-        
+
         <ScrollReveal className="container max-w-3xl text-center px-5 relative z-10">
           <Shield className="w-12 h-12 md:w-16 md:h-16 text-trust mx-auto mb-4 md:mb-6" />
 
@@ -29,9 +35,21 @@ const GuaranteeSection = () => {
             </p>
           </div>
 
-          <p className="text-sm md:text-lg font-semibold text-foreground">
+          <p className="text-sm md:text-lg font-semibold text-foreground mb-8 md:mb-10">
             Ou seja: você só mantém o investimento se <strong className="text-primary text-glow-primary">REALMENTE funcionar</strong> pra você.
           </p>
+
+          {/* Guarantee badges */}
+          <div className="flex justify-center gap-6 md:gap-10">
+            {badges.map(({ icon: Icon, label }, i) => (
+              <div key={i} className="flex flex-col items-center gap-2">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[hsl(210_80%_50%/0.1)] border border-trust/20 flex items-center justify-center">
+                  <Icon className="w-5 h-5 md:w-6 md:h-6 text-trust" />
+                </div>
+                <span className="text-[10px] md:text-xs text-muted-foreground font-medium whitespace-pre-line text-center">{label}</span>
+              </div>
+            ))}
+          </div>
         </ScrollReveal>
       </div>
     </section>
