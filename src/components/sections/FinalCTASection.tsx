@@ -38,7 +38,6 @@ const FinalCTASection = () => {
             variant="accent"
             pulse
             className="text-xl py-6"
-            scrollToOffer
           />
 
           <LiveViewerCounter />

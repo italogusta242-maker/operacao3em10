@@ -5,43 +5,20 @@ import igorPhoto from "@/assets/igor-hero.jpg";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import LiveViewerCounter from "@/components/LiveViewerCounter";
 
-const PaymentIcons = () => (
-  <div className="flex items-center justify-center gap-4 text-muted-foreground">
-    <div className="flex items-center gap-1.5 text-xs font-medium">
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-      <span>Boleto</span>
-    </div>
-    <div className="flex items-center gap-1.5 text-xs font-medium">
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M7 15h2M13 15h4"/></svg>
-      <span>Visa</span>
-    </div>
-    <div className="flex items-center gap-1.5 text-xs font-medium">
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
-      <span>Mastercard</span>
-    </div>
-    <div className="flex items-center gap-1.5 text-xs font-medium">
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 4l6 8-6 8M18 4l-6 8 6 8"/></svg>
-      <span>Pix</span>
-    </div>
-  </div>
-);
-
 const HeroSection = () => (
-  <section className="relative min-h-screen flex flex-col items-center justify-center px-5 overflow-hidden bg-background grain-overlay">
-    {/* Background photo — full hero, centered bottom */}
-    <div className="absolute inset-0 z-0">
+  <section className="relative min-h-screen flex flex-col items-center justify-end md:justify-center px-5 pb-10 md:pb-0 overflow-hidden bg-background grain-overlay">
+    {/* MOBILE: Full-bleed background photo */}
+    <div className="absolute inset-0 z-0 md:hidden">
       <img
         src={igorPhoto}
         alt=""
-        className="w-full h-full object-cover object-top"
+        className="w-full h-[70vh] object-cover object-top"
         loading="eager"
         fetchPriority="high"
       />
-      {/* Heavy top gradient for text legibility */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.85) 25%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.7) 80%, #000000 100%)" }} />
-      {/* Side fades */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 30%)" }} />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 30%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, #000000 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #000 0%, transparent 20%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to left, #000 0%, transparent 20%)" }} />
     </div>
 
     {/* Corner glow effects */}
@@ -50,93 +27,132 @@ const HeroSection = () => (
 
     <FloatingOrbs />
 
-    {/* Content — single centered column */}
-    <div className="relative z-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto py-20 md:py-24">
-      {/* 1. Logo */}
+    {/* DESKTOP: Two-column layout */}
+    <div className="relative z-10 w-full max-w-6xl mx-auto hidden md:flex items-center min-h-screen py-8">
+      {/* Left column: text ~55% */}
+      <div className="w-[55%] pr-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex items-center gap-3 mb-6"
+        >
+          <img src={logo} alt="Operação -3kg em 10" className="w-12 h-12" width={48} height={48} fetchPriority="high" />
+          <span className="font-display font-black text-2xl tracking-tight">
+            <span className="text-gradient-accent text-glow-accent">Operação -3kg</span>{" "}
+            <span className="text-gradient-primary">em 10</span>
+          </span>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
+          <h1 className="font-display font-black text-4xl lg:text-[3.2rem] leading-[1.15] tracking-tight text-foreground">
+            Elimine no mínimo 3kg de inchaço, destrave seu metabolismo e seque em{" "}
+            <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
+            <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-6 text-lg text-muted-foreground leading-relaxed"
+          >
+            O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-4 font-display font-bold italic text-xl text-accent text-glow-accent"
+          >
+            Aceita o desafio?
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="mt-6"
+          >
+            <LiveViewerCounter />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Right column: Igor photo ~45% */}
+      <div className="w-[45%] relative h-screen">
+        <img
+          src={igorPhoto}
+          alt="Igor Corrêa"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+          loading="eager"
+          fetchPriority="high"
+        />
+        {/* Left fade to blend with text area */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #000 0%, transparent 40%)" }} />
+        {/* Bottom fade */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #000 0%, transparent 30%)" }} />
+      </div>
+    </div>
+
+    {/* MOBILE: Content pinned to bottom */}
+    <div className="relative z-10 flex flex-col items-center w-full max-w-3xl md:hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex items-center gap-2 md:gap-3 mb-6"
+        className="flex items-center gap-2 mb-4"
       >
-        <img src={logo} alt="Operação -3kg em 10" className="w-8 h-8 md:w-12 md:h-12" width={48} height={48} fetchPriority="high" />
-        <span className="font-display font-black text-lg md:text-2xl tracking-tight">
+        <img src={logo} alt="Operação -3kg em 10" className="w-8 h-8" width={48} height={48} fetchPriority="high" />
+        <span className="font-display font-black text-lg tracking-tight">
           <span className="text-gradient-accent text-glow-accent">Operação -3kg</span>{" "}
           <span className="text-gradient-primary">em 10</span>
         </span>
       </motion.div>
 
-      {/* 2. Headline */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        className="text-center"
       >
-        <h1 className="font-display font-black text-2xl sm:text-3xl md:text-4xl leading-[1.15] tracking-tight text-foreground uppercase">
+        <h1 className="font-display font-black text-xl sm:text-2xl leading-[1.15] tracking-tight text-foreground">
           Elimine no mínimo 3kg de inchaço, destrave seu metabolismo e seque em{" "}
           <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
-          <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>
+          <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
         </h1>
-      </motion.div>
 
-      {/* 3. Subtitle */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="mt-5 text-sm md:text-base text-muted-foreground leading-relaxed max-w-2xl"
-      >
-        O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
-      </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+        >
+          O protocolo que já transformou mais de 5.000 pessoas vai te mostrar como desinchar rápido, perder peso de verdade e recuperar sua disposição. Mesmo que você já tenha tentado de tudo.
+        </motion.p>
 
-      {/* 4. "Aceita o desafio?" glow button */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="mt-6"
-      >
-        <button
-          onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
-          className="bg-transparent border-2 border-accent text-accent font-display font-black text-base md:text-xl py-3 px-8 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.6),0_0_40px_rgba(249,115,22,0.3)] animate-pulse-cta cursor-pointer transition-all duration-300 hover:bg-accent/10"
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-3 font-display font-bold italic text-base text-accent text-glow-accent"
         >
           Aceita o desafio?
-        </button>
-      </motion.div>
+        </motion.p>
 
-      {/* 5. Main CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        className="mt-5 w-full sm:w-auto"
-      >
-        <button
-          onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
-          className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-white font-display font-black text-base md:text-lg py-4 px-8 rounded-lg shadow-[0_0_20px_hsl(24_100%_50%/0.5)] hover:shadow-[0_0_40px_hsl(24_100%_50%/0.8)] transition-all duration-300 cursor-pointer"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="mt-4"
         >
-          QUERO COMEÇAR MINHA TRANSFORMAÇÃO →
-        </button>
-      </motion.div>
-
-      {/* 6. Payment icons */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-        className="mt-4"
-      >
-        <PaymentIcons />
-      </motion.div>
-
-      {/* 7. Live viewer counter */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.9 }}
-        className="mt-4"
-      >
-        <LiveViewerCounter />
+          <LiveViewerCounter />
+        </motion.div>
       </motion.div>
     </div>
 

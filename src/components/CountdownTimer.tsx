@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 
 const CountdownTimer = () => {
-  const [time, setTime] = useState(1200);
+  const [time, setTime] = useState(() => {
+    // 23h 47m 12s in seconds
+    const stored = sessionStorage.getItem("countdown_end");
+    if (stored) {
+      const remaining = Math.max(0, Math.floor((parseInt(stored) - Date.now()) / 1000));
+      return remaining;
+    }
+    const seconds = 23 * 3600 + 47 * 60 + 12;
+    sessionStorage.setItem("countdown_end", String(Date.now() + seconds * 1000));
+    return seconds;
+  });
 
   useEffect(() => {
     if (time <= 0) return;

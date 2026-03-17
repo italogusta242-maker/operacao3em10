@@ -14,9 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Sora", "system-ui", "sans-serif"],
-        display: ["Sora", "system-ui", "sans-serif"],
-        body: ["Sora", "system-ui", "sans-serif"],
+        display: ["Montserrat", "system-ui", "sans-serif"],
+        body: ["Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
