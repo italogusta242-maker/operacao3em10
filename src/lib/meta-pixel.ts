@@ -23,7 +23,7 @@ export const trackMetaEvent = async (
       event_name: eventName,
       event_id: eventId,
       event_time: Math.floor(Date.now() / 1000),
-      event_source_url: window.location.href,
+      event_source_url: window.location.origin + window.location.pathname,
       action_source: "website",
       user_data: {
         client_user_agent: navigator.userAgent,
