@@ -91,9 +91,6 @@ const OfferSection = () => {
                 <p className="font-display font-black text-5xl md:text-7xl text-accent drop-shadow-[0_0_30px_hsl(24_100%_50%/0.5)]">
                   R$ 47<span className="text-2xl md:text-3xl">,00</span>
                 </p>
-                <p className="text-muted-foreground text-sm md:text-base mt-3">
-                  ou 12x de <strong className="text-foreground/80">R$ 4,70</strong> no cartão
-                </p>
               </div>
             </div>
           </ScrollReveal>
