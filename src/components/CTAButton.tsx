@@ -9,9 +9,10 @@ interface CTAButtonProps {
   variant?: "primary" | "accent" | "white";
   className?: string;
   pulse?: boolean;
+  scrollToOffer?: boolean;
 }
 
-const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse = false }: CTAButtonProps) => {
+const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse = false, scrollToOffer = false }: CTAButtonProps) => {
   const base =
     "inline-flex flex-col items-center justify-center gap-1 rounded-lg px-6 md:px-10 py-5 md:py-5 font-display font-black text-base md:text-lg tracking-tight cursor-pointer border-0 w-full";
 
@@ -25,6 +26,11 @@ const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse =
   };
 
   const handleClick = () => {
+    if (scrollToOffer) {
+      const el = document.getElementById("oferta");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
     trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
     window.open(CTA_URL, "_blank", "noopener,noreferrer");
   };

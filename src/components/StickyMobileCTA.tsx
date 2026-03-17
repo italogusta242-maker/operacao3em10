@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { trackMetaEvent } from "@/lib/meta-pixel";
-
-const CTA_URL = "https://payment.ticto.app/O0656C50E";
 
 const StickyMobileCTA = () => {
   const [visible, setVisible] = useState(false);
@@ -32,8 +29,8 @@ const StickyMobileCTA = () => {
   }, []);
 
   const handleClick = () => {
-    trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
-    window.open(CTA_URL, "_blank", "noopener,noreferrer");
+    const el = document.getElementById("oferta");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -47,8 +44,7 @@ const StickyMobileCTA = () => {
           className="fixed bottom-0 left-0 right-0 z-50 bg-[hsl(0_0%_4%)] border-t border-[hsl(0_0%_15%)] px-4 py-3 flex items-center justify-between gap-3 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]"
         >
           <div className="flex flex-col">
-            <span className="text-foreground font-black text-base">R$ 47</span>
-            <span className="text-muted-foreground text-xs">Garantia 7 dias</span>
+            <span className="text-foreground font-black text-base">Aceita o desafio?</span>
           </div>
           <button
             onClick={handleClick}
