@@ -23,8 +23,8 @@ const testimonials = [
   { src: depoimento2, alt: "Resultado - Jhon", name: "Jhon" },
   { src: depoimento3, alt: "Resultado - Italo", name: "Italo" },
   { src: depoimento4, alt: "Resultado - Lara", name: "Lara" },
-  { src: depoimento5, alt: "Resultado - Guilherme", name: "Guilherme" },
-  { src: depoimento6, alt: "Resultado - Thiago", name: "Thiago" },
+  { src: depoimento5, alt: "Resultado - Thiago", name: "Thiago" },
+  { src: depoimento6, alt: "Resultado - Guilherme", name: "Guilherme" },
 ];
 
 const screenshotTestimonials = [
