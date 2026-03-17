@@ -77,7 +77,7 @@ const TestimonialsSection = () => {
           </Carousel>
 
           {/* Screenshot testimonials */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mt-8 md:mt-10 max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 gap-3 md:gap-5 mt-8 md:mt-10 max-w-2xl mx-auto">
             {screenshotTestimonials.map(({ src, alt }, i) => (
               <ScrollReveal key={i} delay={i * 0.15}>
                 <div className="rounded-xl overflow-hidden border border-[hsl(0_0%_100%/0.06)]">
