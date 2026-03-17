@@ -27,8 +27,8 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-gradient-to-b from-secondary via-secondary to-[hsl(130_15%_94%)] relative overflow-hidden" id="depoimentos">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[hsl(122_50%_50%/0.04)] rounded-full blur-[120px]" />
+    <section className="py-12 md:py-24 bg-background relative overflow-hidden" id="depoimentos">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[hsl(122_60%_50%/0.04)] rounded-full blur-[120px]" />
       
       <ScrollReveal className="container max-w-5xl px-5 relative z-10">
         <h2 className="font-display font-extrabold text-xl md:text-3xl lg:text-4xl text-foreground text-center mb-3 md:mb-4">

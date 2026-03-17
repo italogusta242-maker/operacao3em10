@@ -17,8 +17,7 @@ const cards = [
 const PainSection = () => {
   return (
     <section className="py-12 md:py-24 bg-secondary relative overflow-hidden" id="dor">
-      {/* Subtle background accent */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-[hsl(0_80%_50%/0.03)] rounded-full blur-[100px]" />
+      <div className="absolute top-0 right-0 w-72 h-72 bg-[hsl(0_80%_50%/0.04)] rounded-full blur-[100px]" />
       
       <ScrollReveal className="container max-w-3xl px-5 relative z-10">
         <h3 className="font-display font-bold text-lg md:text-2xl text-foreground mb-6 md:mb-8">Se você acordou hoje e:</h3>
@@ -27,7 +26,7 @@ const PainSection = () => {
           {painPoints.map((p, i) => (
             <li key={i} className="flex gap-3 items-start">
               <Check className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0 mt-1" />
-              <span className="text-sm md:text-lg text-foreground/90">{p}</span>
+              <span className="text-sm md:text-lg text-foreground/80">{p}</span>
             </li>
           ))}
         </ul>
@@ -45,8 +44,8 @@ const PainSection = () => {
         <div className="grid sm:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
           {cards.map(({ icon: Icon, title, desc }, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="relative bg-white/70 backdrop-blur-md border border-white/50 rounded-2xl p-4 md:p-6 text-center h-full shadow-lg shadow-destructive/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-destructive/10">
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-destructive to-accent flex items-center justify-center mx-auto mb-2 md:mb-3 shadow-md">
+              <div className="relative bg-card border border-border rounded-2xl p-4 md:p-6 text-center h-full transition-all duration-300 hover:scale-[1.02] hover:border-destructive/30">
+                <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-destructive to-accent flex items-center justify-center mx-auto mb-2 md:mb-3 shadow-md shadow-destructive/20">
                   <Icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
                 </div>
                 <div className="flex items-center justify-center gap-1.5 mb-1">
