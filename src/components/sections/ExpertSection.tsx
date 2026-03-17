@@ -68,7 +68,7 @@ const ExpertSection = () => {
           <div className="space-y-4 md:space-y-5 text-sm md:text-lg text-foreground/70 leading-relaxed">
             <ScrollReveal delay={0.2}>
               <p>
-                Em 2021, Igor começou do zero. Um físico magrelo, sem academia de luxo, sem atalhos hormonais. Hoje, com mais de <strong className="text-accent text-glow-accent">500 mil pessoas</strong> acompanhando sua transformação nas redes sociais, Igor prova todo mês que resultados reais existem.
+                Em 2021, Igor começou do zero. Um físico magrelo, sem academia de luxo, sem atalhos hormonais. Hoje, com mais de <strong className="text-accent text-glow-accent">80 mil pessoas</strong> acompanhando sua transformação nas redes sociais, Igor prova todo mês que resultados reais existem.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
