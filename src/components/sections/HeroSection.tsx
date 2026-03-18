@@ -80,7 +80,7 @@ const HeroSection = () => {
               onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center justify-center gap-2 rounded-lg px-8 py-4 font-display font-black text-lg text-white bg-[#FF6B00] shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:shadow-[0_0_30px_rgba(255,107,0,0.7)] transition-all duration-300 cursor-pointer border-0 animate-pulse-cta"
             >
-              Aceita o desafio?
+              Claro! Quero mudar meu corpo rápido!
             </button>
           </motion.div>
 
