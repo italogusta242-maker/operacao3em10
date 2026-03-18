@@ -9,7 +9,7 @@ const CountdownTimer = () => {
       return remaining;
     }
     const seconds = 19 * 60 + 47;
-    sessionStorage.setItem("countdown_end", String(Date.now() + seconds * 1000));
+    sessionStorage.setItem(STORAGE_KEY, String(Date.now() + seconds * 1000));
     return seconds;
   });
 
