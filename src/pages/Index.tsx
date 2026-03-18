@@ -71,7 +71,7 @@ const Index = () => {
         <PostScriptSection />
         <FooterSection />
       </Suspense>
-      <StickyMobileCTA />
+      
     </main>
   );
 };
