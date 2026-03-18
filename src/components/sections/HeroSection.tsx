@@ -177,6 +177,7 @@ const HeroSection = () => {
       <ChevronDown className="w-6 h-6 md:w-8 md:h-8 text-muted-foreground/40" />
     </div>
   </section>
-);
+  );
+};
 
 export default HeroSection;
