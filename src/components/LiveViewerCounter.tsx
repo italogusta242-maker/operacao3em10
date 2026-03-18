@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Zap } from "lucide-react";
 
 const LiveViewerCounter = () => {
-  const [count, setCount] = useState(() => Math.floor(Math.random() * (47 - 23 + 1)) + 23);
+  const [count, setCount] = useState(() => Math.floor(Math.random() * (450 - 300 + 1)) + 300);
 
   useEffect(() => {
     const tick = () => {
-      setCount(Math.floor(Math.random() * (47 - 23 + 1)) + 23);
+      setCount(Math.floor(Math.random() * (450 - 300 + 1)) + 300);
     };
     const id = setInterval(tick, Math.random() * 4000 + 4000);
     return () => clearInterval(id);
