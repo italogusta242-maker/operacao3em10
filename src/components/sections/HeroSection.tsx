@@ -50,9 +50,9 @@ const HeroSection = () => (
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
           <h1 className="font-display font-black text-4xl lg:text-[3.2rem] leading-[1.15] tracking-tight text-foreground">
-            Elimine no mínimo <span className="font-semibold text-gradient-primary text-glow-primary">3kg de barriga</span>, acelere seu metabolismo e desinche o corpo em{" "}
-            <span className="font-semibold text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
-            <span className="font-semibold text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
+            Elimine no mínimo <span className="text-gradient-primary text-glow-primary">3kg de barriga</span>, acelere seu metabolismo e desinche o corpo em{" "}
+            <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
+            <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
           </h1>
 
           <motion.p
@@ -127,9 +127,9 @@ const HeroSection = () => (
         className="text-left"
       >
         <h1 className="font-display font-black text-2xl leading-tight tracking-tight text-foreground">
-          Elimine no mínimo <span className="font-semibold text-gradient-primary text-glow-primary">3kg de barriga</span>, acelere seu metabolismo e desinche o corpo em{" "}
-          <span className="font-semibold text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
-          <span className="font-semibold text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
+          Elimine no mínimo <span className="text-gradient-primary text-glow-primary">3kg de barriga</span>, acelere seu metabolismo e desinche o corpo em{" "}
+          <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
+          <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
         </h1>
 
         <motion.p
