@@ -8,7 +8,7 @@ const CountdownTimer = () => {
       const remaining = Math.max(0, Math.floor((parseInt(stored) - Date.now()) / 1000));
       return remaining;
     }
-    const seconds = 23 * 3600 + 47 * 60 + 12;
+    const seconds = 19 * 60 + 47;
     sessionStorage.setItem("countdown_end", String(Date.now() + seconds * 1000));
     return seconds;
   });
