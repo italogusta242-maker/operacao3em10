@@ -27,7 +27,7 @@ const CountdownTimer = () => {
     <div className="inline-flex items-center gap-2 bg-destructive/20 border border-destructive/40 rounded-lg px-4 py-2 mt-4">
       <span className="text-xs md:text-sm text-destructive font-semibold">Oferta expira em:</span>
       <span className="font-display font-black text-base md:text-lg text-white tabular-nums tracking-wider">
-        {h}:{m}:{s}
+        {m}:{s}
       </span>
     </div>
   );
