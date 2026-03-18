@@ -32,8 +32,7 @@ const StickyMobileCTA = () => {
   }, []);
 
   const handleClick = () => {
-    trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
-    window.open(CTA_URL, "_blank", "noopener,noreferrer");
+    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
