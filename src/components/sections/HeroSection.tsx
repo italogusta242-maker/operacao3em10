@@ -58,7 +58,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
           <h1 className="font-display font-black text-4xl lg:text-[2.6rem] leading-[1.15] tracking-tight text-white">
-            Elimine no mínimo 3kg de barriga, acelere seu metabolismo e desinche o corpo em 10 dias com a Operação -3kg em 10.
+            Elimine no mínimo 3kg de barriga e desinche o corpo em 10 dias com a Operação -3kg em 10.
           </h1>
 
           <motion.p
@@ -67,7 +67,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-6 text-lg text-white/80 font-medium leading-relaxed"
           >
-            O protocolo que já mudou o corpo de mais de 5.000 pessoas vai te ensinar como diminuir seu peso, recuperar sua autoestima, disposição e perder gordura rápido. Mesmo que você já tenha tentado de tudo.
+            Em 10 dias você vai estar irreconhecível. O protocolo que já mudou o corpo de mais de 5.000 pessoas vai te ensinar como diminuir seu peso, recuperar sua autoestima, disposição e perder gordura rápido. Mesmo que você já tenha tentado de tudo.
           </motion.p>
 
           <motion.div
@@ -80,7 +80,7 @@ const HeroSection = () => {
               onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center justify-center gap-2 rounded-lg px-8 py-4 font-display font-black text-lg text-white bg-[#FF6B00] shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:shadow-[0_0_30px_rgba(255,107,0,0.7)] transition-all duration-300 cursor-pointer border-0 animate-pulse-cta"
             >
-              Aceita o desafio?
+              Claro! Quero mudar meu corpo rápido!
             </button>
           </motion.div>
 
@@ -133,7 +133,7 @@ const HeroSection = () => {
         className="text-left"
       >
         <h1 className="font-display font-black text-2xl leading-tight tracking-tight text-white">
-          Elimine no mínimo 3kg de barriga, acelere seu metabolismo e desinche o corpo em 10 dias com a Operação -3kg em 10.
+          Elimine no mínimo 3kg de barriga e desinche o corpo em 10 dias com a Operação -3kg em 10.
         </h1>
 
         <motion.p
@@ -142,7 +142,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-4 text-sm text-white/80 font-medium leading-relaxed max-w-2xl"
         >
-          O protocolo que já mudou o corpo de mais de 5.000 pessoas vai te ensinar como diminuir seu peso, recuperar sua autoestima, disposição e perder gordura rápido. Mesmo que você já tenha tentado de tudo.
+          Em 10 dias você vai estar irreconhecível. O protocolo que já mudou o corpo de mais de 5.000 pessoas vai te ensinar como diminuir seu peso, recuperar sua autoestima, disposição e perder gordura rápido. Mesmo que você já tenha tentado de tudo.
         </motion.p>
 
         <motion.div
@@ -155,7 +155,7 @@ const HeroSection = () => {
             onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
             className="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-display font-black text-base text-white bg-[#FF6B00] shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:shadow-[0_0_30px_rgba(255,107,0,0.7)] transition-all duration-300 cursor-pointer border-0 animate-pulse-cta"
           >
-            Aceita o desafio?
+            Claro! Quero mudar meu corpo rápido!
           </button>
         </motion.div>
 
