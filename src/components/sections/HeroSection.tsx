@@ -5,8 +5,15 @@ import logo from "@/assets/logo-operacao-3em10.webp";
 import igorPhoto from "@/assets/igor-correa.webp";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import LiveViewerCounter from "@/components/LiveViewerCounter";
+const CTA_URL = "https://payment.ticto.app/O0656C50E";
 
-const HeroSection = () => (
+const HeroSection = () => {
+  const handleCTA = () => {
+    trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
+    window.open(CTA_URL, "_blank", "noopener,noreferrer");
+  };
+
+  return (
   <section className="relative min-h-screen flex flex-col items-center justify-end md:justify-center px-5 pb-10 md:pb-0 overflow-hidden bg-background grain-overlay">
     {/* MOBILE: Full-bleed background photo */}
     <div className="absolute inset-0 z-0 md:hidden">
