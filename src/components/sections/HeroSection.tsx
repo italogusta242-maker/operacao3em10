@@ -127,9 +127,9 @@ const HeroSection = () => (
         className="text-left"
       >
         <h1 className="font-display font-black text-2xl leading-tight tracking-tight text-foreground">
-          Elimine no mínimo <span className="font-semibold text-gradient-primary text-glow-primary">3kg de barriga</span>, acelere seu metabolismo e desinche o corpo em{" "}
-          <span className="font-semibold text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
-          <span className="font-semibold text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
+          Elimine no mínimo <span className="text-gradient-primary text-glow-primary">3kg de barriga</span>, acelere seu metabolismo e desinche o corpo em{" "}
+          <span className="text-gradient-primary text-glow-primary">10 dias</span> com a{" "}
+          <span className="text-gradient-accent text-glow-accent">Operação -3kg em 10</span>.
         </h1>
 
         <motion.p
