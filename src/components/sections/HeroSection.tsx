@@ -1,11 +1,19 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 import logo from "@/assets/logo-operacao-3em10.webp";
 import igorPhoto from "@/assets/igor-correa.webp";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import LiveViewerCounter from "@/components/LiveViewerCounter";
+const CTA_URL = "https://payment.ticto.app/O0656C50E";
 
-const HeroSection = () => (
+const HeroSection = () => {
+  const handleCTA = () => {
+    trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
+    window.open(CTA_URL, "_blank", "noopener,noreferrer");
+  };
+
+  return (
   <section className="relative min-h-screen flex flex-col items-center justify-end md:justify-center px-5 pb-10 md:pb-0 overflow-hidden bg-background grain-overlay">
     {/* MOBILE: Full-bleed background photo */}
     <div className="absolute inset-0 z-0 md:hidden">
@@ -69,7 +77,7 @@ const HeroSection = () => (
             className="mt-4"
           >
             <button
-              onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={handleCTA}
               className="inline-flex items-center justify-center gap-2 rounded-lg px-8 py-4 font-display font-black text-lg text-white bg-[#FF6B00] shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:shadow-[0_0_30px_rgba(255,107,0,0.7)] transition-all duration-300 cursor-pointer border-0 animate-pulse-cta"
             >
               Aceita o desafio?
@@ -146,7 +154,7 @@ const HeroSection = () => (
           className="mt-3"
         >
           <button
-            onClick={() => document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={handleCTA}
             className="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-display font-black text-base text-white bg-[#FF6B00] shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:shadow-[0_0_30px_rgba(255,107,0,0.7)] transition-all duration-300 cursor-pointer border-0 animate-pulse-cta"
           >
             Aceita o desafio?
@@ -169,6 +177,7 @@ const HeroSection = () => (
       <ChevronDown className="w-6 h-6 md:w-8 md:h-8 text-muted-foreground/40" />
     </div>
   </section>
-);
+  );
+};
 
 export default HeroSection;
