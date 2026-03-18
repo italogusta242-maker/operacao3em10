@@ -106,7 +106,7 @@ const HeroSection = () => (
     </div>
 
     {/* MOBILE: Content pinned to bottom */}
-    <div className="relative z-10 flex flex-col items-center w-full max-w-3xl md:hidden">
+    <div className="relative z-10 flex flex-col items-start w-full max-w-3xl md:hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
