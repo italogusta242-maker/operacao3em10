@@ -8,7 +8,7 @@ const CountdownTimer = () => {
       const remaining = Math.max(0, Math.floor((parseInt(stored) - Date.now()) / 1000));
       return remaining;
     }
-    const seconds = 23 * 3600 + 47 * 60 + 12;
+    const seconds = 19 * 60 + 47;
     sessionStorage.setItem("countdown_end", String(Date.now() + seconds * 1000));
     return seconds;
   });
@@ -27,7 +27,7 @@ const CountdownTimer = () => {
     <div className="inline-flex items-center gap-2 bg-destructive/20 border border-destructive/40 rounded-lg px-4 py-2 mt-4">
       <span className="text-xs md:text-sm text-destructive font-semibold">Oferta expira em:</span>
       <span className="font-display font-black text-base md:text-lg text-white tabular-nums tracking-wider">
-        {h}:{m}:{s}
+        {m}:{s}
       </span>
     </div>
   );
