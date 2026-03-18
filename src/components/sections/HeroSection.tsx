@@ -133,7 +133,7 @@ const HeroSection = () => {
         className="text-left"
       >
         <h1 className="font-display font-black text-2xl leading-tight tracking-tight text-white">
-          Elimine no mínimo 3kg de barriga, acelere seu metabolismo e desinche o corpo em 10 dias com a Operação -3kg em 10.
+          Elimine no mínimo 3kg de barriga e desinche o corpo em 10 dias com a Operação -3kg em 10.
         </h1>
 
         <motion.p
@@ -142,7 +142,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-4 text-sm text-white/80 font-medium leading-relaxed max-w-2xl"
         >
-          O protocolo que já mudou o corpo de mais de 5.000 pessoas vai te ensinar como diminuir seu peso, recuperar sua autoestima, disposição e perder gordura rápido. Mesmo que você já tenha tentado de tudo.
+          Em 10 dias você vai estar irreconhecível. O protocolo que já mudou o corpo de mais de 5.000 pessoas vai te ensinar como diminuir seu peso, recuperar sua autoestima, disposição e perder gordura rápido. Mesmo que você já tenha tentado de tudo.
         </motion.p>
 
         <motion.div
