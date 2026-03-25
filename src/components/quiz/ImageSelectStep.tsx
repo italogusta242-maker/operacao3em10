@@ -20,54 +20,43 @@ export default function ImageSelectStep({ step, onNext, answers }: Props) {
         {step.sub && <p className="text-muted-foreground text-xs animate-fade-up animation-delay-400">{step.sub}</p>}
       </div>
 
-      <div className="grid grid-cols-2 gap-3 flex-1 animate-fade-up animation-delay-600 overflow-y-auto pr-1 pb-4 custom-scrollbar">
-        {step.options?.map((opt, index) => {
-          const isOddTotal = step.options!.length % 2 !== 0;
-          const isLast = index === step.options!.length - 1;
-          const isFullWidthCentered = isOddTotal && isLast;
+      <div className="flex flex-col gap-3 flex-1 animate-fade-up animation-delay-600 overflow-y-auto pr-1 pb-4 custom-scrollbar">
+        {step.options?.map((opt) => (
+          <button
+            key={opt.id}
+            onClick={() => {
+              setTimeout(() => onNext(opt.id), 250);
+            }}
+            className={`relative overflow-hidden group rounded-xl border transition-all duration-300 flex flex-col cursor-pointer p-0 w-full h-[220px] shrink-0
+              ${currentAnswer === opt.id 
+                ? 'border-primary ring-1 ring-primary' 
+                : 'border-transparent bg-[#111] hover:border-white/10'}`}
+          >
+            {/* Image */}
+            <img 
+              src={opt.imageUrl || ''} 
+              alt={opt.label}
+              className="w-full h-full object-cover object-center block transition-transform duration-700 group-hover:scale-105"
+            />
+            
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+            
+            {/* Label */}
+            <span className={`absolute bottom-3 left-4 text-base font-bold transition-colors z-10
+              ${currentAnswer === opt.id ? 'text-primary drop-shadow-[0_0_8px_rgba(122,255,122,0.5)]' : 'text-white drop-shadow-md'}`}>
+              {opt.label}
+            </span>
 
-          return (
-            <div 
-              key={opt.id} 
-              className={`${isFullWidthCentered ? 'col-span-2 flex justify-center' : 'w-full'}`}
-            >
-              <button
-                onClick={() => {
-                  setTimeout(() => onNext(opt.id), 250);
-                }}
-                className={`relative overflow-hidden group rounded-xl border transition-all duration-300 flex flex-col cursor-pointer p-0 w-full aspect-[3/4]
-                  ${isFullWidthCentered ? 'max-w-[50%]' : ''}
-                  ${currentAnswer === opt.id 
-                    ? 'border-primary ring-1 ring-primary' 
-                    : 'border-transparent bg-[#111]'}`}
-              >
-                {/* Image */}
-                <img 
-                  src={opt.imageUrl || ''} 
-                  alt={opt.label}
-                  className="w-full h-full object-cover object-top block transition-transform duration-700 group-hover:scale-105"
-                />
-                
-                {/* Gradient Overlay */}
-                <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black/85 to-transparent pointer-events-none" />
-                
-                {/* Label */}
-                <span className={`absolute bottom-3 left-3 text-sm font-semibold transition-colors
-                  ${currentAnswer === opt.id ? 'text-primary' : 'text-white'}`}>
-                  {opt.label}
-                </span>
-
-                {/* Radio Indicator */}
-                <div className={`absolute bottom-3 right-3 w-5 h-5 rounded-full border flex items-center justify-center transition-all
-                  ${currentAnswer === opt.id ? 'border-primary bg-primary' : 'border-white/40 bg-transparent'}`}>
-                  {currentAnswer === opt.id && (
-                    <div className="w-2 h-2 rounded-full bg-white" />
-                  )}
-                </div>
-              </button>
+            {/* Radio Indicator */}
+            <div className={`absolute bottom-3 right-4 w-5 h-5 rounded-full border flex items-center justify-center transition-all z-10
+              ${currentAnswer === opt.id ? 'border-primary bg-primary' : 'border-white/40 bg-transparent'}`}>
+              {currentAnswer === opt.id && (
+                <div className="w-2 h-2 rounded-full bg-white" />
+              )}
             </div>
-          );
-        })}
+          </button>
+        ))}
       </div>
     </div>
   );

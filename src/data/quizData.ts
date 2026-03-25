@@ -100,22 +100,23 @@ export const quizSteps: QuizStepData[] = [
     type: 'image-single-select',
     question: 'Qual área te incomoda mais?',
     options: [
-      { id: 'barriga', label: 'Barriga', imageUrl: '/quiz/belly_pochete.png' },
-      { id: 'rosto', label: 'Rosto/papada', imageUrl: '/quiz/rosto_papada.png' },
-      { id: 'corpo', label: 'Corpo inteiro', imageUrl: '/quiz/corpo_inteiro.png' }
+      { id: 'barriga', label: 'Barriga', imageUrl: '/quiz/areas/barriga.png' },
+      { id: 'rosto', label: 'Rosto/papada', imageUrl: '/quiz/areas/rosto.png' },
+      { id: 'corpo', label: 'Corpo inteiro', imageUrl: '/quiz/areas/corpo.png' }
     ]
   },
-  // TELA 6 — TIPO DE BARRIGA
+  // TELA 6 — BARRIGA
   {
     id: 6,
     type: 'image-single-select',
+    headline: 'Análise corporal',
     question: 'Que tipo de barriga você tem?',
     options: [
-      { id: 'cerveja', label: 'Barriga de álcool', imageUrl: '/quiz/belly_muito.png' },
-      { id: 'estresse', label: 'Barriga de estresse', imageUrl: '/quiz/belly_dilatada.png' },
-      { id: 'inchaco', label: 'Inchaço/retenção', imageUrl: '/quiz/belly_flat.png' }, // Fallback to current due to limit
-      { id: 'alimentacao', label: 'Alimentação ruim', imageUrl: '/quiz/alimentacao_ruim.png' },
-      { id: 'normal', label: 'Normal (secar mais)', imageUrl: '/quiz/normal_secar.png' }
+      { id: 'cerveja', label: 'Barriga de álcool (cerveja)', imageUrl: '/quiz/belly/cerveja.png' },
+      { id: 'estresse', label: 'Barriga de estresse (dilatada)', imageUrl: '/quiz/belly/estresse.png' },
+      { id: 'inchaco', label: 'Inchaço/retenção', imageUrl: '/quiz/belly/inchaco.png' },
+      { id: 'alimentacao', label: 'Alimentação ruim', imageUrl: '/quiz/belly/alimentacao.png' },
+      { id: 'normal', label: 'Normal (secar mais)', imageUrl: '/quiz/belly/normal.png' }
     ]
   },
   // TELA 7 — MOTIVAÇÃO
