@@ -62,7 +62,7 @@ export const quizSteps: QuizStepData[] = [
     headline: '+7.274 pessoas já usaram esse método',
     sub: 'Nosso protocolo de desinflamação ajuda você a perder no mínimo 3kg em 10 dias — sem dietas malucas.',
     testimonial: {
-      text: "⭐⭐⭐⭐⭐ \"O método foi muito eficaz pra mim, perdi 3kg nesses 10 dias. Nem todos os dias consegui bater a meta certinho, mas mesmo assim fui até o fim.\"",
+      text: "O método foi muito eficaz pra mim, perdi 3kg nesses 10 dias. Nem todos os dias consegui bater a meta certinho, mas mesmo assim fui até o fim.",
       author: 'Samuel T.'
     },
     badges: ['7.274+ Alunos', 'Protocolo Testado']
@@ -73,9 +73,9 @@ export const quizSteps: QuizStepData[] = [
     type: 'image-single-select',
     question: 'Qual é o seu tipo físico atual?',
     options: [
-      { id: 'magro', label: 'Magro', imageUrl: '/quiz/magro.jpg' },
-      { id: 'regular', label: 'Regular', imageUrl: '/quiz/regular.jpg' },
-      { id: 'sobrepeso', label: 'Sobrepeso', imageUrl: '/quiz/sobrepeso.jpg' }
+      { id: 'magro', label: 'Magro', imageUrl: '/quiz/magro.png' },
+      { id: 'regular', label: 'Regular', imageUrl: '/quiz/regular.png' },
+      { id: 'sobrepeso', label: 'Sobrepeso', imageUrl: '/quiz/sobrepeso.png' }
     ]
   },
   // TELA 4 — TIPO FÍSICO IDEAL
@@ -84,9 +84,9 @@ export const quizSteps: QuizStepData[] = [
     type: 'image-single-select',
     question: 'Qual é o seu objetivo de shape?',
     options: [
-      { id: 'definido', label: 'Definido (tanquinho leve)', imageUrl: '/quiz/definido.jpg' },
-      { id: 'atletico', label: 'Atlético (shape forte)', imageUrl: '/quiz/atletico.jpg' },
-      { id: 'magro', label: 'Apenas mais magro (sem foco em definição)', imageUrl: '/quiz/apenas-magro.jpg' }
+      { id: 'definido', label: 'Definido (tanquinho leve)', imageUrl: '/quiz/regular.png' },
+      { id: 'atletico', label: 'Atlético (shape forte)', imageUrl: '/quiz/regular.png' },
+      { id: 'magro', label: 'Apenas mais magro', imageUrl: '/quiz/magro.png' }
     ]
   },
   // TELA 5 — ÁREA PROBLEMÁTICA
@@ -95,9 +95,9 @@ export const quizSteps: QuizStepData[] = [
     type: 'image-single-select',
     question: 'Qual área te incomoda mais?',
     options: [
-      { id: 'barriga', label: 'Barriga', imageUrl: '/quiz/area-barriga.jpg' },
-      { id: 'rosto', label: 'Rosto/papada', imageUrl: '/quiz/area-rosto.jpg' },
-      { id: 'corpo', label: 'Corpo inteiro (inchaço geral)', imageUrl: '/quiz/area-corpo.jpg' }
+      { id: 'barriga', label: 'Barriga', imageUrl: '/quiz/belly_pochete.png' },
+      { id: 'rosto', label: 'Rosto/papada', imageUrl: '/quiz/sobrepeso.png' },
+      { id: 'corpo', label: 'Corpo inteiro', imageUrl: '/quiz/sobrepeso.png' }
     ]
   },
   // TELA 6 — TIPO DE BARRIGA
@@ -106,11 +106,11 @@ export const quizSteps: QuizStepData[] = [
     type: 'image-single-select',
     question: 'Que tipo de barriga você tem?',
     options: [
-      { id: 'cerveja', label: 'Barriga de cerveja/álcool', imageUrl: '/quiz/barriga-cerveja.jpg' },
-      { id: 'estresse', label: 'Barriga de estresse (cortisol)', imageUrl: '/quiz/barriga-estresse.jpg' },
-      { id: 'inchaco', label: 'Barriga de inchaço/retenção', imageUrl: '/quiz/barriga-inchaco.jpg' },
-      { id: 'alimentacao', label: 'Barriga de alimentação ruim', imageUrl: '/quiz/barriga-alimentacao.jpg' },
-      { id: 'normal', label: 'Normal (só quero secar mais)', imageUrl: '/quiz/barriga-normal.jpg' }
+      { id: 'cerveja', label: 'Barriga de álcool', imageUrl: '/quiz/belly_muito.png' },
+      { id: 'estresse', label: 'Barriga de estresse', imageUrl: '/quiz/belly_dilatada.png' },
+      { id: 'inchaco', label: 'Inchaço/retenção', imageUrl: '/quiz/belly_flat.png' },
+      { id: 'alimentacao', label: 'Alimentação ruim', imageUrl: '/quiz/belly_pochete.png' },
+      { id: 'normal', label: 'Normal (secar mais)', imageUrl: '/quiz/belly_flat.png' }
     ]
   },
   // TELA 7 — MOTIVAÇÃO
@@ -120,10 +120,10 @@ export const quizSteps: QuizStepData[] = [
     question: 'O que te motiva a perder peso agora?',
     options: [
       { id: 'aparencia', label: 'Melhorar minha aparência' },
-      { id: 'energia', label: 'Ter mais energia e disposição' },
-      { id: 'roupas', label: 'Voltar a caber nas minhas roupas' },
-      { id: 'evento', label: 'Evento importante chegando' },
-      { id: 'saude', label: 'Questão de saúde' },
+      { id: 'energia', label: 'Ter mais energia' },
+      { id: 'roupas', label: 'Caber nas roupas' },
+      { id: 'evento', label: 'Evento chegando' },
+      { id: 'saude', label: 'Saúde' },
       { id: 'outro', label: 'Outro' }
     ]
   },
@@ -133,7 +133,7 @@ export const quizSteps: QuizStepData[] = [
     type: 'info',
     headline: 'A maioria das pessoas não consegue emagrecer porque está INFLAMADA.',
     sub: 'Aquele peso que não sai não é só gordura, é retenção de líquido, inchaço e glicogênio acumulado.\nO Protocolo de Desinflamação elimina esse "peso falso" primeiro. Resultado? Você vê o peso diminuir na balança em DIAS, não semanas.',
-    chartImage: '/quiz/grafico.jpg'
+    chartImage: '/quiz/chart_metabolism.png'
   },
   // TELA 9 — TENTATIVAS ANTERIORES
   {
@@ -221,8 +221,8 @@ export const quizSteps: QuizStepData[] = [
       '10 dias — se não funcionar, você perdeu menos de 2 semanas'
     ],
     testimonial: {
-      text: "⭐⭐⭐⭐⭐ \"Infelizmente não segui à risca, foi o máximo que pude. Mas funcionou pra mim! Nos 10 dias acabei perdendo os 3,7kg!!!\"",
-      author: "(Aluno que o Gui fez com IA)" // TODO: remove placeholder indication
+      text: "Infelizmente não segui à risca, foi o máximo que pude. Mas funcionou pra mim! Nos 10 dias acabei perdendo os 3,7kg!!!",
+      author: "Aluno do Protocolo"
     }
   },
   // TELA 16 — PESO ATUAL

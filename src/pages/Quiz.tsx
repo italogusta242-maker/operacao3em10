@@ -31,7 +31,7 @@ export default function Quiz() {
 
   const handleNext = (answer?: any) => {
     if (answer !== undefined) {
-      setAnswers((prev) => ({ ...prev, [currentStepIndex]: answer }));
+      setAnswers((prev) => ({ ...prev, [step.id]: answer }));
     }
     if (currentStepIndex < quizSteps.length - 1) {
       setCurrentStepIndex((prev) => prev + 1);
@@ -72,49 +72,34 @@ export default function Quiz() {
   };
 
   return (
-    <div className="min-h-screen bg-background relative selection:bg-primary/30 selection:text-white flex flex-col">
+    <div className="h-[100dvh] bg-background relative selection:bg-primary/30 selection:text-white flex flex-col overflow-hidden">
       {/* Background glow effects - inherited from design system */}
       <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full ptr-events-none opacity-50 z-0 animate-pulse"></div>
       <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/20 blur-[120px] rounded-full ptr-events-none opacity-50 z-0 animate-pulse delay-1000"></div>
       <div className="fixed inset-0 bg-background/80 backdrop-blur-[20px] z-0 ptr-events-none"></div>
 
-      {/* Navbar & Progress */}
-      <div className="relative z-10 w-full pt-4 pb-2 px-6 flex flex-col gap-4 max-w-md mx-auto">
-        <div className="flex items-center justify-between">
-          <button 
-            onClick={handlePrevious}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-card/60 border border-white/5 hover:bg-white/10 transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5 text-muted-foreground" />
-          </button>
-          
-          <div className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">
-            Operação -3kg
-          </div>
-          
-          {/* Spacer for centering */}
-          <div className="w-10"></div>
+      {/* Navbar - Simplified, no progress bar as requested */}
+      <div className="relative z-10 w-full pt-4 pb-2 px-6 flex items-center justify-between max-w-md mx-auto">
+        <button 
+          onClick={handlePrevious}
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-card/60 border border-white/5 hover:bg-white/10 transition-colors"
+        >
+          <ChevronLeft className="w-5 h-5 text-muted-foreground" />
+        </button>
+        
+        <div className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground/50 uppercase">
+          Operação -3kg em 10
         </div>
-
-        {isNumberedScreen && (
-          <div className="w-full flex-col gap-2 flex animate-fade-in">
-            <div className="flex justify-between text-xs text-muted-foreground font-medium">
-              <span>Progresso</span>
-              <span className="text-primary">{currentStepIndex}/17</span>
-            </div>
-            <div className="w-full h-2 bg-card rounded-full overflow-hidden border border-white/5">
-              <div 
-                className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500 ease-out"
-                style={{ width: `${progressPercent}%` }}
-              ></div>
-            </div>
-          </div>
-        )}
+        
+        <div className="w-10"></div>
       </div>
 
-      {/* Content */}
-      <main className="relative z-10 flex-1 flex flex-col w-full max-w-md mx-auto px-6 pb-24 pt-6 animate-fade-up">
-        {renderStep()}
+      {/* Content - overflow-y-auto allowed only inside the main area if absolutely needed, 
+          but the goal is to fit everything without scroll */}
+      <main className="relative z-10 flex-1 flex flex-col w-full max-w-md mx-auto px-6 pb-6 pt-2 animate-fade-up overflow-hidden">
+        <div key={currentStepIndex} className="h-full w-full flex flex-col overflow-hidden">
+          {renderStep()}
+        </div>
       </main>
     </div>
   );
