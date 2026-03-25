@@ -1,5 +1,6 @@
 import { QuizStepData } from "../../data/quizData";
 import { CheckCircle2, Star } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend } from "recharts";
 
 interface Props {
   step: QuizStepData;
@@ -25,11 +26,31 @@ export default function InfoStep({ step, onNext }: Props) {
 
       <div className="flex-1 flex flex-col gap-4 mt-2 overflow-y-auto pr-1 pb-20 custom-scrollbar animate-fade-up animation-delay-400">
         {step.chartImage && (
-          <div className="w-full h-32 bg-card border border-white/5 rounded-xl overflow-hidden relative shrink-0 shadow-lg">
-            <div 
-              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${step.chartImage})`, backgroundColor: '#0a0a0a' }}
-            />
+          <div className="w-full bg-card border border-white/5 rounded-xl overflow-hidden shrink-0 shadow-lg p-3">
+            <p className="text-[10px] text-center text-muted-foreground font-semibold uppercase tracking-wider mb-2">Peso ao longo do tempo</p>
+            <ResponsiveContainer width="100%" height={160}>
+              <LineChart data={[
+                { semana: 'Sem 1', dieta: 82, protocolo: 82 },
+                { semana: 'Sem 2', dieta: 80, protocolo: 80 },
+                { semana: 'Sem 3', dieta: 81, protocolo: 78 },
+                { semana: 'Sem 4', dieta: 79, protocolo: 76 },
+                { semana: 'Sem 5', dieta: 81, protocolo: 75 },
+                { semana: 'Sem 6', dieta: 80, protocolo: 73 },
+                { semana: 'Sem 7', dieta: 82, protocolo: 72 },
+                { semana: 'Sem 8', dieta: 80, protocolo: 70 },
+              ]} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                <XAxis dataKey="semana" tick={{ fill: '#888', fontSize: 9 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: '#888', fontSize: 9 }} axisLine={false} tickLine={false} domain={[68, 84]} />
+                <Legend
+                  verticalAlign="bottom"
+                  iconType="line"
+                  wrapperStyle={{ fontSize: 10, paddingTop: 4 }}
+                />
+                <Line type="monotone" dataKey="dieta" name="Dieta Comum" stroke="#ef4444" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="protocolo" name="Protocolo" stroke="#4ade80" strokeWidth={2.5} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         )}
 
