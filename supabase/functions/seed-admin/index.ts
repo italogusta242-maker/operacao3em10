@@ -11,7 +11,7 @@ Deno.serve(async (req) => {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 
-  const email = "admin@operação3em10.com";
+  const email = "admin@operacao3em10.com";
   const password = "Admin@123!";
 
   // Check if user already exists
