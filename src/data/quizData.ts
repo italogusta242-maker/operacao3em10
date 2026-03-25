@@ -73,8 +73,8 @@ export const quizSteps: QuizStepData[] = [
     type: 'image-single-select',
     question: 'Qual é o seu tipo físico atual?',
     options: [
-      { id: 'magro', label: 'Magro', imageUrl: '/quiz/magro.png' },
-      { id: 'regular', label: 'Regular', imageUrl: '/quiz/regular.png' },
+      { id: 'magro', label: 'Magro', imageUrl: '/quiz/magro_body.png' },
+      { id: 'regular', label: 'Regular', imageUrl: '/quiz/regular_body.png' },
       { id: 'sobrepeso', label: 'Sobrepeso', imageUrl: '/quiz/sobrepeso.png' }
     ]
   },
@@ -84,9 +84,9 @@ export const quizSteps: QuizStepData[] = [
     type: 'image-single-select',
     question: 'Qual é o seu objetivo de shape?',
     options: [
-      { id: 'definido', label: 'Definido (tanquinho leve)', imageUrl: '/quiz/regular.png' },
-      { id: 'atletico', label: 'Atlético (shape forte)', imageUrl: '/quiz/regular.png' },
-      { id: 'magro', label: 'Apenas mais magro', imageUrl: '/quiz/magro.png' }
+      { id: 'definido', label: 'Definido (tanquinho leve)', imageUrl: '/quiz/definido_body.png' },
+      { id: 'atletico', label: 'Atlético (shape forte)', imageUrl: '/quiz/regular_body.png' },
+      { id: 'magro', label: 'Apenas mais magro', imageUrl: '/quiz/apenas_magro.png' }
     ]
   },
   // TELA 5 — ÁREA PROBLEMÁTICA
@@ -96,8 +96,8 @@ export const quizSteps: QuizStepData[] = [
     question: 'Qual área te incomoda mais?',
     options: [
       { id: 'barriga', label: 'Barriga', imageUrl: '/quiz/belly_pochete.png' },
-      { id: 'rosto', label: 'Rosto/papada', imageUrl: '/quiz/sobrepeso.png' },
-      { id: 'corpo', label: 'Corpo inteiro', imageUrl: '/quiz/sobrepeso.png' }
+      { id: 'rosto', label: 'Rosto/papada', imageUrl: '/quiz/rosto_papada.png' },
+      { id: 'corpo', label: 'Corpo inteiro', imageUrl: '/quiz/corpo_inteiro.png' }
     ]
   },
   // TELA 6 — TIPO DE BARRIGA
@@ -108,9 +108,9 @@ export const quizSteps: QuizStepData[] = [
     options: [
       { id: 'cerveja', label: 'Barriga de álcool', imageUrl: '/quiz/belly_muito.png' },
       { id: 'estresse', label: 'Barriga de estresse', imageUrl: '/quiz/belly_dilatada.png' },
-      { id: 'inchaco', label: 'Inchaço/retenção', imageUrl: '/quiz/belly_flat.png' },
-      { id: 'alimentacao', label: 'Alimentação ruim', imageUrl: '/quiz/belly_pochete.png' },
-      { id: 'normal', label: 'Normal (secar mais)', imageUrl: '/quiz/belly_flat.png' }
+      { id: 'inchaco', label: 'Inchaço/retenção', imageUrl: '/quiz/belly_flat.png' }, // Fallback to current due to limit
+      { id: 'alimentacao', label: 'Alimentação ruim', imageUrl: '/quiz/alimentacao_ruim.png' },
+      { id: 'normal', label: 'Normal (secar mais)', imageUrl: '/quiz/normal_secar.png' }
     ]
   },
   // TELA 7 — MOTIVAÇÃO
@@ -222,7 +222,7 @@ export const quizSteps: QuizStepData[] = [
     ],
     testimonial: {
       text: "Infelizmente não segui à risca, foi o máximo que pude. Mas funcionou pra mim! Nos 10 dias acabei perdendo os 3,7kg!!!",
-      author: "Aluno do Protocolo"
+      author: "Thiago"
     }
   },
   // TELA 16 — PESO ATUAL

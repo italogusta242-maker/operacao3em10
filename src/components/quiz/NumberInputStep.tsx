@@ -26,17 +26,34 @@ export default function NumberInputStep({ step, onNext, answers }: Props) {
         {step.sub && <p className="text-muted-foreground text-xs animate-fade-up animation-delay-400">{step.sub}</p>}
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center animate-fade-up animation-delay-600">
-        <div className="relative flex items-center w-full max-w-[160px]">
+      <div className="flex-1 flex flex-col items-center justify-center animate-fade-up animation-delay-600 w-full mb-10 mt-8">
+        <div className="text-center mb-8">
+          <span className="text-6xl font-black text-white">{value}</span>
+          <span className="text-2xl text-muted-foreground ml-1">kg</span>
+        </div>
+        
+        <div className="w-full max-w-xs relative px-4">
           <input
-            type="number"
+            type="range"
+            min="40"
+            max="150"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            className="w-full bg-card/50 border-2 border-white/5 rounded-2xl text-center text-4xl font-extrabold py-5 text-white focus:outline-none focus:border-primary transition-colors pr-8"
-            placeholder="00"
-            autoFocus
+            onChange={(e) => setValue(Number(e.target.value))}
+            className="w-full appearance-none bg-transparent h-12 focus:outline-none cursor-grab active:cursor-grabbing slider-thumb-premium slider-track-premium"
+            style={{
+               background: `linear-gradient(to right, #ff6600 0%, #ff6600 ${(value - 40) / (150 - 40) * 100}%, rgba(255,255,255,0.1) ${(value - 40) / (150 - 40) * 100}%, rgba(255,255,255,0.1) 100%)`,
+               borderRadius: '999px',
+               height: '8px',
+               marginTop: '20px'
+            }}
           />
-          <span className="absolute right-5 text-lg text-muted-foreground/60 font-bold font-body">kg</span>
+          {/* Custom tick marks under slider */}
+          <div className="flex justify-between text-[10px] text-muted-foreground/40 mt-3 font-semibold px-1 pointer-events-none">
+            <span>40kg</span>
+            <span>70kg</span>
+            <span>100kg</span>
+            <span>150kg</span>
+          </div>
         </div>
       </div>
 
@@ -44,7 +61,7 @@ export default function NumberInputStep({ step, onNext, answers }: Props) {
         <button
           onClick={handleContinue}
           disabled={!value || isNaN(Number(value))}
-          className="w-full bg-primary text-primary-foreground font-bold py-4 rounded-xl text-base
+          className="w-full bg-primary text-primary-foreground font-black py-4 rounded-xl text-lg uppercase tracking-wider
             disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-all shadow-[0_0_20px_rgba(122,255,122,0.2)]"
         >
           Continuar

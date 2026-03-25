@@ -44,7 +44,7 @@ export default function SingleSelectStep({ step, onNext, answers }: Props) {
       </div>
 
       {step.badges && (
-        <div className="flex flex-wrap gap-1.5 justify-center mt-4">
+        <div className="flex flex-wrap gap-1.5 justify-center mt-4 shrink-0">
           {step.badges.map((badge, idx) => (
             <span key={idx} className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[10px] font-bold border border-primary/20">
               {badge}
@@ -54,8 +54,10 @@ export default function SingleSelectStep({ step, onNext, answers }: Props) {
       )}
 
       {step.footerText && (
-        <div className="mt-4 text-center text-[10px] text-muted-foreground/60">
-          {step.footerText}
+        <div className="mt-6 mb-2 text-center shrink-0">
+          <p className="text-sm font-bold text-white/90 bg-white/5 border border-white/10 rounded-xl py-3 px-4 shadow-lg inline-flex items-center gap-2">
+            <span className="text-lg">⚠️</span> {step.footerText.replace('⚠️ ', '')}
+          </p>
         </div>
       )}
     </div>

@@ -27,7 +27,7 @@ export default function InfoStep({ step, onNext }: Props) {
         {step.chartImage && (
           <div className="w-full h-32 bg-card border border-white/5 rounded-xl overflow-hidden relative shrink-0 shadow-lg">
             <div 
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${step.chartImage})`, backgroundColor: '#0a0a0a' }}
             />
           </div>

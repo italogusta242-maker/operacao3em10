@@ -78,23 +78,33 @@ export default function Quiz() {
       <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/20 blur-[120px] rounded-full ptr-events-none opacity-50 z-0 animate-pulse delay-1000"></div>
       <div className="fixed inset-0 bg-background/80 backdrop-blur-[20px] z-0 ptr-events-none"></div>
 
-      {/* Navbar - Simplified, no progress bar as requested */}
-      <div className="relative z-10 w-full pt-4 pb-2 px-6 flex items-center justify-between max-w-md mx-auto">
-        <button 
-          onClick={handlePrevious}
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-card/60 border border-white/5 hover:bg-white/10 transition-colors"
-        >
-          <ChevronLeft className="w-5 h-5 text-muted-foreground" />
-        </button>
-        
-        <div className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground/50 uppercase">
-          Operação -3kg em 10
+      {/* Navbar com Progress Bar e Logo */}
+      <div className="relative z-10 w-full pt-4 pb-2 px-6 flex flex-col items-center justify-center max-w-md mx-auto gap-4">
+        <div className="w-full flex items-center justify-between">
+          <button 
+            onClick={handlePrevious}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-card/60 border border-white/5 hover:bg-white/10 transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5 text-muted-foreground" />
+          </button>
+          
+          <img src="/logo.avif" alt="Operação -3kg em 10" className="h-6 object-contain" />
+          
+          <div className="w-10"></div>
         </div>
-        
-        <div className="w-10"></div>
+
+        {/* Progress Bar (sem o número) */}
+        {isNumberedScreen && (
+          <div className="w-full h-1.5 bg-card/50 rounded-full overflow-hidden border border-white/5">
+            <div 
+              className="h-full bg-primary transition-all duration-500 ease-out shadow-[0_0_10px_rgba(122,255,122,0.5)]"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        )}
       </div>
 
-      {/* Content - overflow-y-auto allowed only inside the main area if absolutely needed, 
+      {/* Content - overflow-y-auto allowed only inside the main area se absolutely needed, 
           but the goal is to fit everything without scroll */}
       <main className="relative z-10 flex-1 flex flex-col w-full max-w-md mx-auto px-6 pb-6 pt-2 animate-fade-up overflow-hidden">
         <div key={currentStepIndex} className="h-full w-full flex flex-col overflow-hidden">

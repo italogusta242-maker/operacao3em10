@@ -50,15 +50,15 @@ export default function ImageSelectStep({ step, onNext, answers }: Props) {
               />
               
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               
               {/* Content */}
               <div className="relative z-10 p-2.5 w-full flex items-center justify-between">
-                <span className={`font-bold text-[13px] text-left leading-tight ${currentAnswer === opt.id ? 'text-primary' : 'text-white/90'}`}>
+                <span className={`font-bold text-[13px] text-left leading-tight drop-shadow-md ${currentAnswer === opt.id ? 'text-primary' : 'text-white'}`}>
                   {opt.label}
                 </span>
                 <div className={`w-3.5 h-3.5 shrink-0 rounded-full border flex items-center justify-center transition-colors
-                  ${currentAnswer === opt.id ? 'border-primary bg-primary' : 'border-white/20'}`}>
+                  ${currentAnswer === opt.id ? 'border-primary bg-primary' : 'border-white/40 bg-black/50'}`}>
                   {currentAnswer === opt.id && <Check className="w-2 h-2 text-background" />}
                 </div>
               </div>
