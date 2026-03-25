@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 
-const CTA_URL = "https://payment.ticto.app/O0656C50E";
+export const CTA_URL = "https://payment.ticto.app/O0656C50E";
 
 interface CTAButtonProps {
   text: string;
