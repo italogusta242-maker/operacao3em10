@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BodySlider } from './BodySlider';
 import { QuizStepData } from '@/data/quizData';
 import { Button } from '@/components/ui/button';
+import { onSliderChange, onSliderFinal } from '@/lib/tracker';
 
 interface BodySliderStepProps {
   step: QuizStepData;
@@ -20,7 +21,16 @@ export function BodySliderStep({ step, onNext, answers }: BodySliderStepProps) {
   const handleNext = () => {
     const selectedOption = step.options?.[selectedIndex];
     if (selectedOption) {
+      onSliderFinal(selectedOption.id);
       onNext(selectedOption.id);
+    }
+  };
+
+  const handleChange = (val: number) => {
+    setSelectedIndex(val);
+    const selectedOption = step.options?.[val];
+    if (selectedOption) {
+      onSliderChange(selectedOption.id);
     }
   };
 
@@ -42,7 +52,7 @@ export function BodySliderStep({ step, onNext, answers }: BodySliderStepProps) {
           images={images}
           labels={labels}
           value={selectedIndex}
-          onChange={setSelectedIndex}
+          onChange={handleChange}
         />
       </div>
 

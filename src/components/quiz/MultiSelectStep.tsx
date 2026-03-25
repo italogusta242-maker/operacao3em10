@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { QuizStepData } from "../../data/quizData";
 import { Check } from "lucide-react";
+import { onOptionSelect, onOptionDeselect } from "@/lib/tracker";
 
 interface Props {
   step: QuizStepData;
@@ -12,9 +13,16 @@ export default function MultiSelectStep({ step, onNext, answers }: Props) {
   const [selected, setSelected] = useState<string[]>(answers[step.id] || []);
 
   const toggleOption = (id: string) => {
-    setSelected((prev) => 
-      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
+    setSelected((prev) => {
+      const isSelected = prev.includes(id);
+      if (isSelected) {
+        onOptionDeselect(id);
+        return prev.filter(i => i !== id);
+      } else {
+        onOptionSelect(id);
+        return [...prev, id];
+      }
+    });
   };
 
   const handleContinue = () => {

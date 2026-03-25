@@ -1,14 +1,22 @@
 import { QuizStepData } from "../../data/quizData";
 import { Check } from "lucide-react";
+import { onOptionSelect } from "@/lib/tracker";
 
 interface Props {
   step: QuizStepData;
-  onNext: (answer: any) => void;
+  onNext: (answer: string) => void;
   answers: any;
 }
 
 export default function SingleSelectStep({ step, onNext, answers }: Props) {
   const currentAnswer = answers[step.id];
+
+  const handleSelect = (id: string) => {
+    onOptionSelect(id);
+    setTimeout(() => {
+      onNext(id);
+    }, 250);
+  };
 
   return (
     <div className="flex flex-col h-full animate-fade-in w-full overflow-hidden">

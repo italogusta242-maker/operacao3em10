@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { QuizStepData } from "../../data/quizData";
 import { WeightSlider } from "./WeightSlider";
+import { onSliderChange, onSliderFinal } from "@/lib/tracker";
 
 interface Props {
   step: QuizStepData;
@@ -28,13 +29,19 @@ export default function NumberInputStep({ step, onNext, answers }: Props) {
           max={150}
           initial={value}
           unit="kg"
-          onChange={(val) => setValue(val)}
+          onChange={(val) => {
+            setValue(val);
+            onSliderChange(val);
+          }}
         />
       </div>
 
       <div className="mt-auto pt-6 animate-fade-up animation-delay-600 pb-2">
         <button
-          onClick={() => onNext(value)}
+          onClick={() => {
+            onSliderFinal(value);
+            onNext(value);
+          }}
           className="w-full py-4 bg-primary text-white text-lg font-bold rounded-xl transition-all hover:brightness-110 active:scale-[0.98] shadow-[0_0_20px_rgba(34,197,94,0.3)]"
         >
           Continuar

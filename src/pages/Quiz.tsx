@@ -14,11 +14,12 @@ import ResultStep from "@/components/quiz/ResultStep";
 import { CTA_URL } from "../components/CTAButton";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 import logo from "@/assets/logo-operacao-3em10.webp";
+import { trackEvent, onStepEnter, onStepComplete, onSessionEnd } from "@/lib/tracker";
 
 export default function Quiz() {
   const navigate = useNavigate();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, any>>({});
+  const [answers, setAnswers] = useState<Record<string | number, any>>({});
 
   const step: QuizStepData = quizSteps[currentStepIndex];
   
@@ -28,19 +29,46 @@ export default function Quiz() {
   const progressPercent = isNumberedScreen ? (currentStepIndex / 17) * 100 : 0;
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    trackEvent({ event: 'session_start', meta: { 
+      utm_source: params.get('utm_source'),
+      utm_medium: params.get('utm_medium'),
+      utm_campaign: params.get('utm_campaign'),
+      utm_content: params.get('utm_content'),
+      referrer: document.referrer,
+      userAgent: navigator.userAgent,
+    }});
+    
+    window.addEventListener('beforeunload', onSessionEnd);
+    return () => window.removeEventListener('beforeunload', onSessionEnd);
+  }, []);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (step.type === "result") {
+      trackEvent({ event: 'result_view', stepIndex: currentStepIndex, stepId: String(step.id) });
+    } else {
+      onStepEnter(currentStepIndex, step.id);
+    }
   }, [currentStepIndex]);
 
   const handleNext = (answer?: any) => {
     if (answer !== undefined) {
       setAnswers((prev) => ({ ...prev, [step.id]: answer }));
     }
+
+    if (step.type !== 'result' && step.type !== 'loading') {
+      onStepComplete(answer);
+    }
+
     if (currentStepIndex < quizSteps.length - 1) {
       setCurrentStepIndex((prev) => prev + 1);
     }
   };
 
   const handlePrevious = () => {
+    trackEvent({ event: 'step_back', stepIndex: currentStepIndex, stepId: String(step.id) });
     if (currentStepIndex > 0) {
       setCurrentStepIndex((prev) => prev - 1);
     } else {
@@ -67,6 +95,7 @@ export default function Quiz() {
         return <LoadingStep onNext={handleNext} />;
       case "result":
         return <ResultStep answers={answers} onNext={() => {
+          trackEvent({ event: 'result_cta_click' });
           trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
           window.location.href = CTA_URL;
         }} />;

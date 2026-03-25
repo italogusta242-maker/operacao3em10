@@ -1,5 +1,6 @@
 import { QuizStepData } from "../../data/quizData";
 import { Check } from "lucide-react";
+import { onOptionSelect } from "@/lib/tracker";
 
 interface Props {
   step: QuizStepData;
@@ -25,6 +26,7 @@ export default function ImageSelectStep({ step, onNext, answers }: Props) {
           <button
             key={opt.id}
             onClick={() => {
+              onOptionSelect(opt.id);
               setTimeout(() => onNext(opt.id), 250);
             }}
             className={`relative overflow-hidden group rounded-xl border transition-all duration-300 flex flex-col cursor-pointer p-0 w-full h-[220px] shrink-0
