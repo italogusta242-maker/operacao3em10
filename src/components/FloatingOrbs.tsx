@@ -13,7 +13,7 @@ const FloatingOrbs = () => (
     {orbs.map((orb, i) => (
       <motion.div
         key={i}
-        className="absolute rounded-full pointer-events-none"
+        className="hidden md:block absolute rounded-full pointer-events-none"
         style={{
           width: orb.size,
           height: orb.size,

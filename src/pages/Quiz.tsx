@@ -3,15 +3,17 @@ import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { quizSteps, QuizStepData } from "../data/quizData";
 // Componentes parciais (que vamos criar a seguir)
-import SingleSelectStep from "../components/quiz/SingleSelectStep";
-import MultiSelectStep from "../components/quiz/MultiSelectStep";
-import ImageSelectStep from "../components/quiz/ImageSelectStep";
-import InfoStep from "../components/quiz/InfoStep";
-import NumberInputStep from "../components/quiz/NumberInputStep";
-import LoadingStep from "../components/quiz/LoadingStep";
-import ResultStep from "../components/quiz/ResultStep";
+import SingleSelectStep from "@/components/quiz/SingleSelectStep";
+import MultiSelectStep from "@/components/quiz/MultiSelectStep";
+import ImageSelectStep from "@/components/quiz/ImageSelectStep";
+import InfoStep from "@/components/quiz/InfoStep";
+import NumberInputStep from "@/components/quiz/NumberInputStep";
+import { BodySliderStep } from "@/components/quiz/BodySliderStep";
+import LoadingStep from "@/components/quiz/LoadingStep";
+import ResultStep from "@/components/quiz/ResultStep";
 import { CTA_URL } from "../components/CTAButton";
 import { trackMetaEvent } from "@/lib/meta-pixel";
+import logo from "@/assets/logo-operacao-3em10.webp";
 
 export default function Quiz() {
   const navigate = useNavigate();
@@ -55,6 +57,8 @@ export default function Quiz() {
         return <MultiSelectStep step={step} onNext={handleNext} answers={answers} />;
       case "image-single-select":
         return <ImageSelectStep step={step} onNext={handleNext} answers={answers} />;
+      case "body-slider":
+        return <BodySliderStep step={step} onNext={handleNext} answers={answers} />;
       case "info":
         return <InfoStep step={step} onNext={handleNext} />;
       case "number-input":
@@ -74,9 +78,9 @@ export default function Quiz() {
   return (
     <div className="h-[100dvh] bg-background relative selection:bg-primary/30 selection:text-white flex flex-col overflow-hidden">
       {/* Background glow effects - inherited from design system */}
-      <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full ptr-events-none opacity-50 z-0 animate-pulse"></div>
-      <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/20 blur-[120px] rounded-full ptr-events-none opacity-50 z-0 animate-pulse delay-1000"></div>
-      <div className="fixed inset-0 bg-background/80 backdrop-blur-[20px] z-0 ptr-events-none"></div>
+      <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full ptr-events-none opacity-50 z-0 transform-gpu leading-none select-none"></div>
+      <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/20 blur-[120px] rounded-full ptr-events-none opacity-50 z-0 transform-gpu leading-none select-none"></div>
+      <div className="fixed inset-0 bg-background/80 backdrop-blur-[20px] z-0 ptr-events-none transform-gpu leading-none select-none"></div>
 
       {/* Navbar com Progress Bar e Logo */}
       <div className="relative z-10 w-full pt-4 pb-2 px-6 flex flex-col items-center justify-center max-w-md mx-auto gap-4">
@@ -88,7 +92,13 @@ export default function Quiz() {
             <ChevronLeft className="w-5 h-5 text-muted-foreground" />
           </button>
           
-          <img src="/logo.avif" alt="Operação -3kg em 10" className="h-6 object-contain" />
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="Operação -3kg em 10" className="w-8 h-8" />
+            <span className="font-display font-black text-lg tracking-tight">
+              <span className="text-gradient-accent text-glow-accent">Operação -3kg</span>{" "}
+              <span className="text-gradient-primary">em 10</span>
+            </span>
+          </div>
           
           <div className="w-10"></div>
         </div>

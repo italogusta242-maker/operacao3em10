@@ -20,49 +20,52 @@ export default function ImageSelectStep({ step, onNext, answers }: Props) {
         {step.sub && <p className="text-muted-foreground text-xs animate-fade-up animation-delay-400">{step.sub}</p>}
       </div>
 
-      <div className="grid grid-cols-2 gap-2 flex-1 animate-fade-up animation-delay-600 overflow-y-auto pr-1 pb-4 custom-scrollbar">
+      <div className="grid grid-cols-2 gap-3 flex-1 animate-fade-up animation-delay-600 overflow-y-auto pr-1 pb-4 custom-scrollbar">
         {step.options?.map((opt, index) => {
           const isOddTotal = step.options!.length % 2 !== 0;
           const isLast = index === step.options!.length - 1;
-          const isFullWidthRow = isOddTotal && isLast;
+          const isFullWidthCentered = isOddTotal && isLast;
 
           return (
-            <button
-              key={opt.id}
-              onClick={() => {
-                setTimeout(() => onNext(opt.id), 250);
-              }}
-              className={`relative overflow-hidden group rounded-xl border transition-all duration-300 flex flex-col items-center justify-end shrink-0
-                ${isFullWidthRow ? 'col-span-2' : ''}
-                ${currentAnswer === opt.id 
-                  ? 'border-primary ring-1 ring-primary' 
-                  : 'border-white/5 hover:border-primary/30'}`}
-              style={{ height: isFullWidthRow ? '120px' : '140px' }}
+            <div 
+              key={opt.id} 
+              className={`${isFullWidthCentered ? 'col-span-2 flex justify-center' : 'w-full'}`}
             >
-              {/* Image Background */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{ 
-                  backgroundImage: `url(${opt.imageUrl || ''})`,
-                  backgroundPosition: 'center',
-                  backgroundColor: '#0a0a0a' 
+              <button
+                onClick={() => {
+                  setTimeout(() => onNext(opt.id), 250);
                 }}
-              />
-              
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-              
-              {/* Content */}
-              <div className="relative z-10 p-2.5 w-full flex items-center justify-between">
-                <span className={`font-bold text-[13px] text-left leading-tight drop-shadow-md ${currentAnswer === opt.id ? 'text-primary' : 'text-white'}`}>
+                className={`relative overflow-hidden group rounded-xl border transition-all duration-300 flex flex-col cursor-pointer p-0 w-full aspect-[3/4]
+                  ${isFullWidthCentered ? 'max-w-[50%]' : ''}
+                  ${currentAnswer === opt.id 
+                    ? 'border-primary ring-1 ring-primary' 
+                    : 'border-transparent bg-[#111]'}`}
+              >
+                {/* Image */}
+                <img 
+                  src={opt.imageUrl || ''} 
+                  alt={opt.label}
+                  className="w-full h-full object-cover object-top block transition-transform duration-700 group-hover:scale-105"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black/85 to-transparent pointer-events-none" />
+                
+                {/* Label */}
+                <span className={`absolute bottom-3 left-3 text-sm font-semibold transition-colors
+                  ${currentAnswer === opt.id ? 'text-primary' : 'text-white'}`}>
                   {opt.label}
                 </span>
-                <div className={`w-3.5 h-3.5 shrink-0 rounded-full border flex items-center justify-center transition-colors
-                  ${currentAnswer === opt.id ? 'border-primary bg-primary' : 'border-white/40 bg-black/50'}`}>
-                  {currentAnswer === opt.id && <Check className="w-2 h-2 text-background" />}
+
+                {/* Radio Indicator */}
+                <div className={`absolute bottom-3 right-3 w-5 h-5 rounded-full border flex items-center justify-center transition-all
+                  ${currentAnswer === opt.id ? 'border-primary bg-primary' : 'border-white/40 bg-transparent'}`}>
+                  {currentAnswer === opt.id && (
+                    <div className="w-2 h-2 rounded-full bg-white" />
+                  )}
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
           );
         })}
       </div>

@@ -3,6 +3,7 @@ export type QuestionType =
   | 'single-select'
   | 'multi-select'
   | 'image-single-select'
+  | 'body-slider'
   | 'number-input'
   | 'info'
   | 'loading'
@@ -70,23 +71,27 @@ export const quizSteps: QuizStepData[] = [
   // TELA 3 — TIPO FÍSICO ATUAL
   {
     id: 3,
-    type: 'image-single-select',
+    type: 'body-slider',
     question: 'Qual é o seu tipo físico atual?',
+    sub: 'Deslize para encontrar o seu físico atual',
     options: [
-      { id: 'magro', label: 'Magro', imageUrl: '/quiz/magro_body.png' },
-      { id: 'regular', label: 'Regular', imageUrl: '/quiz/regular_body.png' },
-      { id: 'sobrepeso', label: 'Sobrepeso', imageUrl: '/quiz/sobrepeso.png' }
+      { id: 'magro', label: 'Magro', imageUrl: '/quiz/body/current_0.png' },
+      { id: 'regular', label: 'Regular', imageUrl: '/quiz/body/current_1.png' },
+      { id: 'sobrepeso', label: 'Sobrepeso', imageUrl: '/quiz/body/current_2.png' },
+      { id: 'obeso', label: 'Obeso', imageUrl: '/quiz/body/current_3.png' }
     ]
   },
   // TELA 4 — TIPO FÍSICO IDEAL
   {
     id: 4,
-    type: 'image-single-select',
+    type: 'body-slider',
     question: 'Qual é o seu objetivo de shape?',
+    sub: 'Onde você quer chegar em 10 dias?',
     options: [
-      { id: 'definido', label: 'Definido (tanquinho leve)', imageUrl: '/quiz/definido_body.png' },
-      { id: 'atletico', label: 'Atlético (shape forte)', imageUrl: '/quiz/regular_body.png' },
-      { id: 'magro', label: 'Apenas mais magro', imageUrl: '/quiz/apenas_magro.png' }
+      { id: 'magro', label: 'Modelo', imageUrl: '/quiz/body/goal_0.png' },
+      { id: 'definido', label: 'Definido', imageUrl: '/quiz/body/goal_1.png' },
+      {id: 'musculoso', label: 'Musculoso', imageUrl: '/quiz/body/goal_2.png'},
+      {id: 'atletico', label: 'Atlético', imageUrl: '/quiz/body/goal_3.png'}
     ]
   },
   // TELA 5 — ÁREA PROBLEMÁTICA
