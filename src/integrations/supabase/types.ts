@@ -14,13 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      events: {
+        Row: {
+          country: string | null
+          created_at: string | null
+          event: string
+          id: number
+          ip: string | null
+          meta: Json | null
+          session_id: string
+          step_id: string | null
+          step_index: number | null
+          time_on_step_ms: number | null
+          total_time_ms: number | null
+          value: Json | null
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string | null
+          event: string
+          id?: number
+          ip?: string | null
+          meta?: Json | null
+          session_id: string
+          step_id?: string | null
+          step_index?: number | null
+          time_on_step_ms?: number | null
+          total_time_ms?: number | null
+          value?: Json | null
+        }
+        Update: {
+          country?: string | null
+          created_at?: string | null
+          event?: string
+          id?: number
+          ip?: string | null
+          meta?: Json | null
+          session_id?: string
+          step_id?: string | null
+          step_index?: number | null
+          time_on_step_ms?: number | null
+          total_time_ms?: number | null
+          value?: Json | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_admin_metrics: {
+        Args: { from_date: string; to_date: string }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
