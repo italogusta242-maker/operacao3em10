@@ -13,13 +13,19 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export default function AdminDashboard() {
   const [metrics, setMetrics] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [period, setPeriod] = useState<'today' | '7d' | '30d' | '90d' | 'all'>('30d');
+  
+  // Independent periods
+  const [summaryPeriod, setSummaryPeriod] = useState<'today' | '7d' | '30d' | '90d' | 'all'>('30d');
+  const [funnelPeriod, setFunnelPeriod] = useState<'today' | '7d' | '30d' | '90d' | 'all'>('30d');
+  const [volumePeriod, setVolumePeriod] = useState<'today' | '7d' | '30d' | '90d' | 'all'>('30d');
+  
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkAuthAndLoad();
-  }, [period]);
+    loadAllMetrics();
+  }, [summaryPeriod, funnelPeriod, volumePeriod]);
 
   async function checkAuthAndLoad() {
     const { data: { session } } = await supabase.auth.getSession();
@@ -27,46 +33,54 @@ export default function AdminDashboard() {
       navigate('/admin/login');
       return;
     }
-    loadMetrics();
+    loadAllMetrics();
   }
 
-  async function loadMetrics() {
-    setLoading(true);
-    setErrorMsg(null);
-    
+  const getDates = (p: string) => {
     const now = new Date();
     let fromDate: Date;
-
-    switch (period) {
-      case 'today':
-        fromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        break;
-      case '7d':
-        fromDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-        break;
-      case '30d':
-        fromDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
-        break;
-      case '90d':
-        fromDate = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000);
-        break;
-      case 'all':
-      default:
-        fromDate = new Date(2024, 0, 1); // Early start date
+    switch (p) {
+      case 'today': fromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate()); break;
+      case '7d': fromDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); break;
+      case '30d': fromDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000); break;
+      case '90d': fromDate = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000); break;
+      default: fromDate = new Date(2024, 0, 1);
     }
+    return { from_date: fromDate.toISOString(), to_date: now.toISOString() };
+  };
 
-    const { data, error } = await (supabase.rpc as any)('get_admin_metrics', {
-      from_date: fromDate.toISOString(),
-      to_date: now.toISOString()
-    });
+  async function loadAllMetrics() {
+    if (!metrics) setLoading(true);
+    else setUpdating(true);
+    setErrorMsg(null);
+    
+    try {
+      // Parallel fetches for independent periods
+      const [summaryRes, funnelRes, volumeRes] = await Promise.all([
+        supabase.rpc('get_admin_metrics', getDates(summaryPeriod)),
+        supabase.rpc('get_admin_metrics', getDates(funnelPeriod)),
+        supabase.rpc('get_admin_metrics', getDates(volumePeriod))
+      ]);
 
-    if (error) {
-      console.error("Dashboard falhou ao carregar métricas:", error);
+      if (summaryRes.error) throw summaryRes.error;
+      
+      const sData = summaryRes.data as any;
+      const fData = funnelRes.data as any;
+      const vData = volumeRes.data as any;
+
+      setMetrics({
+        summary: sData.summary,
+        topUtmSources: sData.topUtmSources,
+        stepFunnel: fData.stepFunnel,
+        sessionsByDay: vData.sessionsByDay
+      });
+    } catch (error: any) {
+      console.error("Dashboard error:", error);
       setErrorMsg(error.message || JSON.stringify(error));
-    } else {
-      setMetrics(data);
+    } finally {
+      setLoading(false);
+      setUpdating(false);
     }
-    setLoading(false);
   }
 
   async function handleLogout() {
@@ -86,10 +100,9 @@ export default function AdminDashboard() {
   if (errorMsg) {
     return (
       <div className="min-h-screen bg-background items-center justify-center flex flex-col p-8 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-red-500">Aviso do Banco de Dados</h2>
+        <h2 className="text-2xl font-bold text-red-500">Erro no Banco de Dados</h2>
         <p className="text-white max-w-xl">{errorMsg}</p>
-        <p className="text-muted-foreground text-sm">Atualize a sua função SQL rodando o novo script `supabase_setup.sql` no painel do Supabase.</p>
-        <Button onClick={loadMetrics} variant="outline">Tentar Novamente</Button>
+        <Button onClick={loadAllMetrics} variant="outline">Tentar Novamente</Button>
       </div>
     );
   }
@@ -98,7 +111,8 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-background items-center justify-center flex flex-col text-white space-y-4">
         <p>O painel de métricas está vazio. Navegue pelo quiz para gerar os primeiros dados!</p>
-        <Button onClick={handleLogout} variant="outline">Sair</Button>
+        <Button onClick={loadAllMetrics} variant="outline" className="mr-2">Tentar Carregar</Button>
+        <Button onClick={handleLogout} variant="destructive">Sair</Button>
       </div>
     );
   }
@@ -124,31 +138,12 @@ export default function AdminDashboard() {
             </h1>
             <div className="flex items-center gap-2 mt-2">
               <Calendar className="w-4 h-4 text-muted-foreground" />
-              <div className="flex bg-black/40 p-1 rounded-lg border border-white/5">
-                {[
-                  { id: 'today', label: 'Hoje' },
-                  { id: '7d', label: '7D' },
-                  { id: '30d', label: '30D' },
-                  { id: '90d', label: '90D' },
-                  { id: 'all', label: 'Total' }
-                ].map((p) => (
-                  <button
-                    key={p.id}
-                    onClick={() => setPeriod(p.id as any)}
-                    className={`px-3 py-1 text-xs font-bold rounded-md transition-all ${
-                      period === p.id 
-                        ? 'bg-primary text-primary-foreground shadow-lg' 
-                        : 'text-muted-foreground hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    {p.label}
-                  </button>
-                ))}
-              </div>
+              <PeriodSelector current={summaryPeriod} onChange={setSummaryPeriod} />
+              {updating && <Loader2 className="w-4 h-4 animate-spin text-primary ml-2" />}
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Button onClick={loadMetrics} variant="outline" className="border-white/10 text-white hover:bg-white/10">Atualizar</Button>
+            <Button onClick={loadAllMetrics} variant="outline" className="border-white/10 text-white hover:bg-white/10">Atualizar</Button>
             <Button onClick={handleLogout} variant="destructive">Sair</Button>
           </div>
         </div>
@@ -168,9 +163,9 @@ export default function AdminDashboard() {
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <div>
                 <CardTitle className="text-xl text-white">Funil de Retenção Visual</CardTitle>
-                <CardDescription>Volume de pessoas que visualizaram cada etapa da operação.</CardDescription>
+                <CardDescription>Performance por etapa da operação.</CardDescription>
               </div>
-              <PeriodSelector current={period} onChange={setPeriod} />
+              <PeriodSelector current={funnelPeriod} onChange={setFunnelPeriod} />
             </CardHeader>
             <CardContent>
               <div className="h-[400px] w-full">
@@ -180,13 +175,20 @@ export default function AdminDashboard() {
                     <XAxis type="number" stroke="#ffffff50" />
                     <YAxis dataKey="name" type="category" stroke="#ffffff80" fontSize={11} width={100} tickFormatter={(val) => String(val).substring(0, 15)} />
                     <Tooltip 
-                      contentStyle={{ backgroundColor: '#111', borderColor: '#ffffff20', borderRadius: '8px', color: 'white' }}
+                      contentStyle={{ backgroundColor: '#111', borderColor: '#ffffff20', borderRadius: '8px' }}
+                      itemStyle={{ color: 'white' }}
+                      labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '4px' }}
                       formatter={(value: any, name: string) => [value, name === 'views' ? 'Visualizações' : name]}
                     />
                     <Bar dataKey="views" radius={[0, 4, 4, 0]}>
-                      {funnelData.map((entry: any, index: number) => (
-                        <Cell key={`cell-${index}`} fill={entry.dropoff > 30 ? '#ef4444' : '#22c55e'} opacity={0.8} />
-                      ))}
+                      {funnelData.map((entry: any, index: number) => {
+                        const isFriction = entry.time > 8;
+                        const isDanger = entry.dropoff > 20;
+                        let color = '#22c55e'; // Green
+                        if (isDanger) color = '#ef4444'; // Red
+                        else if (isFriction) color = '#f97316'; // Orange
+                        return <Cell key={`cell-${index}`} fill={color} opacity={0.8} />;
+                      })}
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
@@ -201,7 +203,7 @@ export default function AdminDashboard() {
                 <CardTitle className="text-xl text-white">Volume Diário</CardTitle>
                 <CardDescription>Acessos (session_start) por dia.</CardDescription>
               </div>
-              <PeriodSelector current={period} onChange={setPeriod} />
+              <PeriodSelector current={volumePeriod} onChange={setVolumePeriod} />
             </CardHeader>
             <CardContent>
               <div className="h-[400px] w-full">
@@ -213,13 +215,18 @@ export default function AdminDashboard() {
                       stroke="#ffffff50" 
                       fontSize={10} 
                       tickFormatter={(val) => {
-                        // val is YYYY-MM-DD string from SQL
+                        if (val.includes(':')) return val; // Formato HH:00
                         const parts = val.split('-');
-                        return `${parts[2]}/${parts[1]}`;
+                        if (parts.length === 3) return `${parts[2]}/${parts[1]}`; // Formato DD/MM
+                        return val;
                       }} 
                     />
                     <YAxis stroke="#ffffff50" fontSize={10} />
-                    <Tooltip contentStyle={{ backgroundColor: '#111', borderColor: '#ffffff20', borderRadius: '8px' }} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#111', borderColor: '#ffffff20', borderRadius: '8px' }}
+                      itemStyle={{ color: 'white' }}
+                      labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '4px' }}
+                    />
                     <Line type="monotone" dataKey="sessions" stroke="#22c55e" strokeWidth={3} dot={{ fill: '#22c55e', r: 4 }} activeDot={{ r: 6 }} />
                   </LineChart>
                 </ResponsiveContainer>

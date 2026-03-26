@@ -122,26 +122,45 @@ BEGIN
     ORDER BY s.step_index ASC
   ) t;
 
-  -- 5. Sessions por dia (Preenchendo lacunas e ajustando Timezone)
+  -- 5. Sessions por dia ou por hora (se o período for <= 1 dia)
   SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_sessions_by_day
   FROM (
     WITH daily_series AS (
       SELECT generate_series(
-        (from_date AT TIME ZONE v_tz)::date,
-        (to_date AT TIME ZONE v_tz)::date,
-        '1 day'::interval
-      )::date as day
+        CASE WHEN (to_date - from_date) <= '1.1 days'::interval 
+             THEN date_trunc('hour', from_date AT TIME ZONE v_tz)
+             ELSE (from_date AT TIME ZONE v_tz)::date::timestamp 
+        END,
+        CASE WHEN (to_date - from_date) <= '1.1 days'::interval 
+             THEN date_trunc('hour', to_date AT TIME ZONE v_tz)
+             ELSE (to_date AT TIME ZONE v_tz)::date::timestamp 
+        END,
+        CASE WHEN (to_date - from_date) <= '1.1 days'::interval 
+             THEN '1 hour'::interval 
+             ELSE '1 day'::interval 
+        END
+      ) as ts
     ),
     actual_sessions AS (
-      SELECT (created_at AT TIME ZONE v_tz)::date as day, COUNT(DISTINCT session_id) as sessions
+      SELECT 
+        CASE WHEN (to_date - from_date) <= '1.1 days'::interval 
+             THEN date_trunc('hour', created_at AT TIME ZONE v_tz)
+             ELSE (created_at AT TIME ZONE v_tz)::date::timestamp 
+        END as ts,
+        COUNT(DISTINCT session_id) as sessions
       FROM events 
       WHERE event = 'session_start' AND created_at BETWEEN from_date AND to_date
       GROUP BY 1
     )
-    SELECT ds.day::text as date, COALESCE(as_s.sessions, 0) as sessions
+    SELECT 
+      CASE WHEN (to_date - from_date) <= '1.1 days'::interval 
+           THEN to_char(ds.ts, 'HH24:00')
+           ELSE to_char(ds.ts, 'YYYY-MM-DD')
+      END as date, 
+      COALESCE(as_s.sessions, 0) as sessions
     FROM daily_series ds
-    LEFT JOIN actual_sessions as_s ON as_s.day = ds.day
-    ORDER BY ds.day
+    LEFT JOIN actual_sessions as_s ON as_s.ts = ds.ts
+    ORDER BY ds.ts
   ) t;
 
   -- 6. Top UTM sources
