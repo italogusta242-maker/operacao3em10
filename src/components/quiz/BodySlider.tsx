@@ -22,7 +22,7 @@ export function BodySlider({ images, labels, value, onChange }: BodySliderProps)
   return (
     <div className="flex flex-col items-center w-full max-w-lg mx-auto h-full select-none">
       {/* Container da Imagem — all images rendered, only active visible */}
-      <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden min-h-[300px]">
+      <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden min-h-[300px] select-none">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
         
         {images.map((src, index) => (
@@ -31,13 +31,22 @@ export function BodySlider({ images, labels, value, onChange }: BodySliderProps)
             src={src}
             alt={labels[index]}
             className={cn(
-              "absolute h-full max-h-[70vh] w-auto object-contain",
+              "absolute h-full max-h-[70vh] w-auto object-contain pointer-events-none select-none",
               index === value ? "opacity-100 z-10" : "opacity-0 z-0"
             )}
             loading="eager"
             decoding="sync"
+            draggable="false"
+            onContextMenu={(e) => e.preventDefault()}
+            onDragStart={(e) => e.preventDefault()}
           />
         ))}
+
+        {/* Overlay transparente para bloquear interação direta com as imagens */}
+        <div 
+          className="absolute inset-0 z-20" 
+          onContextMenu={(e) => e.preventDefault()}
+        />
       </div>
 
       {/* Controles do Slider */}
