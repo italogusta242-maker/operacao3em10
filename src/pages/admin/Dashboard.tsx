@@ -144,11 +144,6 @@ export default function AdminDashboard() {
               Dashboard de Inteligência
               <span className="px-2 py-1 bg-primary/20 text-primary text-[10px] uppercase tracking-widest rounded">Admin</span>
             </h1>
-            <div className="flex items-center gap-2 mt-2">
-              <Calendar className="w-4 h-4 text-muted-foreground" />
-              <PeriodSelector current={summaryPeriod} onChange={setSummaryPeriod} />
-              {updating && <Loader2 className="w-4 h-4 animate-spin text-primary ml-2" />}
-            </div>
           </div>
           <div className="flex items-center gap-3">
             <Button onClick={loadAllMetrics} variant="outline" className="border-white/10 text-white hover:bg-white/10">Atualizar</Button>

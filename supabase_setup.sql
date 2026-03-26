@@ -100,12 +100,19 @@ BEGIN
           value, 
           count,
           ROUND((100.0 * count / SUM(count) OVER (PARTITION BY step_id))::numeric, 1) as percentage
-        FROM (
-          SELECT step_id, value, COUNT(*) as count
-          FROM events 
-          WHERE event IN ('option_select', 'slider_final') AND value IS NOT NULL AND value::text != 'null' AND created_at BETWEEN from_date AND to_date
-          GROUP BY step_id, value
-        ) counts_sub
+      FROM (
+        SELECT 
+          step_id, 
+          CASE 
+            WHEN step_id IN ('16', '17') AND value::text ~ '^[0-9.]+$' 
+            THEN (floor(value::text::numeric / 10) * 10)::text || '-' || (floor(value::text::numeric / 10) * 10 + 10)::text || ' kg'
+            ELSE value::text 
+          END as value, 
+          COUNT(*) as count
+        FROM events 
+        WHERE event IN ('option_select', 'slider_final') AND value IS NOT NULL AND value::text != 'null' AND created_at BETWEEN from_date AND to_date
+        GROUP BY 1, 2
+      ) counts_sub
       ) percentage_sub
       GROUP BY step_id
     )
