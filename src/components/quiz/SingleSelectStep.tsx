@@ -32,9 +32,7 @@ export default function SingleSelectStep({ step, onNext, answers }: Props) {
         {step.options?.map((opt) => (
           <button
             key={opt.id}
-            onClick={() => {
-              setTimeout(() => onNext(opt.id), 250);
-            }}
+            onClick={() => handleSelect(opt.id)}
             className={`w-full p-3.5 rounded-xl border text-left transition-all duration-300 flex items-center justify-between group shrink-0
               ${currentAnswer === opt.id 
                 ? 'border-primary bg-primary/10' 

@@ -52,16 +52,13 @@ DECLARE
   v_total_completions INT;
   v_cta_clicks INT;
   v_step_funnel JSONB;
-  v_dropoff_by_step JSONB;
-  v_avg_time_by_step JSONB;
-  v_option_distribution JSONB;
-  v_weight_distribution JSONB;
   v_sessions_by_day JSONB;
   v_top_utm_sources JSONB;
   v_avg_total_time FLOAT;
   v_result JSONB;
+  v_tz TEXT := 'America/Sao_Paulo';
 BEGIN
-  -- 1. Total sessions
+  -- 1. Total sessions (considerando o período)
   SELECT COUNT(DISTINCT session_id) INTO v_total_sessions
   FROM events WHERE event = 'session_start' AND created_at BETWEEN from_date AND to_date;
 
@@ -73,7 +70,7 @@ BEGIN
   SELECT COUNT(DISTINCT session_id) INTO v_cta_clicks
   FROM events WHERE event = 'result_cta_click' AND created_at BETWEEN from_date AND to_date;
 
-  -- 4. Unified Step Funnel (Views, Completions, Time, Top Answer)
+  -- 4. Funil de Etapas Detalhado (com Drill-down de Opções)
   SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_step_funnel
   FROM (
     WITH step_stats AS (
@@ -81,53 +78,73 @@ BEGIN
         v.step_index,
         v.step_id,
         COUNT(DISTINCT v.session_id) as viewed,
-        COUNT(DISTINCT c.session_id) as completed,
-        ROUND((100.0 * (1 - COALESCE(COUNT(DISTINCT c.session_id), 0)::numeric / NULLIF(COUNT(DISTINCT v.session_id), 0)::numeric))::numeric, 1) as dropoff_pct,
-        ROUND((AVG(c.time_on_step_ms)/1000.0)::numeric, 1) as avg_seconds
+        -- Consideramos 'completou' se clicou 'step_complete' OU se for o último passo e clicou no CTA
+        COUNT(DISTINCT c.session_id) FILTER (WHERE c.event = 'step_complete' OR (v.step_id = 'result' AND c.event = 'result_cta_click')) as completed,
+        ROUND((AVG(c.time_on_step_ms) FILTER (WHERE c.event = 'step_complete' OR c.event = 'result_cta_click'))/1000.0::numeric, 1) as avg_seconds
       FROM events v
-      LEFT JOIN events c ON c.session_id = v.session_id AND c.step_id = v.step_id AND c.event = 'step_complete'
+      LEFT JOIN events c ON c.session_id = v.session_id AND c.step_id = v.step_id
       WHERE v.event = 'step_view' AND v.created_at BETWEEN from_date AND to_date
       GROUP BY v.step_index, v.step_id
     ),
-    popular_answers AS (
-      SELECT DISTINCT ON (step_id) step_id, value, COUNT(*) as answer_count
-      FROM events 
-      WHERE event IN ('option_select', 'slider_final') AND value IS NOT NULL AND value::text != 'null' AND created_at BETWEEN from_date AND to_date
-      GROUP BY step_id, value
-      ORDER BY step_id, answer_count DESC
+    answer_breakdown AS (
+      SELECT 
+        step_id,
+        jsonb_agg(jsonb_build_object(
+          'option', value,
+          'count', count,
+          'percentage', percentage
+        ) ORDER BY count DESC) as options
+      FROM (
+        SELECT 
+          step_id, 
+          value, 
+          count,
+          ROUND((100.0 * count / SUM(count) OVER (PARTITION BY step_id))::numeric, 1) as percentage
+        FROM (
+          SELECT step_id, value, COUNT(*) as count
+          FROM events 
+          WHERE event IN ('option_select', 'slider_final') AND value IS NOT NULL AND value::text != 'null' AND created_at BETWEEN from_date AND to_date
+          GROUP BY step_id, value
+        ) counts_sub
+      ) percentage_sub
+      GROUP BY step_id
     )
     SELECT 
       s.step_index,
       s.step_id,
       s.viewed,
       s.completed,
-      s.dropoff_pct,
+      CASE WHEN s.viewed > 0 THEN ROUND((100.0 * (1 - s.completed::numeric / s.viewed::numeric))::numeric, 1) ELSE 0 END as dropoff_pct,
       s.avg_seconds,
-      pa.value as top_answer
+      COALESCE(ab.options, '[]'::jsonb) as answers
     FROM step_stats s
-    LEFT JOIN popular_answers pa ON pa.step_id = s.step_id
+    LEFT JOIN answer_breakdown ab ON ab.step_id = s.step_id
     ORDER BY s.step_index ASC
   ) t;
 
-  -- (Removed deprecated individual queries 5, 6, 7 to unify in query 4 above)
-
-  -- 8. Weight distribution
-  SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_weight_distribution
-  FROM (
-    SELECT value as weight, COUNT(*) as count
-    FROM events WHERE event = 'slider_final' AND step_id = 'current_weight' AND created_at BETWEEN from_date AND to_date
-    GROUP BY value
-  ) t;
-
-  -- 9. Sessions by day
+  -- 5. Sessions por dia (Preenchendo lacunas e ajustando Timezone)
   SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_sessions_by_day
   FROM (
-    SELECT DATE(created_at) as date, COUNT(DISTINCT session_id) as sessions
-    FROM events WHERE event = 'session_start' AND created_at BETWEEN from_date AND to_date
-    GROUP BY date ORDER BY date
+    WITH daily_series AS (
+      SELECT generate_series(
+        (from_date AT TIME ZONE v_tz)::date,
+        (to_date AT TIME ZONE v_tz)::date,
+        '1 day'::interval
+      )::date as day
+    ),
+    actual_sessions AS (
+      SELECT (created_at AT TIME ZONE v_tz)::date as day, COUNT(DISTINCT session_id) as sessions
+      FROM events 
+      WHERE event = 'session_start' AND created_at BETWEEN from_date AND to_date
+      GROUP BY 1
+    )
+    SELECT ds.day::text as date, COALESCE(as_s.sessions, 0) as sessions
+    FROM daily_series ds
+    LEFT JOIN actual_sessions as_s ON as_s.day = ds.day
+    ORDER BY ds.day
   ) t;
 
-  -- 10. Top UTM sources
+  -- 6. Top UTM sources
   SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_top_utm_sources
   FROM (
     SELECT meta->>'utm_source' as source, meta->>'utm_campaign' as campaign, COUNT(*) as sessions
@@ -135,7 +152,7 @@ BEGIN
     GROUP BY source, campaign ORDER BY sessions DESC LIMIT 10
   ) t;
 
-  -- 11. Avg total time to CTA
+  -- 7. Avg total time to CTA
   SELECT ROUND((AVG(total_time_ms)/1000.0)::numeric, 0) INTO v_avg_total_time
   FROM events WHERE event = 'result_cta_click' AND created_at BETWEEN from_date AND to_date;
 
@@ -150,7 +167,6 @@ BEGIN
       'avgTimeToCtaSeconds', COALESCE(v_avg_total_time, 0)
     ),
     'stepFunnel', COALESCE(v_step_funnel, '[]'::jsonb),
-    'weightDistribution', COALESCE(v_weight_distribution, '[]'::jsonb),
     'sessionsByDay', COALESCE(v_sessions_by_day, '[]'::jsonb),
     'topUtmSources', COALESCE(v_top_utm_sources, '[]'::jsonb)
   ) INTO v_result;
