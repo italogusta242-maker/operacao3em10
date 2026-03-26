@@ -73,43 +73,43 @@ BEGIN
   SELECT COUNT(DISTINCT session_id) INTO v_cta_clicks
   FROM events WHERE event = 'result_cta_click' AND created_at BETWEEN from_date AND to_date;
 
-  -- 4. Step funnel
+  -- 4. Unified Step Funnel (Views, Completions, Time, Top Answer)
   SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_step_funnel
   FROM (
-    SELECT step_id, step_index, COUNT(DISTINCT session_id) as sessions
-    FROM events WHERE event = 'step_view' AND created_at BETWEEN from_date AND to_date
-    GROUP BY step_id, step_index ORDER BY step_index
-  ) t;
-
-  -- 5. Dropoff by step
-  SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_dropoff_by_step
-  FROM (
+    WITH step_stats AS (
+      SELECT 
+        v.step_index,
+        v.step_id,
+        COUNT(DISTINCT v.session_id) as viewed,
+        COUNT(DISTINCT c.session_id) as completed,
+        ROUND((100.0 * (1 - COALESCE(COUNT(DISTINCT c.session_id), 0)::numeric / NULLIF(COUNT(DISTINCT v.session_id), 0)::numeric))::numeric, 1) as dropoff_pct,
+        ROUND((AVG(c.time_on_step_ms)/1000.0)::numeric, 1) as avg_seconds
+      FROM events v
+      LEFT JOIN events c ON c.session_id = v.session_id AND c.step_id = v.step_id AND c.event = 'step_complete'
+      WHERE v.event = 'step_view' AND v.created_at BETWEEN from_date AND to_date
+      GROUP BY v.step_index, v.step_id
+    ),
+    popular_answers AS (
+      SELECT DISTINCT ON (step_id) step_id, value, COUNT(*) as answer_count
+      FROM events 
+      WHERE event IN ('option_select', 'slider_final') AND value IS NOT NULL AND value::text != 'null' AND created_at BETWEEN from_date AND to_date
+      GROUP BY step_id, value
+      ORDER BY step_id, answer_count DESC
+    )
     SELECT 
-      v.step_id,
-      COUNT(DISTINCT v.session_id) as viewed,
-      COUNT(DISTINCT c.session_id) as completed,
-      ROUND((100.0 * (1 - COALESCE(COUNT(DISTINCT c.session_id), 0)::numeric / NULLIF(COUNT(DISTINCT v.session_id), 0)::numeric))::numeric, 1) as dropoff_pct
-    FROM events v
-    LEFT JOIN events c ON c.session_id = v.session_id AND c.step_id = v.step_id AND c.event = 'step_complete'
-    WHERE v.event = 'step_view' AND v.created_at BETWEEN from_date AND to_date
-    GROUP BY v.step_id ORDER BY dropoff_pct DESC
+      s.step_index,
+      s.step_id,
+      s.viewed,
+      s.completed,
+      s.dropoff_pct,
+      s.avg_seconds,
+      pa.value as top_answer
+    FROM step_stats s
+    LEFT JOIN popular_answers pa ON pa.step_id = s.step_id
+    ORDER BY s.step_index ASC
   ) t;
 
-  -- 6. Avg time by step
-  SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_avg_time_by_step
-  FROM (
-    SELECT step_id, ROUND((AVG(time_on_step_ms)/1000.0)::numeric, 1) as avg_seconds
-    FROM events WHERE event = 'step_complete' AND created_at BETWEEN from_date AND to_date
-    GROUP BY step_id ORDER BY avg_seconds DESC
-  ) t;
-
-  -- 7. Option distribution
-  SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_option_distribution
-  FROM (
-    SELECT step_id, value, COUNT(*) as count
-    FROM events WHERE event = 'option_select' AND created_at BETWEEN from_date AND to_date
-    GROUP BY step_id, value ORDER BY step_id, count DESC
-  ) t;
+  -- (Removed deprecated individual queries 5, 6, 7 to unify in query 4 above)
 
   -- 8. Weight distribution
   SELECT COALESCE(jsonb_agg(row_to_json(t)), '[]'::jsonb) INTO v_weight_distribution
@@ -150,9 +150,6 @@ BEGIN
       'avgTimeToCtaSeconds', COALESCE(v_avg_total_time, 0)
     ),
     'stepFunnel', COALESCE(v_step_funnel, '[]'::jsonb),
-    'dropoffByStep', COALESCE(v_dropoff_by_step, '[]'::jsonb),
-    'avgTimeByStep', COALESCE(v_avg_time_by_step, '[]'::jsonb),
-    'optionDistribution', COALESCE(v_option_distribution, '[]'::jsonb),
     'weightDistribution', COALESCE(v_weight_distribution, '[]'::jsonb),
     'sessionsByDay', COALESCE(v_sessions_by_day, '[]'::jsonb),
     'topUtmSources', COALESCE(v_top_utm_sources, '[]'::jsonb)

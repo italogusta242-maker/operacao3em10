@@ -1,6 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { trackMetaEvent } from "@/lib/meta-pixel";
+import { decorateURL } from "@/lib/utm";
 import logo from "@/assets/logo-operacao-3em10.webp";
 import igorPhoto from "@/assets/igor-correa.webp";
 import FloatingOrbs from "@/components/FloatingOrbs";
@@ -10,7 +11,8 @@ const CTA_URL = "https://payment.ticto.app/O0656C50E";
 const HeroSection = () => {
   const handleCTA = () => {
     trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
-    window.open(CTA_URL, "_blank", "noopener,noreferrer");
+    const decoratedUrl = decorateURL(CTA_URL);
+    window.open(decoratedUrl, "_blank", "noopener,noreferrer");
   };
 
   return (

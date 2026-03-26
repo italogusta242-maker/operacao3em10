@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client"
+import { getStoredUTMs } from "./utm"
 
 // ─── TYPES ───────────────────────────────────────────────────────────────────
 
@@ -60,7 +61,10 @@ export async function trackEvent(payload: Omit<TrackPayload, 'sessionId' | 'tota
     value: payload.value ?? null,
     time_on_step_ms: Date.now() - stepStart,
     total_time_ms: Date.now() - sessionStart,
-    meta: payload.meta ?? {},
+    meta: {
+      ...getStoredUTMs(),
+      ...(payload.meta ?? {})
+    },
   }
 
   // @ts-ignore - bypassing generated types mismatch until the user runs 'supabase gen types'

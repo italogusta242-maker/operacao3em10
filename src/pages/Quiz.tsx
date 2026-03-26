@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { quizSteps, QuizStepData } from "../data/quizData";
@@ -12,6 +12,7 @@ import { BodySliderStep } from "@/components/quiz/BodySliderStep";
 import LoadingStep from "@/components/quiz/LoadingStep";
 import ResultStep from "@/components/quiz/ResultStep";
 import { CTA_URL } from "../components/CTAButton";
+import { captureUTMs, decorateURL } from "@/lib/utm";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 import logo from "@/assets/logo-operacao-3em10.webp";
 import { trackEvent, onStepEnter, onStepComplete, onSessionEnd } from "@/lib/tracker";
@@ -20,6 +21,13 @@ export default function Quiz() {
   const navigate = useNavigate();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string | number, any>>({});
+  const pageViewFired = useRef(false);
+
+  useEffect(() => {
+    if (pageViewFired.current) return;
+    pageViewFired.current = true;
+    trackMetaEvent("PageView");
+  }, []);
 
   const step: QuizStepData = quizSteps[currentStepIndex];
   
@@ -29,12 +37,9 @@ export default function Quiz() {
   const progressPercent = isNumberedScreen ? (currentStepIndex / 17) * 100 : 0;
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    captureUTMs();
+    
     trackEvent({ event: 'session_start', meta: { 
-      utm_source: params.get('utm_source'),
-      utm_medium: params.get('utm_medium'),
-      utm_campaign: params.get('utm_campaign'),
-      utm_content: params.get('utm_content'),
       referrer: document.referrer,
       userAgent: navigator.userAgent,
     }});
@@ -97,7 +102,7 @@ export default function Quiz() {
         return <ResultStep answers={answers} onNext={() => {
           trackEvent({ event: 'result_cta_click' });
           trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
-          window.location.href = CTA_URL;
+          window.location.href = decorateURL(CTA_URL);
         }} />;
       default:
         return <div>Unknown step type</div>;

@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { 
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, 
+  LineChart, Line, Cell
+} from 'recharts';
+import { Loader2 } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [metrics, setMetrics] = useState<any>(null);
@@ -26,7 +31,6 @@ export default function AdminDashboard() {
   async function loadMetrics() {
     setLoading(true);
     setErrorMsg(null);
-    // Filtrar últimos 30 dias por padrão
     const toDate = new Date().toISOString();
     const fromDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
 
@@ -50,120 +54,180 @@ export default function AdminDashboard() {
   }
 
   if (loading) {
-    return <div className="min-h-screen bg-background items-center justify-center flex text-primary text-xl font-bold animate-pulse">Carregando métricas confidenciais...</div>;
+    return (
+      <div className="min-h-screen bg-background items-center justify-center flex flex-col gap-4 text-primary">
+        <Loader2 className="w-12 h-12 animate-spin" />
+        <h2 className="text-xl font-bold animate-pulse">Calculando métricas visuais...</h2>
+      </div>
+    );
   }
 
   if (errorMsg) {
     return (
       <div className="min-h-screen bg-background items-center justify-center flex flex-col p-8 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-red-500">Erro na leitura do Banco</h2>
+        <h2 className="text-2xl font-bold text-red-500">Aviso do Banco de Dados</h2>
         <p className="text-white max-w-xl">{errorMsg}</p>
-        <p className="text-muted-foreground text-sm">Parece que o arquivo supabase_setup.sql não foi rodado corretamente no banco, ou a função get_admin_metrics não existe.</p>
+        <p className="text-muted-foreground text-sm">Atualize a sua função SQL rodando o novo script `supabase_setup.sql` no painel do Supabase.</p>
         <Button onClick={loadMetrics} variant="outline">Tentar Novamente</Button>
       </div>
     );
   }
 
   if (!metrics || !metrics.summary) {
-    return <div className="min-h-screen bg-background items-center justify-center flex flex-col text-white space-y-4">
-      <p>O painel de métricas está vazio. Navegue pelo quiz para gerar os primeiros dados!</p>
-      <Button onClick={handleLogout} variant="outline">Sair</Button>
-    </div>;
+    return (
+      <div className="min-h-screen bg-background items-center justify-center flex flex-col text-white space-y-4">
+        <p>O painel de métricas está vazio. Navegue pelo quiz para gerar os primeiros dados!</p>
+        <Button onClick={handleLogout} variant="outline">Sair</Button>
+      </div>
+    );
   }
 
+  // Pre-process funnel data for chart
+  const funnelData = metrics.stepFunnel?.map((s: any) => ({
+    name: s.step_id,
+    views: s.viewed,
+    dropoff: s.dropoff_pct,
+    time: s.avg_seconds,
+    topAnswer: s.top_answer || '-',
+  })) || [];
+
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div className="min-h-screen bg-[#0a0a0a] p-4 xl:p-8 font-sans selection:bg-primary/30">
+      <div className="max-w-[1400px] mx-auto space-y-6">
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-card/50 p-6 rounded-2xl border border-white/5">
           <div>
-            <h1 className="text-3xl font-black text-white">Painel Analítico <span className="text-primary text-sm uppercase align-top ml-2">Admin</span></h1>
-            <p className="text-muted-foreground mt-1">Visão geral dos últimos 30 dias</p>
+            <h1 className="text-3xl font-black text-white flex items-center gap-3">
+              Dashboard de Inteligência
+              <span className="px-2 py-1 bg-primary/20 text-primary text-[10px] uppercase tracking-widest rounded">Admin</span>
+            </h1>
+            <p className="text-muted-foreground mt-1 text-sm">Monitoramento de tráfego e comportamento em tempo real (30 dias)</p>
           </div>
-          <Button onClick={handleLogout} variant="destructive">Sair do Painel</Button>
+          <div className="flex items-center gap-3">
+            <Button onClick={loadMetrics} variant="outline" className="border-white/10 text-white hover:bg-white/10">Atualizar</Button>
+            <Button onClick={handleLogout} variant="destructive">Sair</Button>
+          </div>
         </div>
         
-        {/* Metric Cards */}
+        {/* Executive Summary */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <MetricCard title="Total de Sessões" value={metrics.summary.totalSessions} />
-          <MetricCard title="Quizzes Completos" value={metrics.summary.totalCompletions} subtitle={`${metrics.summary.completionRate}% do total chegam no Result`} />
-          <MetricCard title="Cliques no CTA Checkout" value={metrics.summary.ctaClicks} subtitle={`${metrics.summary.ctaRate}% do total clicam em comprar`} />
-          <MetricCard title="Tempo Médio até CTA" value={`${metrics.summary.avgTimeToCtaSeconds}s`} subtitle="Tempo médio desde o 'session_start'" />
+          <MetricCard title="Acessos Iniciais" value={metrics.summary.totalSessions} icon="👥" />
+          <MetricCard title="Leads " value={metrics.summary.totalCompletions} subtitle={`${metrics.summary.completionRate}% completaram o quiz`} icon="✅" />
+          <MetricCard title="Cliques no Checkout" value={metrics.summary.ctaClicks} subtitle={`${metrics.summary.ctaRate}% clicaram em comprar`} icon="🛒" />
+          <MetricCard title="Tempo Global" value={`${metrics.summary.avgTimeToCtaSeconds}s`} subtitle="Tempo médio total do fluxo" icon="⏱️" />
         </div>
 
-        {/* Funnel & Dropoff */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="bg-card border-white/10 shadow-xl rounded-2xl overflow-hidden">
-            <CardHeader className="bg-black/20 border-b border-white/5">
-              <CardTitle className="text-xl font-bold text-white">Drop-off por Etapa (Abandono)</CardTitle>
+        {/* Charts Row 1 */}
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          {/* Funnel Dropoff Chart */}
+          <Card className="bg-card/40 border-white/5 shadow-2xl xl:col-span-2">
+            <CardHeader>
+              <CardTitle className="text-xl text-white">Funil de Retenção Visual</CardTitle>
+              <CardDescription>Volume de pessoas que visualizaram cada etapa da operação.</CardDescription>
             </CardHeader>
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left text-muted-foreground">
-                  <thead className="text-xs uppercase bg-black/40 text-white/70">
-                    <tr>
-                      <th className="px-6 py-4">Etapa (ID)</th>
-                      <th className="px-6 py-4">Visualizações</th>
-                      <th className="px-6 py-4">Conclusões</th>
-                      <th className="px-6 py-4 font-bold text-red-400">Taxa Drop-off</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {metrics.dropoffByStep?.map((step: any, i: number) => (
-                      <tr key={i} className="border-b border-white/5 hover:bg-white/5">
-                        <td className="px-6 py-4 font-mono font-medium text-white">{step.step_id}</td>
-                        <td className="px-6 py-4">{step.viewed}</td>
-                        <td className="px-6 py-4">{step.completed}</td>
-                        <td className="px-6 py-4 font-bold text-red-500">{step.dropoff_pct}%</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <CardContent>
+              <div className="h-[400px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={funnelData} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" horizontal={false} />
+                    <XAxis type="number" stroke="#ffffff50" />
+                    <YAxis dataKey="name" type="category" stroke="#ffffff80" fontSize={11} width={100} tickFormatter={(val) => String(val).substring(0, 15)} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#111', borderColor: '#ffffff20', borderRadius: '8px', color: 'white' }}
+                      formatter={(value: any, name: string) => [value, name === 'views' ? 'Visualizações' : name]}
+                    />
+                    <Bar dataKey="views" radius={[0, 4, 4, 0]}>
+                      {funnelData.map((entry: any, index: number) => (
+                        <Cell key={`cell-${index}`} fill={entry.dropoff > 30 ? '#ef4444' : '#22c55e'} opacity={0.8} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-card border-white/10 shadow-xl rounded-2xl overflow-hidden">
-            <CardHeader className="bg-black/20 border-b border-white/5">
-              <CardTitle className="text-xl font-bold text-white">Top UTM Sources</CardTitle>
+          {/* Traffic History */}
+          <Card className="bg-card/40 border-white/5 shadow-2xl">
+            <CardHeader>
+              <CardTitle className="text-xl text-white">Volume Diário</CardTitle>
+              <CardDescription>Acessos (session_start) por dia.</CardDescription>
             </CardHeader>
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left text-muted-foreground">
-                  <thead className="text-xs uppercase bg-black/40 text-white/70">
-                    <tr>
-                      <th className="px-6 py-4">Origem (Source)</th>
-                      <th className="px-6 py-4">Campanha</th>
-                      <th className="px-6 py-4">Sessões Iniciais</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {metrics.topUtmSources?.map((utm: any, i: number) => (
-                      <tr key={i} className="border-b border-white/5 hover:bg-white/5">
-                        <td className="px-6 py-4 font-medium text-white uppercase">{utm.source || 'N/A'}</td>
-                        <td className="px-6 py-4 text-white/70">{utm.campaign || 'N/A'}</td>
-                        <td className="px-6 py-4 font-bold text-primary">{utm.sessions}</td>
-                      </tr>
-                    ))}
-                    {(!metrics.topUtmSources || metrics.topUtmSources.length === 0) && (
-                      <tr><td colSpan={3} className="px-6 py-8 text-center">Nenhuma UTM capturada no período.</td></tr>
-                    )}
-                  </tbody>
-                </table>
+            <CardContent>
+              <div className="h-[400px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={metrics.sessionsByDay} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" vertical={false} />
+                    <XAxis dataKey="date" stroke="#ffffff50" fontSize={10} tickFormatter={(val) => new Date(val).toLocaleDateString('pt-BR', {day:'2-digit', month: '2-digit'})} />
+                    <YAxis stroke="#ffffff50" fontSize={10} />
+                    <Tooltip contentStyle={{ backgroundColor: '#111', borderColor: '#ffffff20', borderRadius: '8px' }} />
+                    <Line type="monotone" dataKey="sessions" stroke="#22c55e" strokeWidth={3} dot={{ fill: '#22c55e', r: 4 }} activeDot={{ r: 6 }} />
+                  </LineChart>
+                </ResponsiveContainer>
               </div>
             </CardContent>
           </Card>
         </div>
+
+        {/* Actionable Data Table */}
+        <Card className="bg-card/40 border-white/5 shadow-2xl">
+          <CardHeader>
+            <CardTitle className="text-xl text-white">Análise de Fricção e Perfil Vencedor</CardTitle>
+            <CardDescription>O Raio-X detalhado de cada tela do quiz para te ajudar a otimizar criativos.</CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="text-xs uppercase bg-[#111] text-muted-foreground border-y border-white/10">
+                  <tr>
+                    <th className="px-6 py-4">Etapa ID</th>
+                    <th className="px-6 py-4">Taxa de Quebra (Drop-off)</th>
+                    <th className="px-6 py-4">Tempo de Decisão</th>
+                    <th className="px-6 py-4">Status</th>
+                    <th className="px-6 py-4">Opção Mais Votada (Top 1)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {funnelData.map((step: any, i: number) => {
+                    const isFriction = step.time > 8; // mais de 8 segundos = fricção alta
+                    const isDanger = step.dropoff > 20; // mais de 20% de abandono = perigo
+                    return (
+                      <tr key={i} className="hover:bg-white/5 transition-colors">
+                        <td className="px-6 py-4 font-mono font-medium text-white/90">{step.name}</td>
+                        <td className="px-6 py-4 font-bold">
+                          <span className={isDanger ? 'text-red-400' : 'text-emerald-400'}>{step.dropoff}%</span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={isFriction ? 'text-orange-400 font-bold' : 'text-white/60'}>{step.time}s</span>
+                        </td>
+                        <td className="px-6 py-4">
+                          {isDanger ? <span className="text-xs bg-red-500/10 text-red-500 px-2 py-1 rounded">Gargalo</span> : 
+                           isFriction ? <span className="text-xs bg-orange-500/10 text-orange-400 px-2 py-1 rounded">Lento</span> : 
+                           <span className="text-xs bg-emerald-500/10 text-emerald-500 px-2 py-1 rounded">Fluido</span>}
+                        </td>
+                        <td className="px-6 py-4 text-primary font-medium">{step.topAnswer}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+
       </div>
     </div>
   )
 }
 
-function MetricCard({ title, value, subtitle }: any) {
+function MetricCard({ title, value, subtitle, icon }: any) {
   return (
-    <div className="bg-card p-6 rounded-2xl border border-white/10 shadow-lg shrink-0">
+    <div className="bg-card/40 p-6 rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-colors">
+      <div className="absolute -right-4 -top-4 text-7xl opacity-5 group-hover:scale-110 transition-transform origin-center">{icon}</div>
       <h3 className="text-sm font-semibold text-muted-foreground mb-3 tracking-wide">{title}</h3>
-      <p className="text-4xl font-black text-white">{value}</p>
-      {subtitle && <p className="text-xs font-medium text-primary mt-2">{subtitle}</p>}
+      <p className="text-4xl font-black text-white relative z-10">{value}</p>
+      {subtitle && <p className="text-xs font-medium text-primary mt-2 relative z-10">{subtitle}</p>}
     </div>
   )
 }

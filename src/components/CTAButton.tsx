@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { trackMetaEvent } from "@/lib/meta-pixel";
+import { decorateURL } from "@/lib/utm";
 
 export const CTA_URL = "https://payment.ticto.app/O0656C50E";
 
@@ -26,7 +27,8 @@ const CTAButton = ({ text, subtext, variant = "primary", className = "", pulse =
 
   const handleClick = () => {
     trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
-    window.open(CTA_URL, "_blank", "noopener,noreferrer");
+    const decoratedUrl = decorateURL(CTA_URL);
+    window.open(decoratedUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
