@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 interface BodySliderProps {
@@ -9,30 +9,46 @@ interface BodySliderProps {
 }
 
 export function BodySlider({ images, labels, value, onChange }: BodySliderProps) {
+  // Preload all images immediately
+  useEffect(() => {
+    images.forEach((src) => {
+      if (src) {
+        const img = new Image();
+        img.src = src;
+      }
+    });
+  }, [images]);
+
   return (
-    <div className="flex flex-col items-center w-full max-w-lg mx-auto h-full animate-fade-in select-none">
-      {/* Container da Imagem */}
+    <div className="flex flex-col items-center w-full max-w-lg mx-auto h-full select-none">
+      {/* Container da Imagem — all images rendered, only active visible */}
       <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden min-h-[300px]">
-        {/* Background Glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
         
-        <img
-          src={images[value]}
-          alt={labels[value]}
-          className="h-full max-h-[70vh] w-auto object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.05)]"
-        />
+        {images.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt={labels[index]}
+            className={cn(
+              "absolute h-full max-h-[70vh] w-auto object-contain",
+              index === value ? "opacity-100 z-10" : "opacity-0 z-0"
+            )}
+            loading="eager"
+            decoding="sync"
+          />
+        ))}
       </div>
 
       {/* Controles do Slider */}
       <div className="w-full px-4 pt-4 pb-8 space-y-6">
-        {/* Labels Superiores (Interativas) */}
         <div className="flex justify-between w-full px-2">
           {labels.map((label, index) => (
             <button
               key={index}
               onClick={() => onChange(index)}
               className={cn(
-                "text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-300",
+                "text-[10px] sm:text-xs font-bold tracking-wider uppercase",
                 index === value 
                   ? "text-primary scale-110 drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]" 
                   : "text-muted-foreground/40 hover:text-muted-foreground/70"
@@ -43,9 +59,7 @@ export function BodySlider({ images, labels, value, onChange }: BodySliderProps)
           ))}
         </div>
 
-        {/* Input Range Customizado */}
         <div className="relative w-full h-12 flex items-center pb-2">
-          {/* Track customizada */}
           <div className="absolute inset-x-0 h-1 bg-white/10 rounded-full" />
           <div 
             className="absolute left-0 h-1 bg-primary rounded-full"
