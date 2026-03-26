@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 import { Loader2, ChevronDown, ChevronUp, Calendar } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { quizSteps } from '@/data/quizData';
 
 export default function AdminDashboard() {
   const [metrics, setMetrics] = useState<any>(null);
@@ -116,6 +117,13 @@ export default function AdminDashboard() {
       </div>
     );
   }
+
+  // Helper to get step title
+  const getStepTitle = (stepId: string) => {
+    if (stepId === 'result') return 'Página de Resultado';
+    const step = quizSteps.find(s => s.id.toString() === stepId);
+    return step?.question || step?.headline || 'Etapa sem título';
+  };
 
   // Pre-process funnel data for chart
   const funnelData = metrics.stepFunnel?.map((s: any) => ({
@@ -244,34 +252,37 @@ export default function AdminDashboard() {
           <CardContent className="p-0">
             <Accordion type="single" collapsible className="w-full">
               <div className="text-xs uppercase bg-[#111] text-muted-foreground border-y border-white/10 grid grid-cols-12 gap-4 px-6 py-4">
-                <div className="col-span-4">Etapa ID</div>
-                <div className="col-span-2">Abandono</div>
-                <div className="col-span-2 text-center">Tempo</div>
-                <div className="col-span-2">Status</div>
+                <div className="col-span-1">ID</div>
+                <div className="col-span-4">Etapa (Conteúdo)</div>
+                <div className="col-span-1 text-center">Abandono</div>
+                <div className="col-span-1 text-center">Tempo</div>
+                <div className="col-span-3 text-center">Status</div>
                 <div className="col-span-2 text-right">Ação</div>
               </div>
               
               {metrics.stepFunnel.map((step: any, i: number) => {
                 const isFriction = step.avg_seconds > 8;
                 const isDanger = step.dropoff_pct > 20;
+                const title = getStepTitle(step.step_id);
                 return (
                   <AccordionItem key={i} value={`step-${i}`} className="border-white/5 px-6">
                     <div className="grid grid-cols-12 gap-4 py-4 items-center">
-                      <div className="col-span-4 font-mono font-medium text-white/90 truncate">{step.step_id}</div>
-                      <div className="col-span-2 font-bold">
+                      <div className="col-span-1 font-mono font-medium text-white/30 text-[10px]">#{step.step_id}</div>
+                      <div className="col-span-4 font-medium text-white/90 truncate pr-4 text-xs" title={title}>{title}</div>
+                      <div className="col-span-1 text-center font-bold text-xs">
                         <span className={isDanger ? 'text-red-400' : 'text-emerald-400'}>{step.dropoff_pct}%</span>
                       </div>
-                      <div className="col-span-2 text-center">
+                      <div className="col-span-1 text-center text-xs">
                         <span className={isFriction ? 'text-orange-400 font-bold' : 'text-white/60'}>{step.avg_seconds}s</span>
                       </div>
-                      <div className="col-span-2">
-                        {isDanger ? <span className="text-[10px] bg-red-500/10 text-red-500 px-2 py-0.5 rounded border border-red-500/20">Gargalo</span> : 
-                         isFriction ? <span className="text-[10px] bg-orange-500/10 text-orange-400 px-2 py-0.5 rounded border border-orange-500/20">Lento</span> : 
-                         <span className="text-[10px] bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded border border-emerald-500/20">Fluido</span>}
+                      <div className="col-span-3 flex justify-center">
+                        {isDanger ? <span className="text-[9px] font-bold bg-red-500/10 text-red-500 px-2 py-0.5 rounded border border-red-500/20 uppercase tracking-tighter">Gargalo</span> : 
+                         isFriction ? <span className="text-[9px] font-bold bg-orange-500/10 text-orange-400 px-2 py-0.5 rounded border border-orange-500/20 uppercase tracking-tighter">Análise</span> : 
+                         <span className="text-[9px] font-bold bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded border border-emerald-500/20 uppercase tracking-tighter">Fluido</span>}
                       </div>
                       <div className="col-span-2 text-right">
                         <AccordionTrigger className="inline-flex p-1 hover:bg-white/5 rounded-md transition-colors h-auto py-0">
-                          <span className="text-[10px] font-bold text-primary mr-2">DETALHES</span>
+                          <span className="text-[10px] font-bold text-primary mr-2">VER DADOS</span>
                         </AccordionTrigger>
                       </div>
                     </div>
