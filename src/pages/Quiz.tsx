@@ -119,12 +119,16 @@ export default function Quiz() {
       {/* Navbar com Progress Bar e Logo */}
       <div className="relative z-10 w-full pt-4 pb-2 px-6 flex flex-col items-center justify-center max-w-md mx-auto gap-4">
         <div className="w-full flex items-center justify-between">
-          <button 
-            onClick={handlePrevious}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-card/60 border border-white/5 hover:bg-white/10 transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5 text-muted-foreground" />
-          </button>
+          {currentStepIndex > 0 ? (
+            <button 
+              onClick={handlePrevious}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-card/60 border border-white/5 hover:bg-white/10 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 text-muted-foreground" />
+            </button>
+          ) : (
+            <div className="w-10" />
+          )}
           
           <div className="flex items-center gap-2">
             <img src={logo} alt="Operação -3kg em 10" className="w-8 h-8" />

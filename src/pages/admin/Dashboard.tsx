@@ -165,9 +165,12 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Funnel Dropoff Chart */}
           <Card className="bg-card/40 border-white/5 shadow-2xl xl:col-span-2">
-            <CardHeader>
-              <CardTitle className="text-xl text-white">Funil de Retenção Visual</CardTitle>
-              <CardDescription>Volume de pessoas que visualizaram cada etapa da operação.</CardDescription>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <div>
+                <CardTitle className="text-xl text-white">Funil de Retenção Visual</CardTitle>
+                <CardDescription>Volume de pessoas que visualizaram cada etapa da operação.</CardDescription>
+              </div>
+              <PeriodSelector current={period} onChange={setPeriod} />
             </CardHeader>
             <CardContent>
               <div className="h-[400px] w-full">
@@ -193,9 +196,12 @@ export default function AdminDashboard() {
 
           {/* Traffic History */}
           <Card className="bg-card/40 border-white/5 shadow-2xl">
-            <CardHeader>
-              <CardTitle className="text-xl text-white">Volume Diário</CardTitle>
-              <CardDescription>Acessos (session_start) por dia.</CardDescription>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <div>
+                <CardTitle className="text-xl text-white">Volume Diário</CardTitle>
+                <CardDescription>Acessos (session_start) por dia.</CardDescription>
+              </div>
+              <PeriodSelector current={period} onChange={setPeriod} />
             </CardHeader>
             <CardContent>
               <div className="h-[400px] w-full">
@@ -299,6 +305,31 @@ export default function AdminDashboard() {
       </div>
     </div>
   )
+}
+
+function PeriodSelector({ current, onChange }: { current: string, onChange: (p: any) => void }) {
+  return (
+    <div className="flex bg-black/40 p-1 rounded-lg border border-white/5 h-fit">
+      {[
+        { id: 'today', label: '1D' },
+        { id: '7d', label: '7D' },
+        { id: '30d', label: '30D' },
+        { id: 'all', label: 'Total' }
+      ].map((p) => (
+        <button
+          key={p.id}
+          onClick={() => onChange(p.id)}
+          className={`px-2 py-0.5 text-[10px] font-bold rounded-md transition-all ${
+            current === p.id 
+              ? 'bg-primary text-primary-foreground' 
+              : 'text-muted-foreground hover:text-white hover:bg-white/5'
+          }`}
+        >
+          {p.label}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 function MetricCard({ title, value, subtitle, icon }: any) {
