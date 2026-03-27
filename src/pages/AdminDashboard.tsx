@@ -23,52 +23,52 @@ interface Metrics {
 const AdminDashboard = () => {
   const [metrics, setMetrics] = useState<Metrics | null>(null);
   const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkAuth();
-    fetchMetrics();
-  }, []);
+    const init = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        navigate("/admin/login", { replace: true });
+        return;
+      }
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", user.id)
+        .eq("role", "admin");
 
-  const checkAuth = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      navigate("/admin/login");
-      return;
-    }
-    const { data: roles } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin");
+      if (!roles || roles.length === 0) {
+        await supabase.auth.signOut();
+        navigate("/admin/login", { replace: true });
+        return;
+      }
 
-    if (!roles || roles.length === 0) {
-      await supabase.auth.signOut();
-      navigate("/admin/login");
-    }
-  };
+      setAuthenticated(true);
 
-  const fetchMetrics = async () => {
-    const now = new Date();
-    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+      // Only fetch metrics after confirmed admin
+      const now = new Date();
+      const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+      const { data, error } = await supabase.rpc("get_admin_metrics", {
+        from_date: thirtyDaysAgo.toISOString(),
+        to_date: now.toISOString(),
+      });
+      if (!error && data) {
+        setMetrics(data as unknown as Metrics);
+      }
+      setLoading(false);
+    };
 
-    const { data, error } = await supabase.rpc("get_admin_metrics", {
-      from_date: thirtyDaysAgo.toISOString(),
-      to_date: now.toISOString(),
-    });
-
-    if (!error && data) {
-      setMetrics(data as unknown as Metrics);
-    }
-    setLoading(false);
-  };
+    init();
+  }, [navigate]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate("/admin/login");
+    navigate("/admin/login", { replace: true });
   };
 
-  if (loading) {
+  if (!authenticated || loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <p className="text-muted-foreground">Carregando...</p>
