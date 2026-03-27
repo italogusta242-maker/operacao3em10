@@ -7,8 +7,8 @@ interface Props {
 
 export default function ResultStep({ answers, onNext }: Props) {
   // Extract inputs
-  const currentWeight = Number(answers[16]) || 80;
-  const desiredWeight = Number(answers[17]) || 70;
+  const currentWeight = Number(answers[1]) || 80;
+  const desiredWeight = Number(answers[2]) || 70;
   
   // Calculate potential -> the user requested it to be strictly fixed at "-3kg" always.
   const realisticDrop = 3;

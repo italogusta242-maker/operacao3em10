@@ -99,7 +99,7 @@ export default function InfoStep({ step, onNext }: Props) {
           className="w-full bg-primary text-primary-foreground font-bold py-4 rounded-xl text-base
             hover:bg-primary/90 transition-all shadow-[0_0_20px_rgba(122,255,122,0.2)]"
         >
-          Continuar
+          {step.ctaText || "Continuar"}
         </button>
       </div>
     </div>

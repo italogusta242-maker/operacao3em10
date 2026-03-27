@@ -6,6 +6,7 @@ export type QuestionType =
   | 'body-slider'
   | 'number-input'
   | 'info'
+  | 'intro-hero'
   | 'loading'
   | 'result';
 
@@ -27,38 +28,34 @@ export interface QuizStepData {
   testimonial?: { text: string; author: string };
   chartImage?: string;
   list?: string[];
+  ctaText?: string;
 }
 
 export const quizSteps: QuizStepData[] = [
-  // TELA 0 — ENTRADA
+  // TELA 0 — INTRODUÇÃO
   {
     id: 0,
-    type: 'entrada',
-    headline: 'PROTOCOLO DE DESINFLAMAÇÃO PARA PERDER PESO',
-    question: 'Quanto peso você quer perder nos próximos 10 dias?',
-    options: [
-      { id: '1-2', label: '1-2 kg' },
-      { id: '3-4', label: '3-4 kg' },
-      { id: '5+', label: '5+ kg' },
-      { id: 'desinchar', label: 'Só quero desinchar' }
-    ],
-    footerText: '⚠️ Método validado por mais de 7.274 pessoas'
+    type: 'intro-hero',
+    sub: 'O protocolo que já mudou o corpo de mais de 7.000 pessoas vai te ensinar como diminuir seu peso, recuperar sua autoestima, disposição e perder gordura rápido. Mesmo que você já tenha tentado de tudo.',
+    ctaText: 'Preencha o teste gratuito para receber seu protocolo'
   },
-  // TELA 1 — OBJETIVO PRINCIPAL
+  // TELA 1 — PESO ATUAL
   {
     id: 1,
-    type: 'multi-select',
-    question: 'Qual é o seu principal objetivo?',
-    options: [
-      { id: 'peso-rapido', label: 'Perder peso rápido' },
-      { id: 'eliminar-inchaco', label: 'Eliminar o inchaço' },
-      { id: 'caber-roupas', label: 'Voltar a caber nas roupas' },
-      { id: 'mais-disposicao', label: 'Melhorar a disposição' }
-    ]
+    type: 'number-input',
+    question: 'Qual é o seu peso atual?',
+    sub: 'Usamos isso para personalizar seu resultado esperado.'
   },
-  // TELA 2 — PROVA SOCIAL (INFORMATIVA)
+  // TELA 2 — PESO DESEJADO
   {
     id: 2,
+    type: 'number-input',
+    question: 'Qual peso você gostaria de alcançar?',
+    sub: 'Seja realista, o protocolo é focado em te fazer perder entre 3 e 7kg em 10 dias.'
+  },
+  // TELA 3 — PROVA SOCIAL
+  {
+    id: 3,
     type: 'info',
     headline: '+7.274 pessoas já usaram esse método',
     sub: 'Nosso protocolo de desinflamação ajuda você a perder no mínimo 3kg em 10 dias — sem dietas malucas.',
@@ -68,9 +65,9 @@ export const quizSteps: QuizStepData[] = [
     },
     badges: ['7.274+ Alunos', 'Protocolo Testado']
   },
-  // TELA 3 — TIPO FÍSICO ATUAL
+  // TELA 4 — TIPO FÍSICO ATUAL
   {
-    id: 3,
+    id: 4,
     type: 'body-slider',
     question: 'Qual é o seu tipo físico atual?',
     sub: 'Deslize para encontrar o seu físico atual',
@@ -81,9 +78,9 @@ export const quizSteps: QuizStepData[] = [
       { id: 'obeso', label: 'Obeso', imageUrl: '/quiz/body/current_3.webp' }
     ]
   },
-  // TELA 4 — TIPO FÍSICO IDEAL
+  // TELA 5 — TIPO FÍSICO IDEAL
   {
-    id: 4,
+    id: 5,
     type: 'body-slider',
     question: 'Qual é o seu objetivo de shape?',
     sub: 'Onde você quer chegar em 10 dias?',
@@ -94,9 +91,9 @@ export const quizSteps: QuizStepData[] = [
       { id: 'atletico', label: 'Atlético', imageUrl: '/quiz/body/goal_3.webp' }
     ]
   },
-  // TELA 5 — ÁREA PROBLEMÁTICA
+  // TELA 6 — ÁREA PROBLEMÁTICA
   {
-    id: 5,
+    id: 6,
     type: 'image-single-select',
     question: 'Qual área te incomoda mais?',
     options: [
@@ -105,9 +102,9 @@ export const quizSteps: QuizStepData[] = [
       { id: 'corpo', label: 'Corpo inteiro', imageUrl: '/quiz/areas/corpo.png' }
     ]
   },
-  // TELA 6 — BARRIGA
+  // TELA 7 — BARRIGA
   {
-    id: 6,
+    id: 7,
     type: 'image-single-select',
     headline: 'Análise corporal',
     question: 'Que tipo de barriga você tem?',
@@ -119,31 +116,31 @@ export const quizSteps: QuizStepData[] = [
       { id: 'normal', label: 'Normal (secar mais)', imageUrl: '/quiz/belly/normal.png' }
     ]
   },
-  // TELA 7 — MOTIVAÇÃO
+  // TELA 8 — MOTIVAÇÃO
   {
-    id: 7,
+    id: 8,
     type: 'multi-select',
     question: 'O que te motiva a perder peso agora?',
     options: [
       { id: 'aparencia', label: 'Melhorar minha aparência' },
-      { id: 'energia', label: 'Ter mais energia' },
+      { id: 'energy', label: 'Ter mais energia' },
       { id: 'roupas', label: 'Caber nas roupas' },
       { id: 'evento', label: 'Evento chegando' },
       { id: 'saude', label: 'Saúde' },
       { id: 'outro', label: 'Outro' }
     ]
   },
-  // TELA 8 — VALIDAÇÃO EDUCATIVA (INFORMATIVA)
+  // TELA 9 — VALIDAÇÃO EDUCATIVA
   {
-    id: 8,
+    id: 9,
     type: 'info',
     headline: 'A maioria das pessoas não consegue emagrecer porque está INFLAMADA.',
     sub: 'Aquele peso que não sai não é só gordura, é retenção de líquido, inchaço e glicogênio acumulado.\nO Protocolo de Desinflamação elimina esse "peso falso" primeiro. Resultado? Você vê o peso diminuir na balança em DIAS, não semanas.',
     chartImage: '/quiz/chart_metabolism.png'
   },
-  // TELA 9 — TENTATIVAS ANTERIORES
+  // TELA 10 — TENTATIVAS ANTERIORES
   {
-    id: 9,
+    id: 10,
     type: 'multi-select',
     question: 'O que você já tentou para emagrecer?',
     options: [
@@ -155,9 +152,9 @@ export const quizSteps: QuizStepData[] = [
       { id: 'nunca-tentei', label: 'Nunca tentei seriamente' }
     ]
   },
-  // TELA 10 — TEMPO DE LUTA
+  // TELA 11 — TEMPO DE LUTA
   {
-    id: 10,
+    id: 11,
     type: 'single-select',
     question: 'Há quanto tempo você tenta perder esse peso?',
     options: [
@@ -168,16 +165,16 @@ export const quizSteps: QuizStepData[] = [
       { id: 'sempre', label: 'Sempre foi uma luta' }
     ]
   },
-  // TELA 11 — VALIDAÇÃO (INFORMATIVA)
+  // TELA 12 — VALIDAÇÃO
   {
-    id: 11,
+    id: 12,
     type: 'info',
     headline: 'Você não falhou. Os métodos falharam com você.',
     sub: 'Dietas restritivas causam efeito sanfona. Cardio excessivo aumenta cortisol (que CAUSA inchaço). A maioria dos métodos ataca o sintoma, não a causa.\n\nO Protocolo de Desinflamação vai direto na raiz: elimina a inflamação que trava seu metabolismo.'
   },
-  // TELA 12 — ALIMENTAÇÃO ATUAL
+  // TELA 13 — ALIMENTAÇÃO ATUAL
   {
-    id: 12,
+    id: 13,
     type: 'single-select',
     question: 'Como é sua alimentação hoje?',
     options: [
@@ -187,9 +184,9 @@ export const quizSteps: QuizStepData[] = [
       { id: 'caos', label: 'Alimentação é um caos total' }
     ]
   },
-  // TELA 13 — HÁBITOS PROBLEMÁTICOS
+  // TELA 14 — HÁBITOS PROBLEMÁTICOS
   {
-    id: 13,
+    id: 14,
     type: 'multi-select',
     question: 'Você tem algum desses hábitos?',
     options: [
@@ -201,9 +198,9 @@ export const quizSteps: QuizStepData[] = [
       { id: 'nenhum', label: 'Nenhum desses' }
     ]
   },
-  // TELA 14 — OBJEÇÕES
+  // TELA 15 — OBJEÇÕES
   {
-    id: 14,
+    id: 15,
     type: 'multi-select',
     question: 'O que mais te preocupa em começar um novo protocolo?',
     options: [
@@ -215,9 +212,9 @@ export const quizSteps: QuizStepData[] = [
       { id: 'pronto', label: 'Nada, estou pronto(a)' }
     ]
   },
-  // TELA 15 — VALIDAÇÃO / QUEBRA DE OBJEÇÕES (INFORMATIVA)
+  // TELA 16 — VALIDAÇÃO / QUEBRA DE OBJEÇÕES
   {
-    id: 15,
+    id: 16,
     type: 'info',
     headline: 'O Protocolo foi criado para pessoas como você.',
     list: [
@@ -231,29 +228,15 @@ export const quizSteps: QuizStepData[] = [
       author: "Thiago"
     }
   },
-  // TELA 16 — PESO ATUAL
-  {
-    id: 16,
-    type: 'number-input',
-    question: 'Qual é o seu peso atual?',
-    sub: 'Usamos isso para personalizar seu resultado esperado.'
-  },
-  // TELA 17 — PESO DESEJADO
+  // TELA 17 — LOADING
   {
     id: 17,
-    type: 'number-input',
-    question: 'Qual peso você gostaria de alcançar?',
-    sub: 'Seja realista, o protocolo é focado em te fazer perder entre 3 e 7kg em 10 dias.'
-  },
-  // TELA 18 — LOADING / PROCESSAMENTO
-  {
-    id: 18,
     type: 'loading',
     headline: 'Analisando suas respostas...',
   },
-  // TELA 19 — RESULTADO + CTA
+  // TELA 18 — RESULTADO
   {
-    id: 19,
+    id: 18,
     type: 'result',
     headline: 'Seu Diagnóstico Personalizado',
   }

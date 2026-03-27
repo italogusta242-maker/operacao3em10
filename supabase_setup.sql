@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS profiles (
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
 -- Allow users to read their own profile
+DROP POLICY IF EXISTS "allow_read_own_profile" ON profiles;
 CREATE POLICY "allow_read_own_profile" ON profiles
 FOR SELECT TO authenticated
 USING (auth.uid() = id);
@@ -122,16 +123,16 @@ BEGIN
   FROM (
     WITH step_stats AS (
       SELECT 
-        v.step_index,
+        MAX(v.step_index) as step_index,
         v.step_id,
         COUNT(DISTINCT v.session_id) as viewed,
-        -- Consideramos 'completou' se clicou 'step_complete' OU se for o último passo e clicou no CTA
-        COUNT(DISTINCT c.session_id) FILTER (WHERE c.event = 'step_complete' OR (v.step_id = 'result' AND c.event = 'result_cta_click')) as completed,
+        -- Consideramos 'completou' se clicou 'step_complete' OU (v.event = 'result_view' e clicou no CTA)
+        COUNT(DISTINCT c.session_id) FILTER (WHERE c.event = 'step_complete' OR (v.event = 'result_view' AND c.event = 'result_cta_click')) as completed,
         ROUND((AVG(c.time_on_step_ms) FILTER (WHERE c.event = 'step_complete' OR c.event = 'result_cta_click'))/1000.0::numeric, 1) as avg_seconds
       FROM events v
-      LEFT JOIN events c ON c.session_id = v.session_id AND c.step_id = v.step_id
-      WHERE v.event = 'step_view' AND v.created_at BETWEEN from_date AND to_date
-      GROUP BY v.step_index, v.step_id
+      LEFT JOIN events c ON c.session_id = v.session_id AND c.step_id = v.step_id AND c.event IN ('step_complete', 'result_cta_click')
+      WHERE (v.event = 'step_view' OR v.event = 'result_view') AND v.created_at BETWEEN from_date AND to_date
+      GROUP BY v.step_id
     ),
     answer_breakdown AS (
       SELECT 

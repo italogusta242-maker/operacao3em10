@@ -7,6 +7,7 @@ import SingleSelectStep from "@/components/quiz/SingleSelectStep";
 import MultiSelectStep from "@/components/quiz/MultiSelectStep";
 import ImageSelectStep from "@/components/quiz/ImageSelectStep";
 import InfoStep from "@/components/quiz/InfoStep";
+import IntroHeroStep from "@/components/quiz/IntroHeroStep";
 import NumberInputStep from "@/components/quiz/NumberInputStep";
 import { BodySliderStep } from "@/components/quiz/BodySliderStep";
 import LoadingStep from "@/components/quiz/LoadingStep";
@@ -32,7 +33,6 @@ export default function Quiz() {
   const step: QuizStepData = quizSteps[currentStepIndex];
   
   // Progress is calculated for numbered screens (1 to 17) -> index 1 to 17
-  // Screen 1: Index 1 -> so total numbered steps = 17.
   const isNumberedScreen = currentStepIndex >= 1 && currentStepIndex <= 17;
   const progressPercent = isNumberedScreen ? (currentStepIndex / 17) * 100 : 0;
 
@@ -63,7 +63,7 @@ export default function Quiz() {
       setAnswers((prev) => ({ ...prev, [step.id]: answer }));
     }
 
-    if (step.type !== 'result' && step.type !== 'loading') {
+    if (step.type !== 'result') {
       onStepComplete(answer);
     }
 
@@ -94,13 +94,15 @@ export default function Quiz() {
         return <BodySliderStep step={step} onNext={handleNext} answers={answers} />;
       case "info":
         return <InfoStep step={step} onNext={handleNext} />;
+      case "intro-hero":
+        return <IntroHeroStep step={step} onNext={handleNext} />;
       case "number-input":
         return <NumberInputStep step={step} onNext={handleNext} answers={answers} />;
       case "loading":
         return <LoadingStep onNext={handleNext} />;
       case "result":
         return <ResultStep answers={answers} onNext={() => {
-          trackEvent({ event: 'result_cta_click' });
+          trackEvent({ event: 'result_cta_click', stepIndex: currentStepIndex, stepId: String(step.id) });
           trackMetaEvent("InitiateCheckout", { currency: "BRL", value: 47.0 });
           window.location.href = decorateURL(CTA_URL);
         }} />;

@@ -117,12 +117,15 @@ export default function AdminDashboard() {
   };
 
   // Pre-process funnel data for chart
-  const funnelData = metrics.stepFunnel?.map((s: any) => ({
+  const activeStepIds = [...quizSteps.map(s => String(s.id)), 'result']; // ensure result step is valid
+  const validFunnelSteps = metrics.stepFunnel?.filter((s:any) => activeStepIds.includes(String(s.step_id))) || [];
+
+  const funnelData = validFunnelSteps.map((s: any) => ({
     name: s.step_id,
     views: s.viewed,
     dropoff: s.dropoff_pct,
     time: s.avg_seconds,
-  })) || [];
+  }));
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] p-4 xl:p-8 font-sans selection:bg-primary/30">
@@ -246,7 +249,7 @@ export default function AdminDashboard() {
                 <div className="col-span-2 text-right">Ação</div>
               </div>
               
-              {metrics.stepFunnel.map((step: any, i: number) => {
+              {validFunnelSteps.map((step: any, i: number) => {
                 const isFriction = step.avg_seconds > 8;
                 const isDanger = step.dropoff_pct > 20;
                 const title = getStepTitle(step.step_id);

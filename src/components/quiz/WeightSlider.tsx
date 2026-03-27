@@ -9,7 +9,8 @@ interface WeightSliderProps {
 }
 
 export function WeightSlider({ min = 40, max = 150, initial = 75, unit = 'kg', onChange }: WeightSliderProps) {
-  const [value, setValue] = useState(initial);
+  const safeInitial = typeof initial === 'number' && !isNaN(initial) ? initial : 75;
+  const [value, setValue] = useState(safeInitial);
   const trackRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -46,7 +47,9 @@ export function WeightSlider({ min = 40, max = 150, initial = 75, unit = 'kg', o
 
   // Sincronizar caso o valor inicial mude externamente
   useEffect(() => {
-    setValue(initial);
+    if (typeof initial === 'number' && !isNaN(initial)) {
+      setValue(initial);
+    }
   }, [initial]);
 
   return (

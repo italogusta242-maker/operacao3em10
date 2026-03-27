@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { QuizStepData } from "../../data/quizData";
 import { WeightSlider } from "./WeightSlider";
 import { onSliderChange, onSliderFinal } from "@/lib/tracker";
@@ -10,7 +10,16 @@ interface Props {
 }
 
 export default function NumberInputStep({ step, onNext, answers }: Props) {
-  const [value, setValue] = useState(answers[step.id] || 75);
+  const rawValue = answers[step.id];
+  const initialValue = typeof rawValue === 'number' && !isNaN(rawValue) ? rawValue : 75;
+  const [value, setValue] = useState(initialValue);
+
+  // Synchronize internal state if initialValue changes from props
+  useEffect(() => {
+    if (typeof initialValue === 'number' && !isNaN(initialValue)) {
+      setValue(initialValue);
+    }
+  }, [initialValue]);
 
   return (
     <div className="flex flex-col h-full animate-fade-in w-full overflow-hidden">
