@@ -19,12 +19,14 @@ Deno.serve(async (req) => {
   const exists = existingUsers?.users?.find((u) => u.email === email);
 
   if (exists) {
+    // Update password
+    await supabase.auth.admin.updateUserById(exists.id, { password });
     // Ensure role exists
     await supabase.from("user_roles").upsert(
       { user_id: exists.id, role: "admin" },
       { onConflict: "user_id,role" }
     );
-    return new Response(JSON.stringify({ message: "Admin already exists, role ensured" }), {
+    return new Response(JSON.stringify({ message: "Admin updated, password reset, role ensured" }), {
       headers: { "Content-Type": "application/json" },
     });
   }
