@@ -20,7 +20,39 @@ CREATE INDEX IF NOT EXISTS idx_events_event   ON events(event);
 CREATE INDEX IF NOT EXISTS idx_events_step    ON events(step_id);
 CREATE INDEX IF NOT EXISTS idx_events_date    ON events(created_at);
 
--- 3. Row Level Security (RLS)
+-- 3. Profiles table for roles
+CREATE TABLE IF NOT EXISTS profiles (
+  id UUID REFERENCES auth.users(id) PRIMARY KEY,
+  email TEXT,
+  is_admin BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable RLS on profiles
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+
+-- Allow users to read their own profile
+CREATE POLICY "allow_read_own_profile" ON profiles
+FOR SELECT TO authenticated
+USING (auth.uid() = id);
+
+-- Function to handle new user profiles automatically
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS trigger AS $$
+BEGIN
+  INSERT INTO public.profiles (id, email, is_admin)
+  VALUES (new.id, new.email, false);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Trigger to create profile on signup
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+
+-- 4. Row Level Security (RLS) for events
 ALTER TABLE events ENABLE ROW LEVEL SECURITY;
 
 -- Allow anonymous inserts (front-end tracking)
@@ -39,9 +71,15 @@ WITH CHECK (
 DROP POLICY IF EXISTS "allow_select_events" ON events;
 CREATE POLICY "allow_select_events" ON events
 FOR SELECT TO authenticated
-USING (auth.role() = 'authenticated');
+USING (
+  EXISTS (
+    SELECT 1 FROM profiles 
+    WHERE profiles.id = auth.uid() 
+    AND profiles.is_admin = true
+  )
+);
 
--- 4. Create the RPC function to aggregate admin metrics
+-- 5. Create the RPC function to aggregate admin metrics
 CREATE OR REPLACE FUNCTION get_admin_metrics(from_date TIMESTAMPTZ, to_date TIMESTAMPTZ)
 RETURNS JSONB
 LANGUAGE plpgsql
@@ -58,6 +96,15 @@ DECLARE
   v_result JSONB;
   v_tz TEXT := 'America/Sao_Paulo';
 BEGIN
+  -- Permission Check: Se o usuário não for admin na tabela de profiles, lançar erro
+  IF NOT EXISTS (
+    SELECT 1 FROM profiles 
+    WHERE profiles.id = auth.uid() 
+    AND profiles.is_admin = true
+  ) THEN
+    RAISE EXCEPTION 'Acesso negado: Apenas administradores podem acessar métricas.';
+  END IF;
+
   -- 1. Total sessions (considerando o período)
   SELECT COUNT(DISTINCT session_id) INTO v_total_sessions
   FROM events WHERE event = 'session_start' AND created_at BETWEEN from_date AND to_date;

@@ -28,15 +28,6 @@ export default function AdminDashboard() {
     loadAllMetrics();
   }, [summaryPeriod, funnelPeriod, volumePeriod]);
 
-  async function checkAuthAndLoad() {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      navigate('/admin/login');
-      return;
-    }
-    loadAllMetrics();
-  }
-
   const getDates = (p: string) => {
     const now = new Date();
     let fromDate: Date;
